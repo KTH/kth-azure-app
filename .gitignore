@@ -1,5 +1,5 @@
 .idea
-docker-test.iml
+*.iml
 node_modules
 
 # Secret configs
