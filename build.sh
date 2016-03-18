@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP_NAME="kth-azure-app"
-APP_VERSION="V.0.6"
+APP_VERSION="V.0.7"
 
 
 echo "================================================================================"
@@ -26,8 +26,9 @@ docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
 
 echo "================================================================================"
 
+echo "Clean up build"
+
 docker rmi -f $DOCKER_IMAGE_ID
-docker rmi -f 85e8b6e6d658
 
 echo "================================================================================"
 
