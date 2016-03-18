@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP_NAME="kth-azure-app"
-APP_VERSION="V.0.5"
+APP_VERSION="V.0.6"
 
 
 echo "================================================================================"
@@ -27,9 +27,8 @@ docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
 echo "================================================================================"
 
 "echo docker rmi $DOCKER_IMAGE_ID"
-docker rmi -f ac7933d443ab
-docker rmi -f f3705c0256e0
-docker rmi -f cb7c41e21c02
+echo docker rmi $DOCKER_IMAGE_ID
+docker rmi -f d333e482509e
 
 echo "================================================================================"
 
