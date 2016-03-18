@@ -16,4 +16,4 @@ echo "docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION"
 docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
 
 "echo docker rmi $DOCKER_IMAGE_ID"
-docker rmi $DOCKER_IMAGE_ID
+docker rmi -f $DOCKER_IMAGE_ID
