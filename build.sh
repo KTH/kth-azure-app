@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP_NAME="kth-azure-app"
-APP_VERSION="V.0.4"
+APP_VERSION="V.0.5"
 
 echo "docker build -t $APP_NAME:$APP_VERSION . | grep Successfully | awk '{ print $3 }'"
 DOCKER_IMAGE_ID=$(docker build -t $APP_NAME:$APP_VERSION . | grep Successfully | awk '{ print $3 }')
