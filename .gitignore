@@ -1,0 +1,6 @@
+.idea
+docker-test.iml
+node_modules
+
+# Secret configs
+config.py
