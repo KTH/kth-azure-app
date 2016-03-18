@@ -26,12 +26,6 @@ docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
 
 echo "================================================================================"
 
-echo "Clean up build"
-
-docker rmi -f $DOCKER_IMAGE_ID
-
-echo "================================================================================"
-
 echo "docker images"
 docker images
 echo "================================================================================"
