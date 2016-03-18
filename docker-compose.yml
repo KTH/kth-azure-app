@@ -2,8 +2,7 @@ web:
   image: kth-docker-registry.sys.kth.se/kth-azure-app:v0.3
   ports:
    - "80:3000"
-  links:
-   - redis
+
 redis:
   image: redis
   ports:
