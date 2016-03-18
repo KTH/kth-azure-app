@@ -26,8 +26,8 @@ docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
 
 echo "================================================================================"
 
-docker rmi $DOCKER_IMAGE_ID
-docker rmi -f 0fce2c5bea4f
+docker rmi -f $DOCKER_IMAGE_ID
+docker rmi -f 85e8b6e6d658
 
 echo "================================================================================"
 
