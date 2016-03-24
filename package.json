@@ -5,7 +5,7 @@
 
   "//": "General application properties",
 
-  "name": "docker-test",
+  "name": "kth-azure-app",
   "version": "0.1.0",
   "description": "",
   "main": "app.js",
@@ -15,25 +15,12 @@
   "dependencies": {
     "express": "~4.13.3",
     "body-parser": "~1.0.2",
-    "express-session": "~1.10.3"
+    "express-session": "~1.10.3",
+    "redis": "*"
   },
 
   "//": "Engine used to power the application",
   "engines": {
     "node": "4.0.0"
-  },
-
-  "//": "These are not installed when running npm install --production",
-  "//": "The production flag is added in the jenkins build script",
-  "devDependencies": {
-    "mocha": "2.3.3",
-    "chai": "3.2.0",
-    "jshint": "2.7.0",
-    "sinon": "1.14.1"
-  },
-
-  "//": "JSHint configuration - http://jshint.com/docs/options/",
-  "jshintConfig": {
-    "maxerr": 5
   }
 }

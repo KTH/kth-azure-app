@@ -1,8 +1,9 @@
 web:
-  image: kth-docker-registry.sys.kth.se/kth-azure-app:v0.3
+  image: kth-docker-registry.sys.kth.se/kth-azure-app:v0.8
   ports:
    - "80:3000"
 
+# Web letar efter redis på kth-redis.westeurope.cloudapp.azure.com
 redis:
   image: redis
   ports:
