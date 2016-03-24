@@ -19,12 +19,15 @@ echo "==========================================================================
 echo "docker tag $DOCKER_IMAGE_ID kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION"
 docker tag $DOCKER_IMAGE_ID kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
 
-echo "================================================================================"
-
 echo "docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION"
 docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
 
+echo "================================================================================"
+
+echo "docker tag $DOCKER_IMAGE_ID kth-docker-registry.sys.kth.se/$APP_NAME:latest"
 docker tag $DOCKER_IMAGE_ID kth-docker-registry.sys.kth.se/$APP_NAME:latest
+
+echo "docker push kth-docker-registry.sys.kth.se/$APP_NAME:latest"
 docker push kth-docker-registry.sys.kth.se/$APP_NAME:latest
 
 echo "================================================================================"
