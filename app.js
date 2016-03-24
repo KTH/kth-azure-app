@@ -4,7 +4,7 @@ var app = express();
 var redis = require('redis');
 
 var redisClientConfig = {
-  'host': 'kth-redis.westeurope.cloudapp.azure.com'
+  'host': 'redis-v3.local'
   // 'host': '192.168.99.100'
 };
 

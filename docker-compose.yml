@@ -1,10 +1,10 @@
 web:
-  image: kth-docker-registry.sys.kth.se/kth-azure-app
+  image: kth-docker-registry.sys.kth.se/kth-azure-app:V.0.10
   ports:
    - "80:3000"
 
-# Web letar efter redis på kth-redis.westeurope.cloudapp.azure.com
 redis:
   image: redis
   ports:
    - "6379:6379"
+  #host: redis-v3.local
