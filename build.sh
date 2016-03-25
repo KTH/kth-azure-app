@@ -9,6 +9,11 @@ echo "==========================================================================
 echo "docker build -t $APP_NAME:$APP_VERSION . | grep Successfully | awk '{ print $3 }'"
 DOCKER_IMAGE_ID=$(docker build -t $APP_NAME:$APP_VERSION . | grep Successfully | awk '{ print $3 }')
 
+if [ -z "$DOCKER_IMAGE_ID" ]; then
+  echo "docker build failed! exiting"
+  exit
+fi
+
 echo "================================================================================"
 
 echo "docker images"

@@ -4,7 +4,8 @@ var app = express();
 var redis = require('redis');
 
 var redisClientConfig = {
-  'host': 'redis-v3.local'
+  'host': 'redis',
+  'port': process.env.REDIS_PORT_6379_TCP_PORT
   // 'host': '192.168.99.100'
 };
 
