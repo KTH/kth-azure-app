@@ -1,6 +1,9 @@
 # kth-azure-app
 Reference application for testing in docker cluster
 
+## Prerequisites
+* Docker Toolbox >= 1.10.3 (docker 1.10.3, docker-compose 1.6.2) 
+
 ## To run
 Edit build.sh and add your version number.
 

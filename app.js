@@ -6,7 +6,6 @@ var redis = require('redis');
 var redisClientConfig = {
   'host': 'redis',
   'port': process.env.REDIS_PORT_6379_TCP_PORT
-  // 'host': '192.168.99.100'
 };
 
 app.get('/', function (req, res) {
@@ -22,6 +21,7 @@ app.get('/', function (req, res) {
       console.log(err);
     }
     client.get("my-key", function(err, value) {
+      console.log('Wrote and got key: ' + value)
       res.send(
           "<p><strong>host:</strong> " + os.hostname() + "</p>" +
           "<p><strong>redis value:</strong>" + value + "</p>");

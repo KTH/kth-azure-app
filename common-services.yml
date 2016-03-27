@@ -1,0 +1,14 @@
+version: '2'
+services:
+  app:
+    networks:
+      - testnet
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://10.0.3.5:5005
+        # TODO(tinglev): Try to override this is the extending config
+        tag: "app"
+        # TODO(tinglev): See if these can be propagated to logstash
+        labels: label1, label2
+        env: env1, env2
