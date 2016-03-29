@@ -19,5 +19,5 @@ services:
       - "6379"
 
 networks:
-  testnet:
+  appnet:
     driver: overlay

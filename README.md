@@ -17,6 +17,12 @@ Run docker-compose -p [custom project name with version] up -d
 
 
 ## Notes
+If docker can't fetch an image (docker: Network timed out..) [GitHub issue](https://github.com/docker/docker/issues/20910)
+
+`$> docker-machine restart default`
+
+`$> eval $(docker-machine env default)`
+
 If docker-compose up times out, add this to the command:
 
 `$> COMPOSE_HTTP_TIMEOUT=120 docker-compose ...`
