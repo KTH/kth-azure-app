@@ -16,15 +16,15 @@ app.get('/', function (req, res) {
       res.send("Error " + err);
   });
 
-  client.set("my-key", "1337", function (err, reply) {
+  client.set("my-host", os.hostname(), function (err, reply) {
     if (err) {
       console.log(err);
     }
-    client.get("my-key", function(err, value) {
+    client.get("my-host", function(err, value) {
       console.log('Wrote and got key: ' + value)
       res.send(
-          "<p><strong>host:</strong> " + os.hostname() + "</p>" +
-          "<p><strong>redis value:</strong>" + value + "</p>");
+          "<p><strong>OS:</strong>" + os.hostname() + "</p>" +
+          "<p><strong>Redis value:</strong>" + value + "</p>");
     });
 
   });
