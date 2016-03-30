@@ -4,7 +4,7 @@ services:
     extends:
       file: common-services.yml
       service: app
-    image: kth-docker-registry.sys.kth.se/kth-azure-app:latest
+    build: kth-docker-registry.sys.kth.se/kth-azure-app:latest
     ports:
       - "3000"
     links:
