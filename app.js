@@ -24,7 +24,8 @@ app.get('/', function (req, res) {
       console.log('Wrote and got key: ' + value)
       res.send(
           "<p><strong>OS:</strong>" + os.hostname() + "</p>" +
-          "<p><strong>Redis value:</strong>" + value + "</p>");
+          "<p><strong>Redis value:</strong>" + value + "</p>" +
+          "<p>" + redisClientConfig + "</p>");
     });
 
   });
