@@ -4,9 +4,9 @@ services:
     extends:
       file: common-services.yml
       service: app
-    build: kth-docker-registry.sys.kth.se/kth-azure-app:latest
+    image: kth-docker-registry.sys.kth.se/kth-azure-app:V.0.11
     ports:
-      - 80:3000
+      - 3000
     links:
       - redis
 

@@ -13,7 +13,6 @@ LABEL license="The MIT License (MIT)"
 RUN mkdir -p /npm
 RUN mkdir -p /application
 
-
 # We do this to avoid npm install when we're only changing code
 WORKDIR /npm
 
@@ -27,6 +26,5 @@ ADD [".", "."]
 
 RUN cp -a /npm/node_modules /application
 EXPOSE 3000
-
 
 ENTRYPOINT ["node", "app.js"]

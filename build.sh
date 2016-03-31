@@ -1,48 +1,82 @@
 #!/bin/bash
 
-APP_NAME="kth-azure-app"
-APP_VERSION="V.0.10"
+set -e
 
+# =======================================
+# Define helper functions
+# =======================================
 
-echo "================================================================================"
+echo_err() { printf "$@" 1>&2; exit -1; }
+output() { printf "\n\n========"; printf "$@\n"; }
 
-echo "docker build -t $APP_NAME:$APP_VERSION . | grep Successfully | awk '{ print $3 }'"
-DOCKER_IMAGE_ID=$(docker build -t $APP_NAME:$APP_VERSION . | grep Successfully | awk '{ print $3 }')
+CONFIG_FILE="docker.info"
 
-if [ -z "$DOCKER_IMAGE_ID" ]; then
-  echo "docker build failed! exiting"
-  exit
+output "Loading app configuration from $CONFIG_FILE ..."
+
+# =======================================
+# Load application configuration settings
+# =======================================
+
+source $CONFIG_FILE
+
+# =======================================
+# Setup variables
+# =======================================
+
+REGISTRY="kth-docker-registry.sys.kth.se"
+CUSTOM_TAG="$1"
+VERSION_TAG="$APP_VERSION"
+LATEST_TAG="latest"
+TAGS="-t $REGISTRY/$APP_NAME:$VERSION_TAG -t $REGISTRY/$APP_NAME:$LATEST_TAG"
+
+# =======================================
+# Add custom tag if provided
+# =======================================
+
+if [ -z "$CUSTOM_TAG" ]; then
+  output "Building version $APP_VERSION of $APP_NAME with no custom tag ..."
+else
+  output "Building version $APP_VERSION of $APP_NAME with custom tag: $CUSTOM_TAG ..."
+  TAGS="$TAGS -t $REGISTRY/$APP_NAME:$CUSTOM_TAG"
 fi
 
-echo "================================================================================"
+# =======================================
+# Build image with all the tags
+# =======================================
 
-echo "docker images"
-docker images
+DOCKER_IMAGE_ID=$(docker build $TAGS . | grep Successfully | awk '{ print $3 }')
 
-echo "================================================================================"
+# =======================================
+# Check that we got back an image id
+# =======================================
 
-echo "docker tag $DOCKER_IMAGE_ID kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION"
-docker tag $DOCKER_IMAGE_ID kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
+if [ -z "$DOCKER_IMAGE_ID" ]; then
+  echo_err "Docker build failed (no image was created)! Exiting"
+fi
 
-echo "docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION"
-docker push kth-docker-registry.sys.kth.se/$APP_NAME:$APP_VERSION
+# =======================================
+# Push the image to our repository
+# =======================================
 
-echo "================================================================================"
+output "Pushing image to registry $REGISTRY ..."
+docker push $REGISTRY/$APP_NAME
 
-echo "docker tag $DOCKER_IMAGE_ID kth-docker-registry.sys.kth.se/$APP_NAME:latest"
-docker tag $DOCKER_IMAGE_ID kth-docker-registry.sys.kth.se/$APP_NAME:latest
+# =======================================
+# Query API to make sure that the version tag was properly pushed
+# =======================================
 
-echo "docker push kth-docker-registry.sys.kth.se/$APP_NAME:latest"
-docker push kth-docker-registry.sys.kth.se/$APP_NAME:latest
+output "Querying the registry API to make sure tag version $APP_VERSION exists ..."
+FOUND_VERSION=$(curl https://$REGISTRY:443/v2/$APP_NAME/tags/list | grep $APP_VERSION)
 
-echo "================================================================================"
+if [ -z "$FOUND_VERSION" ]; then
+  echo_err "Could not get version from repository. Maybe nothing changed in this build?"
+else
+  # =======================================
+  # Remove local images and finish
+  # =======================================
 
-echo "Clean up build"
-docker rmi -f $DOCKER_IMAGE_ID
+  output "Removing local images ..."
+  docker rmi -f $DOCKER_IMAGE_ID
 
-echo "================================================================================"
-
-echo "docker images"
-docker images
-
-echo "================================================================================"
+  output "All done!"
+fi

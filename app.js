@@ -10,6 +10,8 @@ var redisClientConfig = {
 
 app.get('/', function (req, res) {
 
+  //console.log("Got request")
+
   var client = redis.createClient(redisClientConfig);
 
   client.on("error", function (err) {
@@ -25,7 +27,7 @@ app.get('/', function (req, res) {
       res.send(
           "<p><strong>OS:</strong>" + os.hostname() + "</p>" +
           "<p><strong>Redis value:</strong>" + value + "</p>" +
-          "<p>" + redisClientConfig + "</p>");
+          "<p>" + redisClientConfig.host + "</p>");
     });
 
   });
