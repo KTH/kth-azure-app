@@ -6,10 +6,12 @@ set -e
 # Define helper functions
 # =======================================
 
-echo_err() { printf "$@" 1>&2; exit -1; }
-output() { printf "\n\n========"; printf "$@\n"; }
+on_error() { printf "$@" 1>&2; docker rmi -f $DOCKER_IMAGE_ID; exit -1; }
+output() { printf "\n\n======== $@\n"; }
 
 CONFIG_FILE="docker.info"
+
+output "Running build script on $DOCKER_HOST ..."
 
 output "Loading app configuration from $CONFIG_FILE ..."
 
@@ -24,34 +26,36 @@ source $CONFIG_FILE
 # =======================================
 
 REGISTRY="kth-docker-registry.sys.kth.se"
-CUSTOM_TAG="$1"
 VERSION_TAG="$APP_VERSION"
 LATEST_TAG="latest"
-TAGS="-t $REGISTRY/$APP_NAME:$VERSION_TAG -t $REGISTRY/$APP_NAME:$LATEST_TAG"
+
+APP_NAME_FULL="$REGISTRY/$APP_NAME"
 
 # =======================================
-# Add custom tag if provided
+# Build image
 # =======================================
 
-if [ -z "$CUSTOM_TAG" ]; then
-  output "Building version $APP_VERSION of $APP_NAME with no custom tag ..."
-else
-  output "Building version $APP_VERSION of $APP_NAME with custom tag: $CUSTOM_TAG ..."
-  TAGS="$TAGS -t $REGISTRY/$APP_NAME:$CUSTOM_TAG"
+output "Building $APP_NAME_FULL ..."
+DOCKER_IMAGE_ID=$(docker build . | grep Successfully | awk '{ print $3 }')
+
+# =======================================
+# Tag image
+# =======================================
+
+output "Tagging image with '$APP_VERSION' and '$LATEST_TAG'"
+docker tag $DOCKER_IMAGE_ID $APP_NAME_FULL:$APP_VERSION
+docker tag $DOCKER_IMAGE_ID $APP_NAME_FULL:$LATEST_TAG
+if ! [ -z "$CUSTOM_TAG" ]; then
+  output "Adding custom tag '$CUSTOM_TAG' to image ..."
+  docker tag $DOCKER_IMAGE_ID $APP_NAME_FULL:$CUSTOM_TAG
 fi
-
-# =======================================
-# Build image with all the tags
-# =======================================
-
-DOCKER_IMAGE_ID=$(docker build $TAGS . | grep Successfully | awk '{ print $3 }')
 
 # =======================================
 # Check that we got back an image id
 # =======================================
 
 if [ -z "$DOCKER_IMAGE_ID" ]; then
-  echo_err "Docker build failed (no image was created)! Exiting"
+  on_error "Docker build failed (no image was created)! Exiting"
 fi
 
 # =======================================
@@ -59,7 +63,7 @@ fi
 # =======================================
 
 output "Pushing image to registry $REGISTRY ..."
-docker push $REGISTRY/$APP_NAME
+docker push $APP_NAME_FULL
 
 # =======================================
 # Query API to make sure that the version tag was properly pushed
@@ -69,14 +73,14 @@ output "Querying the registry API to make sure tag version $APP_VERSION exists .
 FOUND_VERSION=$(curl https://$REGISTRY:443/v2/$APP_NAME/tags/list | grep $APP_VERSION)
 
 if [ -z "$FOUND_VERSION" ]; then
-  echo_err "Could not get version from repository. Maybe nothing changed in this build?"
-else
-  # =======================================
-  # Remove local images and finish
-  # =======================================
-
-  output "Removing local images ..."
-  docker rmi -f $DOCKER_IMAGE_ID
-
-  output "All done!"
+  on_error "Could not get version from repository. Maybe nothing changed in this build?"
 fi
+
+# =======================================
+# Remove local images and finish
+# =======================================
+
+output "Removing local images ..."
+docker rmi -f $DOCKER_IMAGE_ID
+
+output "All done!"

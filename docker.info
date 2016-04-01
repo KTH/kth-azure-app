@@ -1,2 +1,3 @@
 APP_NAME="kth-azure-app"
-APP_VERSION="0.12"
+APP_VERSION="0.15"
+CUSTOM_TAG="azure"

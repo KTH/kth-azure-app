@@ -15,16 +15,14 @@ RUN mkdir -p /application
 
 # We do this to avoid npm install when we're only changing code
 WORKDIR /npm
-
-ADD ["package.json", "package.json"]
+COPY package.json package.json
 RUN npm install
 
 # Add the code and copy over the node_modules
-
-WORKDIR /application
-ADD [".", "."]
-
+WORKDIR /
+COPY . /application
 RUN cp -a /npm/node_modules /application
+
 EXPOSE 3000
 
-ENTRYPOINT ["node", "app.js"]
+ENTRYPOINT node /application/app.js

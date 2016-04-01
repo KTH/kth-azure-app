@@ -3,28 +3,24 @@ services:
   web:
     extends:
       file: common-services.yml
-      service: app
-    image: kth-docker-registry.sys.kth.se/kth-azure-app:V.0.11
+      service: frontend
+    image: kth-docker-registry.sys.kth.se/kth-azure-app:0.15
     ports:
       - 3000
-    links:
+    depends_on:
       - redis
 
   redis:
     extends:
       file: common-services.yml
-      service: app
+      service: backend
     image: redis:latest
     ports:
       - 6379
 
-# TODO(tinglev): overlays are suggested to have hard coded subnets
-# TODO(tinglev): to not interfere with already existing infrastructure
-# TODO(tinglev): not a problem as long as we run on clusternet (cluster wide overlay)
-#networks:
-#  appnet:
-#    driver: overlay
 networks:
-  clusternet:
-    external: true
+  application_frontend:
+    driver: overlay
+  application_backend:
+    driver: overlay
 

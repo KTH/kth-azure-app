@@ -1,8 +1,21 @@
 version: '2'
 services:
-  app:
+  frontend:
     networks:
-      - clusternet
+      - application_frontend
+      - application_backend
+    logging:
+      driver: gelf
+      options:
+        # TODO(tinglev): Remove hard coded ip to utility01
+        gelf-address: udp://10.0.3.5:5005
+        tag: "{{.ImageName}}/{{.ImageID}}/{{.Name}}/{{.ID}}"
+        # TODO(tinglev): See if these can be propagated to logstash
+        #labels: label1, label2
+        #env: env1, env2
+  backend:
+    networks:
+      - application_backend
     logging:
       driver: gelf
       options:
