@@ -15,6 +15,19 @@ Set docker env to point to cluster (see notes below)
 
 Run docker-compose -p [custom project name with version] up -d
 
+## Development workflow
+
+1. Dev created Dockerfile and docker-compose.yml
+  * How to communicate andermatt base images?
+  * How to issue creation of new andermatt base images?
+  * Who owns andermatt?
+  * How to communicate extensions 
+2. Dev makes change to code and wants to test locally
+  * Is the Dockerfile compatible for both cluster and local?
+  * How to handle overlay networks that require a kv-store?
+  * How to handle DNS entries created for compose services connect('redis')?
+3. Dev pushes code changes to gita
+  * 
 
 ## Notes
 If docker can't fetch an image (docker: Network timed out..) [GitHub issue](https://github.com/docker/docker/issues/20910)

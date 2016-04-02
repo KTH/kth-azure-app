@@ -1,9 +1,9 @@
 version: '2'
 services:
   frontend:
-    networks:
-      - application_frontend
-      - application_backend
+    #networks:
+    #  - application_frontend
+    #  - application_backend
     logging:
       driver: gelf
       options:
@@ -14,8 +14,8 @@ services:
         #labels: label1, label2
         #env: env1, env2
   backend:
-    networks:
-      - application_backend
+    #networks:
+    #  - application_backend
     logging:
       driver: gelf
       options:

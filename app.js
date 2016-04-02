@@ -4,7 +4,7 @@ var app = express();
 var redis = require('redis');
 
 var redisClientConfig = {
-  'host': 'redis'
+  'host': 'kth-azure-app-web.kth-azure-app.cluster.skydns.local'
 };
 
 var start = process.hrtime();
