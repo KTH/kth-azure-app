@@ -1,7 +1,7 @@
 #
 # Based on https://gita.sys.kth.se/Infosys/andermatt/tree/master/docker-containers/nodejs/api
 #
-FROM kthse/kth-nodejs-webd
+FROM kthse/kth-nodejs-web
 
 # Maintainer
 MAINTAINER Webmaster "webmaster@kth.se"
