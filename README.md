@@ -1,8 +1,9 @@
-# kth-azure-app
-Reference application for testing in docker cluster
+# Reference and Monitoring Application for the Docker Swarm Cluster
+This is an application for testing that the [Docker Swarm cluster](https://gita.sys.kth.se/infosys/kth-azure-swarm) on Azure works as intended.
 
 ## Prerequisites
-* Docker Toolbox >= 1.10.3 (docker 1.10.3, docker-compose 1.6.2) 
+* Docker version 1.11.0 or later
+* Docker-compose 1.7.0 or later
 
 ## To run
 Edit build.sh and add your version number.
