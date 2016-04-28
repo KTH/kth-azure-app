@@ -2,6 +2,12 @@
 
 set -e
 
+
+echo " * * * * * * * * * * * * * * * * * * * * * * * * * *"
+echo " * To be deprecated                                *"
+echo " * Clone https://gita.sys.kth.se/Infosys/zermatt   *"
+echo " * and build with zermatt/jenkins/docker-build.sh  *"
+echo " * * * * * * * * * * * * * * * * * * * * * * * * * *"
 # =======================================
 # Define helper functions
 # =======================================
@@ -26,28 +32,28 @@ source $CONFIG_FILE
 # =======================================
 
 REGISTRY="kth-docker-registry.sys.kth.se"
-VERSION_TAG="$APP_VERSION"
+VERSION_TAG="$IMAGE_VERSION"
 LATEST_TAG="latest"
 
-APP_NAME_FULL="$REGISTRY/$APP_NAME"
+IMAGE_NAME_FULL="$REGISTRY/$IMAGE_NAME"
 
 # =======================================
 # Build image
 # =======================================
 
-output "Building $APP_NAME_FULL ..."
+output "Building $IMAGE_NAME_FULL ..."
 DOCKER_IMAGE_ID=$(docker build . | grep Successfully | awk '{ print $3 }')
 
 # =======================================
 # Tag image
 # =======================================
 
-output "Tagging image with '$APP_VERSION' and '$LATEST_TAG'"
-docker tag $DOCKER_IMAGE_ID $APP_NAME_FULL:$APP_VERSION
-docker tag $DOCKER_IMAGE_ID $APP_NAME_FULL:$LATEST_TAG
-if ! [ -z "$CUSTOM_TAG" ]; then
-  output "Adding custom tag '$CUSTOM_TAG' to image ..."
-  docker tag $DOCKER_IMAGE_ID $APP_NAME_FULL:$CUSTOM_TAG
+output "Tagging image with '$IMAGE_VERSION' and '$LATEST_TAG'"
+docker tag $DOCKER_IMAGE_ID $IMAGE_NAME_FULL:$IMAGE_VERSION
+docker tag $DOCKER_IMAGE_ID $IMAGE_NAME_FULL:$LATEST_TAG
+if ! [ -z "$CUSTOM_TAGS" ]; then
+  output "Adding custom tag '$CUSTOM_TAGS' to image ..."
+  docker tag $DOCKER_IMAGE_ID $IMAGE_NAME_FULL:$CUSTOM_TAGS
 fi
 
 # =======================================
@@ -63,14 +69,14 @@ fi
 # =======================================
 
 output "Pushing image to registry $REGISTRY ..."
-docker push $APP_NAME_FULL
+#docker push $IMAGE_NAME_FULL
 
 # =======================================
 # Query API to make sure that the version tag was properly pushed
 # =======================================
 
-output "Querying the registry API to make sure tag version $APP_VERSION exists ..."
-FOUND_VERSION=$(curl https://$REGISTRY:443/v2/$APP_NAME/tags/list | grep $APP_VERSION)
+output "Querying the registry API to make sure tag version $IMAGE_VERSION exists ..."
+FOUND_VERSION=$(curl https://$REGISTRY:443/v2/$IMAGE_NAME/tags/list | grep $IMAGE_VERSION)
 
 if [ -z "$FOUND_VERSION" ]; then
   on_error "Could not get version from repository. Maybe nothing changed in this build?"
