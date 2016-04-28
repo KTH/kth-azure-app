@@ -4,13 +4,12 @@ services:
     extends:
       file: common-services.yml
       service: frontend
-    image: kth-docker-registry.sys.kth.se/kth-azure-app:0.15
+    image: kth-docker-registry.sys.kth.se/kth-azure-app:1.0
     environment:
       # SERVICE_ID is used to create valid DNS entries for registrator -> SkyDNS
-      SERVICE_ID : "kth-azure-app-web"
-      SERVICE_TAGS : "production,published"
-      SERVICE_REDIS : "no"
-      SERVICE_PUBLISH : "yes"
+      SERVICE_ID : "$COMPOSE_PROJECT_NAME-web"
+      SERVICE_TAGS : "app,kth,web,nodejs"
+      SERVICE_PUBLISH : "/_azure/app"
     dns: 10.1.1.100
     ports:
       - 3000
@@ -23,10 +22,8 @@ services:
       service: backend
     image: redis:latest
     environment:
-      SERVICE_ID : "kth-azure-app-redis"
-      SERVICE_TAGS : "production,persistent"
-      SERVICE_REDIS : "yes"
-      SERVICE_PUBLISH : "no"
+      SERVICE_ID : "$COMPOSE_PROJECT_NAME-redis"
+      SERVICE_TAGS : "app,storage,redis,stateless,no-scale"
     dns: 10.1.1.100
     ports:
       - 6379
