@@ -12,38 +12,61 @@ set -e
 #
 #####################################################################
 
-# /var/lib/jenkins/workspace/zermatt/jenkins
-CURRENT_SCRIPT_ABSOLUTE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
+
+#####################################################################
+# Passed argument
+#
+
+# Docker-compose target environment [azure,f dev or other]
 TARGET=$1
 
+#####################################################################
+# Generic helper functions.
+#
+
+# Print info to screen.
+info() { printf "\n • $@\n\n"; }
+
+# Print info to screen.
+debug() { printf "\n    – $@\n"; }
+
+# Print info to screen.
+error() { printf "\n######################################\n\n$@\n######################################\n"; }
+
+# Clean up on error.
+on_error() { printf "$@" 1>&2; docker rmi -f $DOCKER_IMAGE_ID; exit -1; }
+
+
+info "Reading project specific docker settings"
 source docker.conf
 
 # The name to give the build, normally the project or gitrepo name.
 if [ -z $IMAGE_NAME ]; then
   error "No label IMAGE_NAME specified in docker.conf"
-  exit 1
 fi
 
 if [ -n "$TARGET" ]; then
 
   if [ -a $ENV_FILE ]; then
     # Export Docker envs for target enviroment.
-    echo "=================== $TARGET ====================================================="
+    info "Setting target enviroment from docker-$TARGET.env"
+
     source docker-$TARGET.env
 
-    echo $DOCKER_HOST
+    debug "Using host $DOCKER_HOST"
 
     export COMPOSE_PROJECT_NAME=$IMAGE_NAME
 
-    echo "Using COMPOSE_PROJECT_NAME: $COMPOSE_PROJECT_NAME"
+    debug "Using COMPOSE_PROJECT_NAME: $COMPOSE_PROJECT_NAME"
+
+    info "Runngin docker-compose up -d to $TARGET"
     docker-compose up -d
 
   else
-    echo -e "No matching target enviroment file found\n\nFile should be:   docker-[dev,azure].env\n"
+    error "No matching target enviroment file found\n\nFile should be:   docker-[dev,azure].env\n"
   fi
 
 else
-  echo "Missing target enviroment [dev, azure]"
-  echo "publish.sh [dev,azure]"
+  error "Missing target enviroment [dev, azure]\npublish.sh [dev,azure]"
 fi
