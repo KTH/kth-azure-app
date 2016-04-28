@@ -17,10 +17,14 @@ if [ -n "$TARGET" ]; then
     # Export Docker envs for target enviroment.
     echo "=================== $TARGET ====================================================="
     source $CURRENT_SCRIPT_ABSOLUTE_PATH/docker-$TARGET.env
-    docker-compose up -d
+
+    export COMPOSE_PROJECT_NAME=$(basename $CURRENT_SCRIPT_ABSOLUTE_PATH)
+
+    echo "Using COMPOSE_PROJECT_NAME: $COMPOSE_PROJECT_NAME"
+    docker-compose up -d --build
 
   else
-    echo "No matching target enviroment files found ./docker-[dev,azure].env"
+    echo -e "No matching target enviroment file found\n\nFile should be:   docker-[dev,azure].env\n"
   fi
 
 else
