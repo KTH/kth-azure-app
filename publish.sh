@@ -56,7 +56,7 @@ if [ -n "$TARGET" ]; then
 
     debug "Using host $DOCKER_HOST"
 
-    export COMPOSE_PROJECT_NAME=$IMAGE_NAME
+    COMPOSE_PROJECT_NAME=$IMAGE_NAME
 
     debug "Using COMPOSE_PROJECT_NAME: $COMPOSE_PROJECT_NAME"
 
