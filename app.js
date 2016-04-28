@@ -4,7 +4,7 @@ var app = express();
 var redis = require('redis');
 
 var redisClientConfig = {
-  'host': 'kth-azure-app-redis.redis.cluster.skydns.local'
+  'host': 'redis'
 };
 
 var start = process.hrtime();
@@ -18,18 +18,53 @@ var elapsed_time = function(note){
 };
 
 app.get('/', function (req, res) {
+  var result = {
+    'redis-host' : redisClientConfig.host,
+    'redis-path' : "/redis",
+    'hostname' : os.hostname()
+  };
+
+  res.json(result);
+
+});
+
+app.get('/redis', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
   client.on("error", function (err) {
-      res.send("Error " + err);
+      console.log("Error " + err);
+  });
+
+  client.set("a-key", "a-value", function (err) {
+    if (err) {
+      console.log(err);
+      res.status(500).json({"redis-status": "Failed to wite to Redis on " + redisClientConfig.host });
+    }
+    res.json({"redis-status": "ok" });
+  });
+
+});
+
+app.get('/redis-test', function (req, res) {
+
+  var client = redis.createClient(redisClientConfig);
+
+  client.on("error", function (err) {
+      console.log("Error " + err);
   });
 
   start = process.hrtime();
 
   console.log("Writing 1000 keys to redis");
-  for (var i = 0; i < 999; i++) {
-    client.set("key-"+i, "value-"+i)
+
+  for (var i = 0; i < 1; i++) {
+
+    client.set("key-" + i, "value-" + i, function (err) {
+      if (err) {
+        console.log(err);
+      }
+    });
   }
 
   client.set("key-1000", "value-1000", function (err) {
@@ -43,7 +78,9 @@ app.get('/', function (req, res) {
         'last_key_value' : value,
         'os.hostname' : os.hostname()
       };
-      res.json(JSON.stringify(result));
+      if (result) {
+        res.json(JSON.stringify(result));
+      }
     });
 
   });
