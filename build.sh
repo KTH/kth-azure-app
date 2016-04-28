@@ -9,7 +9,7 @@ set -e
 on_error() { printf "$@" 1>&2; docker rmi -f $DOCKER_IMAGE_ID; exit -1; }
 output() { printf "\n\n======== $@\n"; }
 
-CONFIG_FILE="docker.info"
+CONFIG_FILE="docker.conf"
 
 output "Running build script on $DOCKER_HOST ..."
 
