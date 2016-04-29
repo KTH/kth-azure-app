@@ -9,7 +9,7 @@ services:
       # SERVICE_ID is used to create valid DNS entries for registrator -> SkyDNS
       SERVICE_ID : "$COMPOSE_PROJECT_NAME-web"
       SERVICE_TAGS : "app,kth,web,nodejs"
-      SERVICE_PUBLISH : "/_azure/app"
+      SERVICE_PUBLISH : "/_azure/_monitor"
     dns: 10.1.1.100
     ports:
       - 3000
