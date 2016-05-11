@@ -31,14 +31,6 @@ ok() { printf "\n \033[0;32m$@\033[0;0m\n\n"; }
 #
 #
 
-if [ -z $PID_FILE_NAME_OR_ID ]; then
-  error "No pid specified."
-
-  $CURRENT_SCRIPT_ABSOLUTE_PATH/list.sh
-
-  exit -1;
-fi
-
 BLANK=""
 PID_FILE_NAME_PREPATTERN=".PID-"
 
@@ -69,12 +61,16 @@ if [ -n $PID ]; then
   if [ ! -z $COMPOSE_PROJECT_NAME ]; then
     info "Ignoring COMPOSE_PROJECT_NAME specified in .env"
   fi
-
+  
   export COMPOSE_PROJECT_NAME=$PID
 
   debug "DOCKER_HOST         : \033[0;33m$DOCKER_HOST\033[0;0m"
   debug "COMPOSE_PROJECT_NAME: \033[0;33m$COMPOSE_PROJECT_NAME\033[0;0m"
 
+
+  if [ -z $PID_FILE_NAME_OR_ID ]; then
+    error "No pid specified."
+  fi
   ok "Running 'docker-compose ps'"
   docker-compose ps
 

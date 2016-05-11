@@ -57,7 +57,7 @@ elif [ $COMMAND == "-down"  ]; then
   ./.docker/down.sh $PID
   ./.docker/list.sh
 elif [ $COMMAND == "-down-all"  ]; then
-  ./.docker/down-all.sh $PID
+  ./.docker/down-all.sh
 elif [ $COMMAND == "-list"  ]; then
   ./.docker/list.sh
 elif [ $COMMAND == "-config"  ]; then
