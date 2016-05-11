@@ -61,7 +61,7 @@ if [ -n $PID ]; then
   if [ ! -z $COMPOSE_PROJECT_NAME ]; then
     info "Ignoring COMPOSE_PROJECT_NAME specified in .env"
   fi
-  
+
   export COMPOSE_PROJECT_NAME=$PID
 
   debug "DOCKER_HOST         : \033[0;33m$DOCKER_HOST\033[0;0m"
@@ -71,11 +71,8 @@ if [ -n $PID ]; then
   if [ -z $PID_FILE_NAME_OR_ID ]; then
     error "No pid specified."
   fi
-  ok "Running 'docker-compose ps'"
+  ok "Running 'docker-compose ps' for $PID'"
   docker-compose ps
-
-  ok "Running 'docker ps -a'"
-  docker ps -a
 
 else
   error "No pid-file found $PROJECT_GIT_REPO_PATH/.env"

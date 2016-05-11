@@ -63,7 +63,7 @@ elif [ $COMMAND == "-list"  ]; then
 elif [ $COMMAND == "-config"  ]; then
   ./.docker/config.sh
 elif [ $COMMAND == "-ps"  ]; then
-  ./.docker/ps.sh $PID
+  ./.docker/ps-all.sh $PID
 else
   usage
 fi
