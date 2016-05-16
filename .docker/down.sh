@@ -37,6 +37,12 @@ PID="${PID_FILE_NAME_OR_ID/$PID_FILE_NAME_PREPATTERN/$BLANK}"
 
 PID_FILE_NAME=".PID-$PID"
 
+if [ -z $PID ]; then
+  error "No pid passed to take down.\n"
+  echo  "    USAGE: mange.sh -down .PID-kth-app-11234 / kth-app-11234"
+  exit -1;
+fi
+
 #####################################################################
 
 
@@ -58,7 +64,6 @@ else
   exit -1;
 fi
 
-if [ -n $PID ]; then
 
   if [ ! -z $COMPOSE_PROJECT_NAME ]; then
     info "Ignoring COMPOSE_PROJECT_NAME specified in .env"
@@ -68,15 +73,17 @@ if [ -n $PID ]; then
 
   debug "COMPOSE_PROJECT_NAME: \033[0;33m$COMPOSE_PROJECT_NAME\033[0;0m"
 
-  info "Running 'docker-compose down'"
+  info "Running 'docker-compose down' on $PID ..."
   docker-compose down
 
-  debug "Removing pid-file for $COMPOSE_PROJECT_NAME"
-  rm .PID-$PID
+  PID_FILE_NAME_PREPATTERN=".PID-"
+  PID_FILE_NAME=$PID_FILE_NAME_PREPATTERN-$PID
 
   ok "$PID is down."
 
-else
-  error "No pid-file found $PROJECT_GIT_REPO_PATH/.env"
-  exit -1;
-fi
+  if [ -a $PID_FILE_NAME ]; then
+    debug "Removing pid-file for $PID"
+    rm $PID_FILE_NAME
+  else
+    info "$PID had no pid file"
+  fi

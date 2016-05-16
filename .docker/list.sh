@@ -41,4 +41,4 @@ PID_FILE_NAME_PREPATTERN=".PID-"
 info "PID:s that you have started from $(pwd)"
 debug "Note: Process may have terminated on Azure, this is not tested (yet).\n"
 
-ls -a $PROJECT_GIT_REPO_PATH | grep .PID-
+ls -a $PROJECT_GIT_REPO_PATH | grep $PID_FILE_NAME_PREPATTERN

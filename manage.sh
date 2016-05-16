@@ -2,9 +2,6 @@
 
 set -e
 
-
-
-
 #####################################################################
 # Passed argument
 #
@@ -39,9 +36,11 @@ usage() { printf "
           -list       Lists all pid:s in $(pwd)
           -up         Start new instance
           -down pid   Stop an existing instance
-                      Ex: mange.sh -down .PID-kth-app-11234
+                      Ex: mange.sh -down .PID-kth-app-11234 / kth-app-11234
           -down-all   Stop all instances;
-          -ps         View instances on DOCKER_HOST";
+          -ps (pid)   View instances on DOCKER_HOST
+                      Ex: manage.sh -ps (show all)
+                      Ex: manage.sh -ps .PID-kth-app-11234 / kth-app-11234";
 }
 
 # No arguments passed to script.

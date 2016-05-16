@@ -56,13 +56,13 @@ export COMPOSE_PROJECT_NAME=$PID
 debug "DOCKER_HOST         : \033[0;33m$DOCKER_HOST\033[0;0m"
 debug "COMPOSE_PROJECT_NAME: \033[0;33m$COMPOSE_PROJECT_NAME\033[0;0m"
 
-info "Running 'docker-compose up'...\n"
+info "Running 'docker-compose up' on $PID ...\n"
 
 docker-compose up -d
 
-PID_FILE_NAME=.PID-$PID
-
-debug "Writing PID-file /.PID-$PID"
+PID_FILE_NAME_PREPATTERN=".PID-"
+PID_FILE_NAME=$PID_FILE_NAME_PREPATTERN-$PID
+debug "Writing $PID_FILE_NAME"
 touch $PID_FILE_NAME
 
 ok "$PID is up."
