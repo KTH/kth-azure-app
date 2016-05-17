@@ -25,4 +25,4 @@ RUN cp -a /npm/node_modules /application
 
 EXPOSE 3000
 
-ENTRYPOINT [node /application/app.js]
+ENTRYPOINT ["node", "/application/app.js"]

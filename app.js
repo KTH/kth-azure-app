@@ -58,7 +58,7 @@ app.get('/redis-test', function (req, res) {
 
   console.log("Writing 1000 keys to redis");
 
-  for (var i = 0; i < 1; i++) {
+  for (var i = 0; i <= 999; i++) {
 
     client.set("key-" + i, "value-" + i, function (err) {
       if (err) {

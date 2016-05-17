@@ -76,7 +76,8 @@ output "Pushing image to registry $REGISTRY ..."
 # =======================================
 
 output "Querying the registry API to make sure tag version $IMAGE_VERSION exists ..."
-FOUND_VERSION=$(curl https://$REGISTRY:443/v2/$IMAGE_NAME/tags/list | grep $IMAGE_VERSION)
+FOUND_VERSION=$(curl -s https://$REGISTRY:443/v2/$IMAGE_NAME/tags/list | grep \"$IMAGE_VERSION\")
+echo "FV: $FOUND_VERSION"
 
 if [ -z "$FOUND_VERSION" ]; then
   on_error "Could not get version from repository. Maybe nothing changed in this build?"
