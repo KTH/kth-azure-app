@@ -61,7 +61,7 @@ info "Running 'docker-compose up' on $PID ...\n"
 docker-compose up -d
 
 PID_FILE_NAME_PREPATTERN=".PID-"
-PID_FILE_NAME=$PID_FILE_NAME_PREPATTERN-$PID
+PID_FILE_NAME=$PID_FILE_NAME_PREPATTERN$PID
 debug "Writing $PID_FILE_NAME"
 touch $PID_FILE_NAME
 

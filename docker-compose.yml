@@ -2,7 +2,7 @@ version: '2'
 services:
   web:
     extends:
-      file: common-services.yml
+      file: .docker/compose/common-services.yml
       service: frontend
     image: kth-docker-registry.sys.kth.se/kth-azure-app:1.0.1
     environment:
@@ -18,7 +18,7 @@ services:
 
   redis:
     extends:
-      file: common-services.yml
+      file: .docker/compose/common-services.yml
       service: backend
     image: redis:latest
     environment:

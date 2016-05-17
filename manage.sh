@@ -50,19 +50,19 @@ if [ -a $1 ]; then
 fi
 
 if [ $COMMAND == "-up"  ]; then
-  ./.docker/up.sh
-  ./.docker/list.sh
+  ./.docker/compose/manage/up.sh
+  ./.docker/compose/manage/list.sh
 elif [ $COMMAND == "-down"  ]; then
-  ./.docker/down.sh $PID
-  ./.docker/list.sh
+  ./.docker/compose/manage/down.sh $PID
+  ./.docker/compose/manage/list.sh
 elif [ $COMMAND == "-down-all"  ]; then
-  ./.docker/down-all.sh
+  ./.docker/compose/manage/down-all.sh
 elif [ $COMMAND == "-list"  ]; then
-  ./.docker/list.sh
+  ./.docker/compose/manage/list.sh
 elif [ $COMMAND == "-config"  ]; then
-  ./.docker/config.sh
+  ./.docker/compose/manage/config.sh
 elif [ $COMMAND == "-ps"  ]; then
-  ./.docker/ps-all.sh $PID
+  ./.docker/compose/manage/ps-all.sh $PID
 else
   usage
 fi

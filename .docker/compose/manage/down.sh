@@ -35,8 +35,6 @@ PID_FILE_NAME_PREPATTERN=".PID-"
 
 PID="${PID_FILE_NAME_OR_ID/$PID_FILE_NAME_PREPATTERN/$BLANK}"
 
-PID_FILE_NAME=".PID-$PID"
-
 if [ -z $PID ]; then
   error "No pid passed to take down.\n"
   echo  "    USAGE: mange.sh -down .PID-kth-app-11234 / kth-app-11234"
@@ -77,7 +75,7 @@ fi
   docker-compose down
 
   PID_FILE_NAME_PREPATTERN=".PID-"
-  PID_FILE_NAME=$PID_FILE_NAME_PREPATTERN-$PID
+  PID_FILE_NAME=$PID_FILE_NAME_PREPATTERN$PID
 
   ok "$PID is down."
 
