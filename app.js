@@ -37,6 +37,7 @@ app.get('/redis', function (req, res) {
   });
 
   client.set("a-key", "a-value", function (err) {
+    client.quit();
     if (err) {
       console.log(err);
       res.status(500).json({"redis-status": "Failed to wite to Redis on " + redisClientConfig.host });
@@ -72,6 +73,7 @@ app.get('/redis-test', function (req, res) {
       console.log(err);
     }
     client.get("key-1000", function(err, value) {
+      client.quit();
       console.log("Read last key from redis");
       var result = {
         'performance' : elapsed_time("wrote 1000 keys to redis"),
@@ -81,6 +83,39 @@ app.get('/redis-test', function (req, res) {
       if (result) {
         res.json(JSON.stringify(result));
       }
+    });
+
+  });
+
+});
+
+app.get('/scale-test', function (req, res) {
+
+  var client = redis.createClient(redisClientConfig);
+
+  client.on("error", function (err) {
+    console.log("Error " + err);
+  });
+
+  var sV0 = "missing";
+  var sV1 = "missing";
+
+  client.get("scale-0", function(err, value) {
+    if (err) {
+      console.log(err);
+      res.status(500).json({"redis-status": "Failed to read scale-0 from redis on " + redisClientConfig.host, "error" : err });
+    }
+    sV0 = value;
+
+    client.get("scale-1", function(err, value) {
+      if (err) {
+        console.log(err);
+        res.status(500).json({"redis-status": "Failed to read scale-1 from redis on " + redisClientConfig.host, "error" : err });
+      }
+      sV1 = value
+
+      client.quit();
+      res.json({ "scale-0" : sV0, "scale-1" : sV1 });
     });
 
   });
