@@ -17,6 +17,18 @@ var elapsed_time = function(note){
   return value;
 };
 
+
+app.get('_azure/_monitor/', function (req, res) {
+  var result = {
+    'redis-host' : redisClientConfig.host,
+    'redis-path' : "/redis",
+    'hostname' : os.hostname()
+  };
+
+  res.json(result);
+
+});
+
 app.get('/', function (req, res) {
   var result = {
     'redis-host' : redisClientConfig.host,
