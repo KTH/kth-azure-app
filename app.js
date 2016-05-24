@@ -134,6 +134,13 @@ app.get('/scale-test', function (req, res) {
 
 });
 
+// -- Errors --
+// If the request ends up here none of the rules above have returned any response
+// so then its time for som error handling
+app.use(function(req, res){
+  res.send(404, "404 - KTH Azure App - No route or static file matched ''" + req.url + "'." )
+});
+
 app.listen(3000, function () {
   console.log('NodeJS running on port 3000');
 });
