@@ -17,8 +17,12 @@ var elapsed_time = function(note){
   return value;
 };
 
+app.get('/_azure/_monitor', function (req, res) {
+  res.set("Content-Type", "text/plain");
+  res.send("APPLICATION: OK");
+});
 
-app.get('_azure/_monitor/', function (req, res) {
+app.get('/_azure/_monitor/', function (req, res) {
   var result = {
     'redis-host' : redisClientConfig.host,
     'redis-path' : "/redis",
@@ -29,18 +33,7 @@ app.get('_azure/_monitor/', function (req, res) {
 
 });
 
-app.get('/', function (req, res) {
-  var result = {
-    'redis-host' : redisClientConfig.host,
-    'redis-path' : "/redis",
-    'hostname' : os.hostname()
-  };
-
-  res.json(result);
-
-});
-
-app.get('/redis', function (req, res) {
+app.get('/_azure/_monitor/redis', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
@@ -59,7 +52,7 @@ app.get('/redis', function (req, res) {
 
 });
 
-app.get('/redis-test', function (req, res) {
+app.get('/_azure/_monitor/redis-test', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
@@ -101,7 +94,7 @@ app.get('/redis-test', function (req, res) {
 
 });
 
-app.get('/scale-test', function (req, res) {
+app.get('/_azure/_monitor/scale-test', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
