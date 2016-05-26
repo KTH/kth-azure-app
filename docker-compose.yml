@@ -15,7 +15,6 @@ services:
     environment:
       # SERVICE_ID is used to create valid DNS entries for registrator -> SkyDNS
       SERVICE_ID : "$COMPOSE_PROJECT_NAME-web"
-      SERVICE_ID : "web"
       SERVICE_TAGS : "app,kth,web,nodejs"
       SERVICE_PUBLISH : "/_azure/_monitor"
     ports:
@@ -33,7 +32,6 @@ services:
     image: redis:latest
     environment:
       SERVICE_ID : "$COMPOSE_PROJECT_NAME-redis"
-      SERVICE_ID : "redis"
       SERVICE_TAGS : "app,storage,redis,stateless,no-scale"
       SERVICE_PERSISTENT : "yes"
     ports:
