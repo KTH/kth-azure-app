@@ -1,14 +1,4 @@
-#
-# Based on https://gita.sys.kth.se/Infosys/andermatt/tree/master/docker-containers/nodejs/api
-#
-FROM kthse/kth-nodejs-web
-
-# Maintainer
-MAINTAINER Webmaster "webmaster@kth.se"
-
-LABEL name="KTH Node Base Image"
-LABEL vendor="KTH Royal Institute of Technology"
-LABEL license="The MIT License (MIT)"
+FROM kthse/kth-nodejs-web:1.4
 
 RUN mkdir -p /npm
 RUN mkdir -p /application
