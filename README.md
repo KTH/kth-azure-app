@@ -1,6 +1,15 @@
 # Reference and Monitoring Application for the Docker Swarm Cluster
 This is an application for testing that the [Docker Swarm cluster](https://gita.sys.kth.se/infosys/kth-azure-swarm) on Azure works as intended.
 
+### Available as Docker
+![](https://gita.sys.kth.se/Infosys/beldersay/blob/master/docs/img/docker-small.png)
+
+[Versions](https://kth-docker-registry.sys.kth.se/v2/kth-azure-app/tags/list)
+
+```json
+docker pull kth-docker-registry.sys.kth.se/kth-azure-app
+```
+
 ## Prerequisites
 * Docker version 1.11.0 or later
 * Docker-compose 1.7.0 or later
