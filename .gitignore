@@ -14,3 +14,5 @@ docker-*.env
 .PID*
 
 docker-compose.yml
+
+*.log
