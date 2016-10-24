@@ -12,3 +12,5 @@ docker-*.env
 
 # Pid-files created by manage.sh
 .PID*
+
+docker-compose.yml
