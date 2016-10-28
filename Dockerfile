@@ -1,18 +1,15 @@
+# Vilken bas image ska projektet köras i?
 FROM kthse/kth-nodejs-web:1.4
 
-RUN mkdir -p /npm
-RUN mkdir -p /application
-
-# We do this to avoid npm install when we're only changing code
-WORKDIR /npm
+# Kopiera in filer som ska köras på servern.
+COPY app.js app.js
 COPY package.json package.json
+
+# Installera packet
 RUN npm install
 
-# Add the code and copy over the node_modules
-WORKDIR /
-COPY . /application
-RUN cp -a /npm/node_modules /application
-
+# Öppna upp en port som kan mappas från värdmaskinen.
 EXPOSE 3000
 
-ENTRYPOINT ["node", "/application/app.js"]
+# Kommando som ska köras när den färdiga image:en startas.
+ENTRYPOINT ["node", "app.js"]

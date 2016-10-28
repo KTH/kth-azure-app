@@ -5,7 +5,8 @@ version: '2'
 #
 services:
   web:
-    image: kth-docker-registry.sys.kth.se/kth-azure-app:1.1.2
+    #image: kth-docker-registry.sys.kth.se/kth-azure-app:1.1.2
+    build: .
     ports:
       - 3000
     depends_on:
