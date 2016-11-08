@@ -16,7 +16,8 @@
     "express": "~4.13.3",
     "body-parser": "~1.0.2",
     "express-session": "~1.10.3",
-    "redis": "*"
+    "redis": "*",
+    "mongoose" : "*"
   },
 
   "//": "Engine used to power the application",

@@ -10,7 +10,10 @@ services:
       - 3000
     depends_on:
       - redis
-
+			environment:
+	      - AZURE_DOCUMENTDB_URI="....."
+				- AZURE_DOCUMENTDB_USERNAME="....."
+				- AZURE_DOCUMENTDB_PASSWORD="....."
   redis:
     image: redis:latest
     ports:
