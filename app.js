@@ -32,27 +32,37 @@ app.get('/_azure/_monitor/', function (req, res) {
   res.status(200).send(result);
 });
 
+
+
+// Connect to mongodb
+var connect = function () {
+  options = {
+    dbUsername: process.env.AZURE_DOCUMENTDB_USERNAME,
+    dbPassword: process.env.AZURE_DOCUMENTDB_PASSWORD,
+    dbUri: process.env.AZURE_DOCUMENTDB_URI,
+    logger: console.log,
+    server: { socketOptions: { keepAlive: 1 } }
+  }
+  try {
+    mongoose.connect(process.env.AZURE_DOCUMENTDB_URI, options);
+  } catch (ex) {
+    res.status(500).send({"Error" : "" + ex })
+  }
+};
+
 app.get('/_azure/_monitor/documentdb', function (req, res) {
 
-  dbUri = process.env.AZURE_DOCUMENTDB_URI
-
-  console.log("AZURE_DOCUMENTDB_URI: '" + dbUri + "'")
-
   try {
-    mongoOptions = {
-      dbUsername: process.env.AZURE_DOCUMENTDB_USERNAME,
-      dbPassword: process.env.AZURE_DOCUMENTDB_PASSWORD,
-      dbUri: dbUri,
-      logger: console.log
-    }
 
-    mongoose.connect(dbUri, mongoOptions)
+    connect();
+
+    mongoose.connection.on('error', console.log);
+
     res.status(200).send({"Connection": true})
+
   } catch (ex) {
-    res.status(500).send({"Error" : ex })
+    res.status(500).send({"Error" : "" + ex })
   }
-
-
 
 });
 
