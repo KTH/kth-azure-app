@@ -1,5 +1,5 @@
 # Vilken bas image ska projektet köras i?
-FROM kthse/kth-nodejs-web:2.0-pre
+FROM kthse/kth-nodejs-web:1.4
 
 # Kopiera in filer som ska köras på servern.
 COPY app.js app.js
