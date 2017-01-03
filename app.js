@@ -2,6 +2,7 @@ var express = require('express');
 var os = require('os');
 var app = express();
 var redis = require('redis');
+var about = require('config/version');
 var mongoose = require('mongoose');
 
 var redisClientConfig = {
@@ -17,6 +18,18 @@ var elapsed_time = function(note){
   start = process.hrtime(); // reset the timer
   return value;
 };
+
+app.get('/_azure/_about', function (req, res) {
+  res.set("Content-Type", "text/plain");
+  const msg = "Docker version: " + about.dockerVersion + "\n" +
+    "Docker name: " + about.dockerName + "\n" +
+    "Jenkins build: " + about.jenkinsBuild + "\n" +
+    "Jenkins build date: " + about.jenkinsBuildDate + "\n" +
+    "Git branch: " + about.gitBranch + "\n" +
+    "Git commit: " + about.gitCommit + ""
+  res.status(200).send(msg);
+});
+
 
 app.get('/_azure/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");

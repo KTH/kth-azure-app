@@ -1,15 +1,28 @@
-# Vilken bas image ska projektet köras i?
-FROM node:6.9.2-alpine
+FROM kthse/kth-nodejs-web:2.0-alpine
 
-# Kopiera in filer som ska köras på servern.
-COPY app.js app.js
-COPY package.json package.json
+MAINTAINER KTH Webb "cortina.developers@kth.se"
 
-# Installera packet
+RUN mkdir -p /npm   && \
+    mkdir -p /application
+
+
+# We do this to avoid npm install when we're only changing code
+WORKDIR /npm
+
+COPY ["package.json", "package.json"]
+
 RUN npm install
 
-# Öppna upp en port som kan mappas från värdmaskinen.
+# Add the code and copy over the node_modules
+
+WORKDIR /application
+COPY ["app.js", "app.js"]
+COPY ["config", "config"]
+
+RUN cp -a /npm/node_modules /application
+
 EXPOSE 3000
 
-# Kommando som ska köras när den färdiga image:en startas.
+ENV NODE_PATH /application
+
 ENTRYPOINT ["node", "app.js"]
