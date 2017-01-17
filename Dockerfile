@@ -19,6 +19,8 @@ RUN cp -a /npm/node_modules /application && \
 COPY ["config", "config"]
 COPY ["app.js", "app.js"]
 
+ENV NODE_PATH /application
+
 EXPOSE 3000
 
 ENTRYPOINT ["node", "app.js"]
