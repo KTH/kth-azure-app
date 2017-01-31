@@ -23,4 +23,6 @@ ENV NODE_PATH /application
 
 EXPOSE 3000
 
+RUN echo "Build completed."
+
 ENTRYPOINT ["node", "app.js"]
