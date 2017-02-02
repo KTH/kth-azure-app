@@ -8,6 +8,7 @@ RUN mkdir -p /npm && \
 # We do this to avoid npm install when we're only changing code
 WORKDIR /npm
 COPY ["package.json", "package.json"]
+COPY ["yarn.lock", "yarn.lock"]
 RUN yarn install --production --no-optional
 
 # Add the code and copy over the node_modules-catalog
@@ -19,7 +20,7 @@ RUN cp -a /npm/node_modules /application && \
 COPY ["config", "config"]
 COPY ["app.js", "app.js"]
 
-ENV NODE_PATH /application
+EN V NODE_PATH /application
 
 EXPOSE 3000
 
