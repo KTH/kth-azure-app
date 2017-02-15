@@ -4,6 +4,20 @@ var app = express();
 var redis = require('redis');
 var about = require('config/version');
 var mongoose = require('mongoose');
+const packageFile = require('../../../package.json')
+var log = require('kth-node-log')
+
+let logConfiguration = {
+  name: packageFile.name,
+  app: packageFile.name,
+  env: 'dev',
+  level: 'DEBUG',
+  console: false,
+  stdout: true,
+  src: true
+}
+
+log.init(logConfiguration)
 
 var redisClientConfig = {
   'host': 'redis'
@@ -18,6 +32,30 @@ var elapsed_time = function(note){
   start = process.hrtime(); // reset the timer
   return value;
 };
+
+app.get('/_azure/_monitor/logging', function(req, res) {
+  log.trace('Logging with level TRACE')
+  log.debug('Logging with level DEBUG')
+  log.info('Logging with level INFO')
+  log.warn('Logging with level WARN')
+  log.error('Logging with level ERROR')
+  log.error(new Error('This is a logged error'))
+  log.fatal('Logging with level FATAL')
+  res.status(200).send('Logging done')
+})
+
+function fib(n) {
+  if (n < 2) {
+    return 1;
+  } else {
+    return fib(n - 2) + fib(n - 1);
+  }
+}
+
+app.get('/_azure/_monitor/stress', function(req, res) {
+  fib(10000)
+  res.status(200).send('Stress test done') 
+})
 
 app.get('/_azure/_about', function (req, res) {
   res.set("Content-Type", "text/plain");

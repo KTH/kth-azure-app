@@ -10,7 +10,8 @@
     "body-parser": "~1.0.2",
     "express-session": "~1.10.3",
     "redis": "*",
-    "mongoose" : "*"
+    "mongoose" : "*",
+    "kth-node-log": "https://github.com/KTH/kth-node-log.git#v1.0.1"
   },
 
   "engines": {
