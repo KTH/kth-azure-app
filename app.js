@@ -2,6 +2,8 @@ var express = require('express');
 var os = require('os');
 var app = express();
 var redis = require('redis');
+var about = require('config/version');
+var mongoose = require('mongoose');
 
 var redisClientConfig = {
   'host': 'redis'
@@ -17,9 +19,21 @@ var elapsed_time = function(note){
   return value;
 };
 
+app.get('/_azure/_about', function (req, res) {
+  res.set("Content-Type", "text/plain");
+  const msg = "Docker version: " + about.dockerVersion + "\n" +
+    "Docker name: " + about.dockerName + "\n" +
+    "Jenkins build: " + about.jenkinsBuild + "\n" +
+    "Jenkins build date: " + about.jenkinsBuildDate + "\n" +
+    "Git branch: " + about.gitBranch + "\n" +
+    "Git commit: " + about.gitCommit + ""
+  res.status(200).send(msg);
+});
+
+
 app.get('/_azure/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");
-  res.send("APPLICATION: OK");
+  res.status(200).send("APPLICATION: OK");
 });
 
 app.get('/_azure/_monitor/', function (req, res) {
@@ -28,10 +42,43 @@ app.get('/_azure/_monitor/', function (req, res) {
     'redis-path' : "/redis",
     'hostname' : os.hostname()
   };
+  res.status(200).send(result);
+});
 
-  res.json(result);
+
+
+// Connect to mongodb
+var connect = function () {
+  options = {
+    dbUsername: process.env.AZURE_DOCUMENTDB_USERNAME,
+    dbPassword: process.env.AZURE_DOCUMENTDB_PASSWORD,
+    dbUri: process.env.AZURE_DOCUMENTDB_URI,
+    logger: console.log,
+    server: { socketOptions: { keepAlive: 1 } }
+  }
+  try {
+    mongoose.connect(process.env.AZURE_DOCUMENTDB_URI, options);
+  } catch (ex) {
+    res.status(500).send({"Error" : "" + ex })
+  }
+};
+
+app.get('/_azure/_monitor/documentdb', function (req, res) {
+
+  try {
+
+    connect();
+
+    mongoose.connection.on('error', console.log);
+
+    res.status(200).send({"Connection": true})
+
+  } catch (ex) {
+    res.status(500).send({"Error" : "" + ex })
+  }
 
 });
+
 
 app.get('/_azure/_monitor/redis', function (req, res) {
 
@@ -86,7 +133,7 @@ app.get('/_azure/_monitor/redis-test', function (req, res) {
         'os.hostname' : os.hostname()
       };
       if (result) {
-        res.json(JSON.stringify(result));
+        res.status(200).send(JSON.stringify(result))
       }
     });
 
@@ -149,7 +196,7 @@ app.get('/_azure/_monitor/scale-test', function (req, res) {
       sV1 = value
 
       client.quit();
-      res.json({ "scale-0" : sV0, "scale-1" : sV1 });
+      res.status(200).send(JSON.stringify({ "scale-0" : sV0, "scale-1" : sV1 }))
     });
 
   });
@@ -160,7 +207,7 @@ app.get('/_azure/_monitor/scale-test', function (req, res) {
 // If the request ends up here none of the rules above have returned any response
 // so then its time for som error handling
 app.use(function(req, res){
-  res.send(404, "404 - KTH Azure App - No route or static file matched ''" + req.url + "'." )
+  res.status(404).send({ "message" : "KTH Azure App - No route or static file matched ''" + req.url + "'.", "status": 404 })
 });
 
 app.listen(3000, function () {

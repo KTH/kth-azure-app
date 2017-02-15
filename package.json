@@ -1,25 +1,18 @@
 {
-  "//": "This is the prefered way of commenting package.json (as JSON specification does not allow comments) - see:",
-  "//": "http://stackoverflow.com/questions/14221579/how-do-i-add-comments-to-package-json-for-npm-install",
-
-
-  "//": "General application properties",
-
   "name": "kth-azure-app",
   "version": "0.1.0",
   "description": "",
   "main": "app.js",
   "private": true,
 
-  "//": "npm dependencies used by this application",
   "dependencies": {
-    "express": "~4.13.3",
+    "express": "^4.13.4",
     "body-parser": "~1.0.2",
     "express-session": "~1.10.3",
-    "redis": "*"
+    "redis": "*",
+    "mongoose" : "*"
   },
 
-  "//": "Engine used to power the application",
   "engines": {
     "node": "4.0.0"
   }
