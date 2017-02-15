@@ -94,6 +94,35 @@ app.get('/_azure/_monitor/redis-test', function (req, res) {
 
 });
 
+app.post('/_azure/_monitor/persistance', function(req, res) {
+  var client = redis.createClient(redisClientConfig);
+
+  client.on("error", function (err) {
+    console.log("Error " + err);
+  });
+
+  client.set("persistance", "works", redis.print)
+})
+
+app.get('/_azure/_monitor/persistance', function(req, res) {
+  var client = redis.createClient(redisClientConfig);
+
+  client.on("error", function (err) {
+    console.log("Error " + err);
+  });
+
+  client.get("persistance", function(err, value) {
+    if (err) {
+      console.log(err);
+      res.status(500).json({"redis-status": "Failed to read persistance from redis on " + redisClientConfig.host, "error" : err });
+    }
+
+    client.quit();
+    res.json({ "persistance" : value }); 
+  })
+
+})
+
 app.get('/_azure/_monitor/scale-test', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
