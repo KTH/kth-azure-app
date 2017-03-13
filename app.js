@@ -171,7 +171,7 @@ app.get('/_azure/_monitor/redis-test', function (req, res) {
         'os.hostname' : os.hostname()
       };
       if (result) {
-        res.status(200).send(JSON.stringify(result))
+        res.json(result)
       }
     });
 
