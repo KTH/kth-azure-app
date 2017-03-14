@@ -2,9 +2,9 @@ var express = require('express');
 var os = require('os');
 var app = express();
 var redis = require('redis');
-var about = require('config/version');
+var about = require('./config/version');
 var mongoose = require('mongoose');
-const packageFile = require('../../../package.json')
+const packageFile = require('./package.json')
 var log = require('kth-node-log')
 
 let logConfiguration = {
