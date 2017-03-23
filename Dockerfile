@@ -14,6 +14,8 @@ RUN yarn install --production --no-optional
 # Add the code and copy over the node_modules-catalog
 WORKDIR /application
 RUN cp -a /npm/node_modules /application && \
+    cp /npm/package.json /application/package.json && \
+    cp /npm/yarn.lock /application/yarn.lock && \
     rm -rf /npm
 
 # Copy files used by Gulp.
