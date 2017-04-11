@@ -33,7 +33,7 @@ var elapsed_time = function(note){
   return value;
 };
 
-app.get('/_azure/_monitor/logging', function(req, res) {
+app.get('/logging', function(req, res) {
   log.trace('Logging with level TRACE')
   log.debug('Logging with level DEBUG')
   log.info('Logging with level INFO')
@@ -52,12 +52,12 @@ function fib(n) {
   }
 }
 
-app.get('/_azure/_monitor/stress', function(req, res) {
+app.get('/stress', function(req, res) {
   fib(10000)
   res.status(200).send('Stress test done') 
 })
 
-app.get('/_azure/_about', function (req, res) {
+app.get('/_about', function (req, res) {
   res.set("Content-Type", "text/plain");
   const msg = "Docker version: " + about.dockerVersion + "\n" +
     "Docker name: " + about.dockerName + "\n" +
@@ -69,19 +69,19 @@ app.get('/_azure/_about', function (req, res) {
 });
 
 
-app.get('/_azure/_monitor', function (req, res) {
+app.get('/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");
   res.status(200).send("APPLICATION: OK");
 });
 
-app.get('/_azure/_monitor/', function (req, res) {
+/*app.get('/_azure/_monitor/', function (req, res) {
   var result = {
     'redis-host' : redisClientConfig.host,
     'redis-path' : "/redis",
     'hostname' : os.hostname()
   };
   res.status(200).send(result);
-});
+});*/
 
 
 
@@ -101,7 +101,7 @@ var connect = function () {
   }
 };
 
-app.get('/_azure/_monitor/documentdb', function (req, res) {
+app.get('/documentdb', function (req, res) {
 
   try {
 
@@ -118,7 +118,7 @@ app.get('/_azure/_monitor/documentdb', function (req, res) {
 });
 
 
-app.get('/_azure/_monitor/redis', function (req, res) {
+app.get('/redis', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
@@ -137,7 +137,7 @@ app.get('/_azure/_monitor/redis', function (req, res) {
 
 });
 
-app.get('/_azure/_monitor/redis-test', function (req, res) {
+app.get('/redis-test', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
@@ -179,7 +179,7 @@ app.get('/_azure/_monitor/redis-test', function (req, res) {
 
 });
 
-app.post('/_azure/_monitor/persistance', function(req, res) {
+app.post('/persistance', function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
   client.on("error", function (err) {
@@ -189,7 +189,7 @@ app.post('/_azure/_monitor/persistance', function(req, res) {
   client.set("persistance", "works", redis.print)
 })
 
-app.get('/_azure/_monitor/persistance', function(req, res) {
+app.get('/persistance', function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
   client.on("error", function (err) {
@@ -208,7 +208,7 @@ app.get('/_azure/_monitor/persistance', function(req, res) {
 
 })
 
-app.get('/_azure/_monitor/scale-test', function (req, res) {
+app.get('/scale-test', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
