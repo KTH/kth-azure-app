@@ -71,7 +71,7 @@ app.get('/_about', function (req, res) {
 
 app.get('/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");
-  res.status(200).send("APPLICATION: OK");
+  res.status(200).send("APPLICATION_STATUS: OK");
 });
 
 /*app.get('/_azure/_monitor/', function (req, res) {
