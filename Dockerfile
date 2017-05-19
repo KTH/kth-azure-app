@@ -2,6 +2,8 @@ FROM kthse/kth-nodejs-web:2.2-alpine
 
 MAINTAINER KTH Webb "cortina.developers@kth.se"
 
+LABEL se.kth.slack="#team-kth-web"
+
 RUN mkdir -p /npm && \
     mkdir -p /application
 
