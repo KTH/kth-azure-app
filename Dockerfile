@@ -4,7 +4,7 @@ MAINTAINER "#team-pipeline"
 
 LABEL se.kth.slack="#team-kth-web"
 
-FROM kthse/kth-nodejs-web:2.3
+FROM kthse/kth-nodejs-web:2.
 
 MAINTAINER KTH Webb "webmaster@kth.se"
 
