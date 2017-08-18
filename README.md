@@ -46,7 +46,7 @@ If docker can't fetch an image (docker: Network timed out..) [GitHub issue](http
 
 `$> eval $(docker-machine env default)`
 
-If docker-compose up times out, add this to the command:
+If docker-compose up times out, add this to the command: 
 
 `$> COMPOSE_HTTP_TIMEOUT=120 docker-compose ...`
 
@@ -63,3 +63,4 @@ Make sure DOCKER_X env variables are set correctly (cluster) before running comp
 `$> DOCKER_CERT_PATH=$HOME/.docker && DOCKER_HOST=core01-service.westeurope.cloudapp.azure.com:4000`
 
 Limitations (and solutions) regarding compose with swarm can be found [here](https://docs.docker.com/compose/swarm/)
+
