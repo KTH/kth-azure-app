@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - 3000
+    environment:
+      - AZURE_DOCUMENTDB_URI="....."
+      - AZURE_DOCUMENTDB_USERNAME="....."
+      - AZURE_DOCUMENTDB_PASSWORD="....."
+    depends_on:
+      - integration-tests
+
+  integration-tests:
+    build: ./integration-tests
