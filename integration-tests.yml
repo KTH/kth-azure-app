@@ -9,8 +9,8 @@ services:
       - AZURE_DOCUMENTDB_URI="....."
       - AZURE_DOCUMENTDB_USERNAME="....."
       - AZURE_DOCUMENTDB_PASSWORD="....."
-    depends_on:
-      - integration-tests
 
   integration-tests:
     build: ./integration-tests
+    depends_on:
+      - web
