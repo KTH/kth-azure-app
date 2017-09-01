@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 services:
   web:
@@ -6,11 +6,9 @@ services:
     ports:
       - 3000
     environment:
+      - RUN_UNIT_TESTS=true
       - AZURE_DOCUMENTDB_URI="....."
       - AZURE_DOCUMENTDB_USERNAME="....."
       - AZURE_DOCUMENTDB_PASSWORD="....."
-
-  integration-tests:
-    build: ./tests/integration-tests
-    depends_on:
-      - web
+    volumes:
+      - ./tests/unit-tests:/tests/unit-tests

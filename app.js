@@ -54,7 +54,7 @@ function fib(n) {
 
 app.get('/stress', function(req, res) {
   fib(10000)
-  res.status(200).send('Stress test done') 
+  res.status(200).send('Stress test done')
 })
 
 app.get('/_about', function (req, res) {
@@ -203,7 +203,7 @@ app.get('/persistance', function(req, res) {
     }
 
     client.quit();
-    res.json({ "persistance" : value }); 
+    res.json({ "persistance" : value });
   })
 
 })
@@ -249,5 +249,10 @@ app.use(function(req, res){
 });
 
 app.listen(3000, function () {
-  console.log('NodeJS running on port 3000');
+  if (process.env.RUN_UNIT_TESTS) {
+    var runUnitTests = require('./tests/unit-tests');
+    runUnitTests()
+  } else {
+    console.log('NodeJS running on port 3000');
+  }
 });
