@@ -249,10 +249,5 @@ app.use(function(req, res){
 });
 
 app.listen(3000, function () {
-  if (process.env.RUN_UNIT_TESTS) {
-    var runUnitTests = require('./tests/unit-tests');
-    runUnitTests()
-  } else {
-    console.log('NodeJS running on port 3000');
-  }
+  console.log('NodeJS running on port 3000');
 });
