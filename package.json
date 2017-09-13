@@ -13,7 +13,9 @@
     "mongoose" : "*",
     "kth-node-log": "https://github.com/KTH/kth-node-log.git#v1.0.1"
   },
-
+  "scripts": {
+     "test": "node tests/unit-tests/index.js"
+ },
   "engines": {
     "node": "4.0.0"
   }

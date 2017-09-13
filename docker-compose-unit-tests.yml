@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  web:
+    build: .
+    image: kth-azure-app
+
+    volumes:
+      - ./tests:/tests
+
+    command: npm test
