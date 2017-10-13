@@ -33,6 +33,20 @@ var elapsed_time = function(note){
   return value;
 };
 
+var stressTest = function(){
+  
+  if (process.hrtime()[1] % 2 === 0) {
+    console.log("Stress test: Intentionally throw an error.")
+    throw "Stess test: This time the app crashed."
+  } else {
+    let makeLarge = "this will be huge and make the app run out of mempry";
+    console.log("Stress test: Forcing a RangeError: Invalid string lengt.")
+    while(true) {
+      loop = loop + "add more bytes";
+    }
+  }
+}
+
 app.get('/logging', function(req, res) {
   log.trace('Logging with level TRACE')
   log.debug('Logging with level DEBUG')
@@ -249,7 +263,11 @@ app.use(function(req, res){
 });
 
 app.listen(3000, function () {
+  if (process.env.STRESS_TEST) {
+    stressTest()
+  } 
   console.log('NodeJS running on port 3000');
 });
 
 var fake_secret_for_testing = 'zJd-55qmsY6LD53CRTqnCr_g-'
+
