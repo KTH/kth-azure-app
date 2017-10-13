@@ -42,7 +42,7 @@ var stressTest = function(){
     let makeLarge = "this will be huge and make the app run out of mempry";
     console.log("Stress test: Forcing a RangeError: Invalid string lengt.")
     while(true) {
-      loop = loop + "add more bytes";
+      makeLarge = makeLarge + "add more bytes";
     }
   }
 }
