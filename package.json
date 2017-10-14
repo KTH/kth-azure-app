@@ -11,7 +11,8 @@
     "express-session": "~1.10.3",
     "redis": "*",
     "mongoose" : "*",
-    "kth-node-log": "https://github.com/KTH/kth-node-log.git#v1.0.1"
+    "kth-node-log": "https://github.com/KTH/kth-node-log.git#v1.0.1",
+    "tmp": "0.0.33"
   },
   "scripts": {
      "test": "node tests/unit-tests/index.js"

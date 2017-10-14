@@ -6,6 +6,8 @@ var about = require('./config/version');
 var mongoose = require('mongoose');
 const packageFile = require('./package.json')
 var log = require('kth-node-log')
+var fs = require('fs')
+var tmp = require('tmp')
 
 let logConfiguration = {
   name: packageFile.name,
@@ -34,15 +36,24 @@ var elapsed_time = function(note){
 };
 
 var stressTest = function(){
+  const rand = process.hrtime()[1] % 3
   
-  if (process.hrtime()[1] % 2 === 0) {
-    console.log("Stress test: Intentionally throw an error.")
+  if (rand === 0) {
+    console.log("Stress test: Intentionally throw an error")
     throw "Stess test: This time the app crashed."
-  } else {
+  } else if (rand === 1) {
     let makeLarge = "this will be huge and make the app run out of mempry";
-    console.log("Stress test: Forcing a RangeError: Invalid string lengt.")
+    console.log("Stress test: Forcing a RangeError: Invalid string length")
     while(true) {
       makeLarge = makeLarge + "add more bytes";
+    }
+  } else {
+    const largeStr = s = '#'.repeat(100)
+    var file = tmp.fileSync()
+    var stream = fs.createWriteStream(file.name, {'flags': 'a'})
+    console.log('Stress test: Writing a huge file: ' + file.name)
+    while(true) {
+      stream.write(largeStr)
     }
   }
 }
