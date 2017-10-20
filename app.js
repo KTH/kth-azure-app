@@ -75,7 +75,7 @@ app.get('/stressTestConnections', function(req, res) {
   res.status(200).send(html); 
 })
 
-app.use("/files", express.static(__dirname + "/files"));
+app.use("/files", express.static(__dirname + "files"));
 
 app.get('/logging', function(req, res) {
   log.trace('Logging with level TRACE')
