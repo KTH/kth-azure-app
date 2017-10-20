@@ -67,7 +67,7 @@ app.get('/stressTestConnections', function(req, res) {
   html += "<h1>1000 cats</h1>";
 
   for (i = 0; i < numberOfFiles; i++) {
-    html += "<img src='/files/cat-" + i + ".jpg' />";
+    html += "<img src='files/cat-" + i + ".jpg' />";
   } 
   html += "</body></html>" 
 
@@ -75,7 +75,7 @@ app.get('/stressTestConnections', function(req, res) {
   res.status(200).send(html); 
 })
 
-app.use("/files", express.static(__dirname + "files"));
+app.use("/files", express.static(__dirname + "/filess"));
 
 app.get('/logging', function(req, res) {
   log.trace('Logging with level TRACE')
