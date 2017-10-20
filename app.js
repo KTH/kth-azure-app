@@ -65,9 +65,9 @@ app.get('/stressTestConnections', function(req, res) {
   let html = "<!DOCTYPE html><html><title>Hej</title><body>"
 
   html += "<h1>1000 cats</h1>";
-  
+
   for (i = 0; i < numberOfFiles; i++) {
-    html += "<img src='files/cat-" + i + ".jpg' />";
+    html += "<img src='/files/cat-" + i + ".jpg' />";
   } 
   html += "</body></html>" 
 
