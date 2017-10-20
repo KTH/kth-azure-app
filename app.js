@@ -58,6 +58,25 @@ var stressTest = function(){
   }
 }
 
+
+app.get('/stressTestConnections', function(req, res) {
+  let numberOfFiles = 1000;
+
+  let html = "<!DOCTYPE html><html><title>Hej</title><body>"
+
+  html += "<h1>1000 cats</h1>";
+  
+  for (i = 0; i < numberOfFiles; i++) {
+    html += "<img src='files/cat-" + i + ".jpg' />";
+  } 
+  html += "</body></html>" 
+
+  res.set("Content-Type", "text/html");
+  res.status(200).send(html); 
+})
+
+app.use("/files", express.static(__dirname + "/files"));
+
 app.get('/logging', function(req, res) {
   log.trace('Logging with level TRACE')
   log.debug('Logging with level DEBUG')
