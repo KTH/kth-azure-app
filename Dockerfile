@@ -1,6 +1,7 @@
 FROM kthse/kth-nodejs-web:2.3
 
 COPY ["config", "config"]
+COPY ["files", "files"]
 COPY ["app.js", "app.js"]
 COPY ["package.json", "package.json"]
 COPY ["yarn.lock", "yarn.lock"]
