@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     build: .
-    image: kth-azure-app
+    image: ${evolene-registry}kth-azure-app${evolene-tag}
     ports:
       - 3000
 
