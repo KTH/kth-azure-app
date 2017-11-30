@@ -6,7 +6,10 @@ passed() { printf "\n \033[0;32m   OK: $@\033[0;0m | $(date) \n\n"; }
 MONITOR_URL="http://web:3000/_monitor";
 PATTERN="APPLICATION_STATUS"
 
+
 curl -s -S --max-time 10 $MONITOR_URL >> /dev/null
+
+sleep 5s
 
 RESPONSE=`curl -s -S --max-time 30 $MONITOR_URL`
 
