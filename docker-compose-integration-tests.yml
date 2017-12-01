@@ -4,6 +4,11 @@ services:
   web:
     build: .
     image: kth-azure-app
+    
+    environment:
+      DB_URL: "https://localhost:1234"
+      DB_USER: "admin"
+
     ports:
       - 3000
 

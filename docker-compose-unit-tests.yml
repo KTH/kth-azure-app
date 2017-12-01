@@ -3,7 +3,7 @@ version: '3.2'
 services:
   web:
     build: .
-    image: ${registry}kth-azure-app${tag}
+    image: kth-azure-app
 
     volumes:
       - ./tests:/tests
