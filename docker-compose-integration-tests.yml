@@ -1,7 +1,10 @@
 version: '3'
 
 services:
+
+  #############################################
   # Start http://web:3000/
+  #############################################
   web:
     # build from local Dockerfile
     build: .
@@ -19,12 +22,16 @@ services:
     depends_on:
       - redis
 
+  #############################################
   # Start http://redis:6379/
+  #############################################
   redis:
     image: redis:3.2.6-alpine
 
+  #############################################
   # Start the client running tests 
   # agains http://web:3000/
+  #############################################
   integration-tests:
     # Build client image and run tests
     # from inside that.

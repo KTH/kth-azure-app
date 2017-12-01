@@ -1,6 +1,9 @@
 version: '3.2'
 
 services:
+  #############################################
+  # Start app as a container
+  #############################################
   web:
     # build from local Dockerfile
     build: .
