@@ -9,3 +9,4 @@ services:
       - ./tests:/tests
 
     command: npm test
+
