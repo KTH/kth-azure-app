@@ -2,11 +2,23 @@ version: '3.2'
 
 services:
   web:
+    # build from local Dockerfile
     build: .
+    # if not --build and kth-azure-app already exists in
+    # your local computers registry 'image' is used.
     image: kth-azure-app
 
+    # Since we do not want to add tests to our 
+    # production image. We mount the catalog
+    # 'tests' on in the repo on your local machine
+    # to /tests on the inside of the container.
+    # The volume mount is done at startup.
     volumes:
       - ./tests:/tests
 
+    # The unit test command that triggers tests to be run
+    # inside the container
+    # This example runs test in package.json which is
+    # part of the kth-azure-app image.
     command: npm test
 
