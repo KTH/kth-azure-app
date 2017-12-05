@@ -10,7 +10,7 @@ services:
     build: .
     # if not --build and kth-azure-app already exists in
     # your local computers registry 'image' is used.
-    image: kth-azure-app
+    image: ${IMAGE_NAME}${IMAGE_VERSION}
     
     # Possible configuration for the app.
     environment:

@@ -9,7 +9,9 @@ services:
     build: .
     # if not --build and kth-azure-app already exists in
     # your local computers registry 'image' is used.
-    image: kth-azure-app
+    image: ${IMAGE_NAME}${IMAGE_VERSION}
+
+    # LOCAL_IMAGE_ID, IMAGE_NAME and IMAGE_VERSION
 
     # Since we do not want to add tests to our 
     # production image. We mount the catalog
