@@ -11,7 +11,9 @@ sleep 5s
 
 RESPONSE=`curl -s -S --max-time 30 $MONITOR_URL`
 
-if [[ -z `echo $RESPONSE | grep $PATTERN` ]]; then
+echo $RESPONSE
+
+if [[ "$RESPONSE" == *"$PATTERN"* ]]; then
     error "URL '$MONITOR_URL' does not contain '$PATTERN'."
     exit -1
 fi
