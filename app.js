@@ -108,9 +108,9 @@ app.get('/kth-azure-app/_about', function (req, res) {
     "Jenkins build: " + about.jenkinsBuild + "\n" +
     "Jenkins build date: " + about.jenkinsBuildDate + "\n" +
     "Git branch: " + about.gitBranch + "\n" +
-    "Git commit: " + about.gitCommit + ""
-    "hostname: " + os.hostname() + ""
-    "redis-host" + redisClientConfig.host + "",
+    "Git commit: " + about.gitCommit + "\n" +
+    "hostname: " + os.hostname() + "\n" +
+    "redis-host" + redisClientConfig.host + "\n";
   res.status(200).send(msg);
 });
 
