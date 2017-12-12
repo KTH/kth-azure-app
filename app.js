@@ -110,10 +110,9 @@ app.get('/kth-azure-app/_about', function (req, res) {
     "Git branch: " + about.gitBranch + "\n" +
     "Git commit: " + about.gitCommit + "\n" +
     "hostname: " + os.hostname() + "\n" +
-    "redis-host" + redisClientConfig.host + "\n";
+    "redis-host: " + redisClientConfig.host + "\n";
   res.status(200).send(msg);
 });
-
 
 app.get('/kth-azure-app/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");
