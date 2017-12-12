@@ -4,19 +4,18 @@
   "description": "",
   "main": "app.js",
   "private": true,
-
   "dependencies": {
     "express": "^4.13.4",
     "body-parser": "~1.0.2",
     "express-session": "~1.10.3",
     "redis": "*",
-    "mongoose" : "*",
+    "mongoose": "*",
     "kth-node-log": "https://github.com/KTH/kth-node-log.git#v1.0.1",
     "tmp": "0.0.33"
   },
   "scripts": {
-     "test": "node tests/unit-tests/index.js"
- },
+    "test": "node tests/unit-tests/index.js"
+  },
   "engines": {
     "node": "^8.0.0"
   }

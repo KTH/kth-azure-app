@@ -4,7 +4,7 @@ error() { printf "\n \033[0;31mERROR: $@\033[0;0m | $(date) \n"; }
 passed() { printf "\n \033[0;32m   OK: $@\033[0;0m | $(date) \n\n"; }
 
 # /redis will connect to redis and say OK, if it works.
-MONITOR_URL="http://web:3000/redis";
+MONITOR_URL="http://web:3000/kth-azure-app/redis";
 PATTERN="ofailk"
 
 sleep 5s

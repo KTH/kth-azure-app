@@ -59,7 +59,7 @@ var stressTest = function(){
 }
 
 
-app.get('/stressTestConnections', function(req, res) {
+app.get('/kth-azure-app/stressTestConnections', function(req, res) {
   let numberOfFiles = 1000;
 
   let html = "<!DOCTYPE html><html><title>Hej</title><body>"
@@ -67,17 +67,17 @@ app.get('/stressTestConnections', function(req, res) {
   html += "<h1>1000 cats</h1>";
 
   for (i = 0; i < numberOfFiles; i++) {
-    html += "<img src='files/cat-" + i + ".jpg' />";
+    html += "<img src='kth-azure-app/files/cat-" + i + ".jpg' />";
   } 
-  html += "</body></html>" 
+  html += "</body></html>"
 
   res.set("Content-Type", "text/html");
   res.status(200).send(html); 
 })
 
-app.use("/files", express.static(__dirname + "/files"));
+app.use("/kth-azure-app/files", express.static(__dirname + "/files"));
 
-app.get('/logging', function(req, res) {
+app.get('/kth-azure-app/logging', function(req, res) {
   log.trace('Logging with level TRACE')
   log.debug('Logging with level DEBUG')
   log.info('Logging with level INFO')
@@ -96,12 +96,12 @@ function fib(n) {
   }
 }
 
-app.get('/stress', function(req, res) {
+app.get('/kth-azure-app/stress', function(req, res) {
   fib(10000)
   res.status(200).send('Stress test done')
 })
 
-app.get('/_about', function (req, res) {
+app.get('/kth-azure-app/_about', function (req, res) {
   res.set("Content-Type", "text/plain");
   const msg = "Docker version: " + about.dockerVersion + "\n" +
     "Docker name: " + about.dockerName + "\n" +
@@ -113,12 +113,12 @@ app.get('/_about', function (req, res) {
 });
 
 
-app.get('/_monitor', function (req, res) {
+app.get('/kth-azure-app/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");
   res.status(200).send("APPLICATION_STATUS: OK");
 });
 
-/*app.get('/_azure/_monitor/', function (req, res) {
+/*app.get('/kth-azure-app/_azure/_monitor/', function (req, res) {
   var result = {
     'redis-host' : redisClientConfig.host,
     'redis-path' : "/redis",
@@ -145,7 +145,7 @@ var connect = function () {
   }
 };
 
-app.get('/documentdb', function (req, res) {
+app.get('/kth-azure-app/documentdb', function (req, res) {
 
   try {
 
@@ -162,7 +162,7 @@ app.get('/documentdb', function (req, res) {
 });
 
 
-app.get('/redis', function (req, res) {
+app.get('/kth-azure-app/redis', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
@@ -181,7 +181,7 @@ app.get('/redis', function (req, res) {
 
 });
 
-app.get('/redis-test', function (req, res) {
+app.get('/kth-azure-app/redis-test', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
@@ -223,7 +223,7 @@ app.get('/redis-test', function (req, res) {
 
 });
 
-app.post('/persistance', function(req, res) {
+app.post('/kth-azure-app/persistance', function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
   client.on("error", function (err) {
@@ -233,7 +233,7 @@ app.post('/persistance', function(req, res) {
   client.set("persistance", "works", redis.print)
 })
 
-app.get('/persistance', function(req, res) {
+app.get('/kth-azure-app/persistance', function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
   client.on("error", function (err) {
@@ -252,7 +252,7 @@ app.get('/persistance', function(req, res) {
 
 })
 
-app.get('/scale-test', function (req, res) {
+app.get('/kth-azure-app/scale-test', function (req, res) {
 
   var client = redis.createClient(redisClientConfig);
 
