@@ -109,25 +109,17 @@ app.get('/kth-azure-app/_about', function (req, res) {
     "Jenkins build date: " + about.jenkinsBuildDate + "\n" +
     "Git branch: " + about.gitBranch + "\n" +
     "Git commit: " + about.gitCommit + ""
+    "hostname: " + os.hostname() + ""
+    "redis-host" + redisClientConfig.host + "",
   res.status(200).send(msg);
 });
 
 
 app.get('/kth-azure-app/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");
-  res.status(200).send("APPLICATION_STATUS: OK");
+  let msg = "APPLICATION_STATUS: OK"
+  res.status(200).send(msg);
 });
-
-/*app.get('/kth-azure-app/_azure/_monitor/', function (req, res) {
-  var result = {
-    'redis-host' : redisClientConfig.host,
-    'redis-path' : "/redis",
-    'hostname' : os.hostname()
-  };
-  res.status(200).send(result);
-});*/
-
-
 
 // Connect to mongodb
 var connect = function () {
