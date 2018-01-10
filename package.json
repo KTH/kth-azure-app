@@ -5,12 +5,12 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "express": "^4.13.4",
-    "body-parser": "~1.0.2",
-    "express-session": "~1.10.3",
-    "redis": "*",
-    "mongoose": "*",
-    "kth-node-log": "https://github.com/KTH/kth-node-log.git#v1.0.1",
+    "express": "^4.16.2 ",
+    "body-parser": "^1.18.2",
+    "express-session": "^1.15.6",
+    "redis": "^2.8.0",
+    "mongoose": "^4.13.9",
+    "kth-node-log": "^3.0.1",
     "tmp": "0.0.33"
   },
   "scripts": {
