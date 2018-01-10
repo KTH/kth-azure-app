@@ -58,8 +58,23 @@ var stressTest = function(){
   }
 }
 
+var allow_performance_test = function() {
+  if ( process.env.STRESS_TEST == null) {
+    return false
+  }
+
+  if (process.env.STRESS_TEST.toLowerCase() == "performance") {
+    return true
+  } 
+}
 
 app.get('/kth-azure-app/stressTestConnections', function(req, res) {
+
+  if (!allow_performance_test()) {
+    res.status(403).send("Forbidden"); 
+    return
+  }
+
   let numberOfFiles = 1000;
 
   let html = "<!DOCTYPE html><html><title>Hej</title><body>"
@@ -97,6 +112,11 @@ function fib(n) {
 }
 
 app.get('/kth-azure-app/stress', function(req, res) {
+  if (!allow_performance_test()) {
+    res.status(403).send("Forbidden"); 
+    return
+  }
+
   fib(10000)
   res.status(200).send('Stress test done')
 })
@@ -284,11 +304,12 @@ app.use(function(req, res){
 });
 
 app.listen(3000, function () {
-  if (process.env.STRESS_TEST) {
+  if (process.env.STRESS_TEST != null && process.env.STRESS_TEST.toLowerCase() == "true") {
     stressTest()
   } 
   console.log('NodeJS running on port 3000');
 });
 
+// This will trigger a warning from https://github.com/auth0/repo-supervisor/ on CI. 
 var fake_secret_for_testing = 'zJd-55qmsY6LD53CRTqnCr_g-'
 
