@@ -25,6 +25,9 @@ services:
       - 3000
     depends_on:
       - redis
+    
+    # Colorize output
+    tty: true
 
   #############################################
   # Start http://redis:6379/
