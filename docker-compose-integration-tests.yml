@@ -20,6 +20,7 @@ services:
     environment:
       DB_URL: "https://example.com:1234"
       DB_USER: "admin"
+      ENV_TEST: "test"
 
     ports:
       - 3000
