@@ -137,12 +137,13 @@ app.get('/kth-azure-app/_about', function (req, res) {
 app.get('/kth-azure-app/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");
 
+  let msg = ``
   if (process.env.ENV_TEST) {
-    let msg = `APPLICATION_STATUS: OK
+    msg = `APPLICATION_STATUS: OK
                ENV_TEST: ${process.env.ENV_TEST}
               `
   } else {
-      let msg = "APPLICATION_STATUS: ERROR Missing secret.env variable ENV_TEST."
+      msg = "APPLICATION_STATUS: ERROR Missing secret.env variable ENV_TEST."
   }
   res.status(200).send(msg);
 });
