@@ -141,7 +141,7 @@ app.get('/kth-azure-app/_monitor', function (req, res) {
     let msg = `APPLICATION_STATUS: OK
                ENV_TEST: ${process.env.ENV_TEST}
               `
-  else {
+  } else {
       let msg = "APPLICATION_STATUS: ERROR Missing secret.env variable ENV_TEST."
   }
   res.status(200).send(msg);
