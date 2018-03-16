@@ -136,7 +136,12 @@ app.get('/kth-azure-app/_about', function (req, res) {
 
 app.get('/kth-azure-app/_monitor', function (req, res) {
   res.set("Content-Type", "text/plain");
-  let msg = "APPLICATION_STATUS: OK"
+
+  if (process.env.ENV_TEST) {
+    let msg = "APPLICATION_STATUS: OK"
+  else {
+      let msg = "APPLICATION_STATUS: ERROR Missing secret.env variable ENV_TEST."
+  }
   res.status(200).send(msg);
 });
 
@@ -304,6 +309,7 @@ app.use(function(req, res){
 });
 
 app.listen(3000, function () {
+
   if (process.env.STRESS_TEST != null && process.env.STRESS_TEST.toLowerCase() == "true") {
     stressTest()
   } 
