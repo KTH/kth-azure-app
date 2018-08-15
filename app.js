@@ -137,6 +137,7 @@ app.get('/kth-azure-app/_about', function (req, res) {
 });
 
 app.get('/kth-azure-app/_monitor', function (req, res) {
+  log.info('Got request for /_monitor')
   res.set("Content-Type", "text/plain");
 
   let msg = ``
@@ -147,7 +148,12 @@ app.get('/kth-azure-app/_monitor', function (req, res) {
   } else {
     msg = "APPLICATION_STATUS: ERROR Missing secret.env variable ENV_TEST."
   }
-  res.status(200).send(msg);
+  try {
+    res.status(200).send(msg);
+  } catch (ex) {
+    log.warn('Unablte to send 200 respnse/_monitor' + ex)
+  }
+
 });
 
 app.get('/kth-azure-app/_monitor_core', function (req, res) {
