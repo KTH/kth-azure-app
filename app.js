@@ -8,6 +8,7 @@ const packageFile = require('./package.json')
 var log = require('kth-node-log')
 var fs = require('fs')
 var tmp = require('tmp')
+const https = require('https');
 
 let logConfiguration = {
   name: packageFile.name,
@@ -136,14 +137,38 @@ app.get('/kth-azure-app/_about', function (req, res) {
   res.status(200).send(msg);
 });
 
+function makeExternalRequest() {
+
+  https.get('https://www.kth.se/_monitor', (response) => {
+    let data = '';
+
+    // A chunk of data has been recieved.
+    response.on('data', (chunk) => {
+      log.info('Got a chunk from external host.')
+    });
+
+    // The whole response has been received. Print out the result.
+    response.on('end', () => {
+      log.info('Got Complete response from external host.')
+    });
+
+  }).on("error", (err) => {
+    log.warn('Error during request to external host.' + err.message)
+  });
+
+}
+
 app.get('/kth-azure-app/_monitor', function (req, res) {
   log.info('Got request for /_monitor')
+
+  makeExternalRequest()
+
   res.set("Content-Type", "text/plain");
 
   let msg = ``
   if (process.env.ENV_TEST) {
     msg = `APPLICATION_STATUS: OK
-               ENV_TEST: ${process.env.ENV_TEST}
+          ENV_TEST: ${process.env.ENV_TEST}
               `
   } else {
     msg = "APPLICATION_STATUS: ERROR Missing secret.env variable ENV_TEST."
