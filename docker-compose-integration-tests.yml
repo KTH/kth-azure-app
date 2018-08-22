@@ -18,7 +18,7 @@ services:
     environment:
       DB_URL: "https://example.com:1234"
       DB_USER: "admin"
-      ENV_TEST: "should be in secrets.env for testing that Cellus deploys it"
+      ENV_TEST: "SECRET_VALUE_ON__MONITOR."
 
     ports:
       - 3000
