@@ -7,8 +7,9 @@ MONITOR_URL="http://web:3000/kth-azure-app/_monitor";
 
 PATTERN="SECRET_VALUE_ON__MONITOR" #env in docker-compose-integration-tests.yml
 
+sleep 5s
+
 RESPONSE="$(curl -s -S --max-time 30 $MONITOR_URL)"
-echo "$RESPONSE"
 
 if [[ $RESPONSE != *$PATTERN* ]]; then
     error "URL '$MONITOR_URL' does not contain '$PATTERN'."
