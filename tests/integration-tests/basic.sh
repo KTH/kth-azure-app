@@ -5,17 +5,16 @@ passed() { printf "\n \033[0;32m   OK: $@\033[0;0m | $(date) \n\n"; }
 
 # /redis will connect to redis and say OK, if it works.
 MONITOR_URL="http://web:3000/kth-azure-app/_monitor";
-PATTERN="FAILURE"
 
-sleep 5s
+PATTERN="APPLICATION_STATUS: OK"
 
 RESPONSE="$(curl -s -S --max-time 30 $MONITOR_URL)"
 
-if [[ $RESPONSE = *"$PATTERN"* ]]; then
-    passed "Basic test passed for '$MONITOR_URL'."
-    exit 0
+if [[ $RESPONSE != *$PATTERN* ]]; then
+    error "URL '$MONITOR_URL' does not contain '$PATTERN'."
+    exit 1
 fi
 
-error "URL '$MONITOR_URL' does not contain '$PATTERN'."
-
-exit 1
+passed "Basic test passed for '$MONITOR_URL'."
+    
+exit 0
