@@ -5,7 +5,7 @@ passed() { printf "\n \033[0;32m   OK: $@\033[0;0m | $(date) \n\n"; }
 
 MONITOR_URL="http://web:3000/kth-azure-app/_monitor";
 
-PATTERN="SECRET_VALUE_OFAIL__MOdNITOR" #env in docker-compose-integration-tests.yml
+PATTERN="SECRET_VALUE_ON__MONITOR" #env in set in file: docker-compose-integration-tests.yml
 
 sleep 5s
 
