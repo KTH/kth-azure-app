@@ -4,7 +4,7 @@ COPY ["config", "config"]
 COPY ["files", "files"]
 COPY ["app.js", "app.js"]
 COPY ["package.json", "package.json"]
-COPY ["yarn.lo ck", "yarn.lock"]
+COPY ["yarn.lock", "yarn.lock"]
 
 RUN yarn install
 
