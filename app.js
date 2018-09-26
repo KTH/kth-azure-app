@@ -160,7 +160,10 @@ function makeExternalRequest() {
 }
 
 app.get('/kth-azure-app/_monitor', function (req, res) {
+
   log.info('Got request for /_monitor')
+
+  console.log(req.headers);
 
   makeExternalRequest()
 
