@@ -17,6 +17,6 @@
     "test": "node tests/unit-tests/index.js"
   },
   "engines": {
-    "node": "^8.0.0"
+    "node": "^9.11.0"
   }
 }
