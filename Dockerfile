@@ -1,4 +1,4 @@
-FROM kthse/kth-nodejs:kth-nodejs-web:2.4
+FROM kthse/kth-nodejs-web:2.4
 
 COPY ["config", "config"]
 COPY ["files", "files"]
