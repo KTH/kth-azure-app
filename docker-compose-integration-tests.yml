@@ -4,6 +4,7 @@ version: '3'
 # Run this integration test by running:
 # ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --build --abort-on-container-exit
 #
+# docker images | grep kth-azure-app_app | awk '{ print $3 }' | xargs docker inspect | grep se.kth.imageVersion
 services:
 
   #############################################
