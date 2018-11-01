@@ -14,4 +14,4 @@ RUN yarn install
 ENV NODE_PATH /application
 EXPOSE 3200
 
-CMD ["node", "app.js"]
+ENTRYPOINT ["node", "app.js"]
