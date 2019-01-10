@@ -9,7 +9,13 @@ COPY ["yarn.lock", "yarn.lock"]
 RUN cat KTH_OS
 RUN cat KTH_NODEJS
 
-RUN yarn install
+RUN apk --no-cache add --virtual native-deps \
+    g++ gcc libgcc libstdc++ linux-headers make python && \
+    npm install --quiet node-gyp -g &&\
+    npm install --quiet && \
+    apk del native-deps
+    
+RUN npm install
 
 ENV NODE_PATH /application
 EXPOSE 3200
