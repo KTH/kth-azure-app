@@ -9,7 +9,7 @@
     "body-parser": "^1.18.3",
     "express-session": "^1.15.6",
     "redis": "^2.8.0",
-    "mongoose": "^5.3.13",
+    "mongoose": "^5.4.3",
     "kth-node-log": "^3.0.2",
     "tmp": "0.0.33"
   },
