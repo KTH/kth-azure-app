@@ -12,9 +12,9 @@ RUN cat KTH_NODEJS
 RUN apk --no-cache add --virtual native-deps \
     g++ gcc libgcc libstdc++ linux-headers make python && \
     npm install --quiet node-gyp -g &&\
-    npm install --quiet && \
-    apk del native-deps
-    
+    npm install --quiet  && \
+    apk del native-deps python make libstdc++ g++ gcc libgcc --virtual native-deps
+
 RUN npm install
 
 ENV NODE_PATH /application
