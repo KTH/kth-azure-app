@@ -357,7 +357,7 @@ app.get("/kth-azure-app/persistance", function (req, res) {
  */
 app.sendError = function (res, statusCode = 200) {
   console.log(`Send ${statusCode} error.`);
-  res.status(502).send(`KTH Azure App: Status code ${statusCode}`);
+  res.status(statusCode).send(`KTH Azure App: Status code ${statusCode}`);
 };
 
 app.get("/kth-azure-app/401", function (req, res) {
