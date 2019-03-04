@@ -192,6 +192,7 @@ app.get("/kth-azure-app/_monitor", function (req, res) {
   let msg = ``;
   if (process.env.ENV_TEST) {
     msg = `APPLICATION_STATUS: OK
+          HEJ Björn
           ENV_TEST: ${process.env.ENV_TEST}
               `;
   } else {
