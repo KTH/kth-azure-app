@@ -28,7 +28,7 @@ var redisClientConfig = {
 
 var start = process.hrtime();
 
-var elapsed_time = function (note) {
+var elapsed_time = function(note) {
   var precision = 3; // 3 decimal places
   var elapsed = process.hrtime(start)[1] / 1000000; // divide by a million to get nano to milli
   var value =
@@ -41,7 +41,7 @@ var elapsed_time = function (note) {
   return value;
 };
 
-var stressTest = function () {
+var stressTest = function() {
   const rand = process.hrtime()[1] % 3;
 
   if (rand === 0) {
@@ -66,7 +66,7 @@ var stressTest = function () {
   }
 };
 
-var allow_performance_test = function () {
+var allow_performance_test = function() {
   if (process.env.STRESS_TEST == null) {
     return false;
   }
@@ -76,7 +76,7 @@ var allow_performance_test = function () {
   }
 };
 
-app.get("/kth-azure-app/stressTestConnections", function (req, res) {
+app.get("/kth-azure-app/stressTestConnections", function(req, res) {
   if (!allow_performance_test()) {
     res.status(403).send("Forbidden");
     return;
@@ -99,7 +99,7 @@ app.get("/kth-azure-app/stressTestConnections", function (req, res) {
 
 app.use("/kth-azure-app/files", express.static(__dirname + "/files"));
 
-app.get("/kth-azure-app/logging", function (req, res) {
+app.get("/kth-azure-app/logging", function(req, res) {
   log.trace("Logging with level TRACE");
   log.debug("Logging with level DEBUG");
   log.info("Logging with level INFO");
@@ -118,7 +118,7 @@ function fib(n) {
   }
 }
 
-app.get("/kth-azure-app/stress", function (req, res) {
+app.get("/kth-azure-app/stress", function(req, res) {
   if (!allow_performance_test()) {
     res.status(403).send("Forbidden");
     return;
@@ -128,7 +128,7 @@ app.get("/kth-azure-app/stress", function (req, res) {
   res.status(200).send("Stress test done");
 });
 
-app.get("/kth-azure-app/_about", function (req, res) {
+app.get("/kth-azure-app/_about", function(req, res) {
   res.set("Content-Type", "text/plain");
   const msg =
     "Docker version: " +
@@ -180,7 +180,7 @@ function makeExternalRequest() {
     });
 }
 
-app.get("/kth-azure-app/_monitor", function (req, res) {
+app.get("/kth-azure-app/_monitor", function(req, res) {
   log.info("Got request for /_monitor");
 
   console.log(req.headers);
@@ -191,7 +191,7 @@ app.get("/kth-azure-app/_monitor", function (req, res) {
 
   let msg = ``;
   if (process.env.ENV_TEST) {
-    msg = `APPLICATION_STATUS: OK
+    msg = `APPLICATION_STATUS: OK_WITH_OK
           ENV_TEST: ${process.env.ENV_TEST}
               `;
   } else {
@@ -204,7 +204,7 @@ app.get("/kth-azure-app/_monitor", function (req, res) {
   }
 });
 
-app.get("/kth-azure-app/_monitor_core", function (req, res) {
+app.get("/kth-azure-app/_monitor_core", function(req, res) {
   res.set("Content-Type", "text/plain");
 
   let msg = ``;
@@ -219,7 +219,7 @@ app.get("/kth-azure-app/_monitor_core", function (req, res) {
 });
 
 // Connect to mongodb
-var connect = function () {
+var connect = function() {
   options = {
     dbUsername: process.env.AZURE_DOCUMENTDB_USERNAME,
     dbPassword: process.env.AZURE_DOCUMENTDB_PASSWORD,
@@ -232,10 +232,7 @@ var connect = function () {
     }
   };
   try {
-    mongoose.connect(
-      process.env.AZURE_DOCUMENTDB_URI,
-      options
-    );
+    mongoose.connect(process.env.AZURE_DOCUMENTDB_URI, options);
   } catch (ex) {
     res.status(500).send({
       Error: "" + ex
@@ -243,7 +240,7 @@ var connect = function () {
   }
 };
 
-app.get("/kth-azure-app/documentdb", function (req, res) {
+app.get("/kth-azure-app/documentdb", function(req, res) {
   try {
     connect();
 
@@ -259,14 +256,14 @@ app.get("/kth-azure-app/documentdb", function (req, res) {
   }
 });
 
-app.get("/kth-azure-app/redis", function (req, res) {
+app.get("/kth-azure-app/redis", function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
-  client.on("error", function (err) {
+  client.on("error", function(err) {
     console.log("Error " + err);
   });
 
-  client.set("a-key", "a-value", function (err) {
+  client.set("a-key", "a-value", function(err) {
     client.quit();
     if (err) {
       console.log(err);
@@ -280,10 +277,10 @@ app.get("/kth-azure-app/redis", function (req, res) {
   });
 });
 
-app.get("/kth-azure-app/redis-test", function (req, res) {
+app.get("/kth-azure-app/redis-test", function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
-  client.on("error", function (err) {
+  client.on("error", function(err) {
     console.log("Error " + err);
   });
 
@@ -292,18 +289,18 @@ app.get("/kth-azure-app/redis-test", function (req, res) {
   console.log("Writing 1000 keys to redis");
 
   for (var i = 0; i <= 999; i++) {
-    client.set("key-" + i, "value-" + i, function (err) {
+    client.set("key-" + i, "value-" + i, function(err) {
       if (err) {
         console.log(err);
       }
     });
   }
 
-  client.set("key-1000", "value-1000", function (err) {
+  client.set("key-1000", "value-1000", function(err) {
     if (err) {
       console.log(err);
     }
-    client.get("key-1000", function (err, value) {
+    client.get("key-1000", function(err, value) {
       client.quit();
       console.log("Read last key from redis");
       var result = {
@@ -318,28 +315,29 @@ app.get("/kth-azure-app/redis-test", function (req, res) {
   });
 });
 
-app.post("/kth-azure-app/persistance", function (req, res) {
+app.post("/kth-azure-app/persistance", function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
-  client.on("error", function (err) {
+  client.on("error", function(err) {
     console.log("Error " + err);
   });
 
   client.set("persistance", "works", redis.print);
 });
 
-app.get("/kth-azure-app/persistance", function (req, res) {
+app.get("/kth-azure-app/persistance", function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
-  client.on("error", function (err) {
+  client.on("error", function(err) {
     console.log("Error " + err);
   });
 
-  client.get("persistance", function (err, value) {
+  client.get("persistance", function(err, value) {
     if (err) {
       console.log(err);
       res.status(500).json({
-        "redis-status": "Failed to read persistance from redis on " + redisClientConfig.host,
+        "redis-status":
+          "Failed to read persistance from redis on " + redisClientConfig.host,
         error: err
       });
     }
@@ -355,52 +353,54 @@ app.get("/kth-azure-app/persistance", function (req, res) {
  * Log incomming request.
  * E.g:  http://localhost:3000/_about - Response Code: 200, Client IP: 127.0.0.1
  */
-app.sendError = function (res, statusCode = 200) {
+app.sendError = function(res, statusCode = 200) {
   console.log(`Send ${statusCode} error.`);
   res.status(statusCode).send(`KTH Azure App: Status code ${statusCode}`);
 };
 
-app.get("/kth-azure-app/401", function (req, res) {
+app.get("/kth-azure-app/401", function(req, res) {
   app.sendError(res, 401);
 });
 
-app.get("/kth-azure-app/403", function (req, res) {
+app.get("/kth-azure-app/403", function(req, res) {
   app.sendError(res, 403);
 });
 
-app.get("/kth-azure-app/501", function (req, res) {
+app.get("/kth-azure-app/501", function(req, res) {
   app.sendError(res, 501);
 });
 
-app.get("/kth-azure-app/502", function (req, res) {
+app.get("/kth-azure-app/502", function(req, res) {
   app.sendError(res, 502);
 });
 
-app.get("/kth-azure-app/scale-test", function (req, res) {
+app.get("/kth-azure-app/scale-test", function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
-  client.on("error", function (err) {
+  client.on("error", function(err) {
     console.log("Error " + err);
   });
 
   var sV0 = "missing";
   var sV1 = "missing";
 
-  client.get("scale-0", function (err, value) {
+  client.get("scale-0", function(err, value) {
     if (err) {
       console.log(err);
       res.status(500).json({
-        "redis-status": "Failed to read scale-0 from redis on " + redisClientConfig.host,
+        "redis-status":
+          "Failed to read scale-0 from redis on " + redisClientConfig.host,
         error: err
       });
     }
     sV0 = value;
 
-    client.get("scale-1", function (err, value) {
+    client.get("scale-1", function(err, value) {
       if (err) {
         console.log(err);
         res.status(500).json({
-          "redis-status": "Failed to read scale-1 from redis on " + redisClientConfig.host,
+          "redis-status":
+            "Failed to read scale-1 from redis on " + redisClientConfig.host,
           error: err
         });
       }
@@ -417,7 +417,7 @@ app.get("/kth-azure-app/scale-test", function (req, res) {
   });
 });
 
-app.get("/kth-azure-app/", function (req, res) {
+app.get("/kth-azure-app/", function(req, res) {
   res
     .status(200)
     .send(
@@ -428,14 +428,15 @@ app.get("/kth-azure-app/", function (req, res) {
 // -- Errors --
 // If the request ends up here none of the rules above have returned any response
 // so then its time for som error handling
-app.use(function (req, res) {
+app.use(function(req, res) {
   res.status(404).send({
-    message: "KTH Azure App - No route or static file matched '" + req.url + "'.",
+    message:
+      "KTH Azure App - No route or static file matched '" + req.url + "'.",
     status: 404
   });
 });
 
-app.listen(3000, function () {
+app.listen(3000, function() {
   if (
     process.env.STRESS_TEST != null &&
     process.env.STRESS_TEST.toLowerCase() == "true"
