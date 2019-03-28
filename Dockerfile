@@ -1,4 +1,4 @@
-FROM kthse/kth-nodejs:9.11.0
+FROM kthse/kth-nodejs:10.14.0
 
 COPY ["config", "config"]
 COPY ["files", "files"]
@@ -9,7 +9,9 @@ COPY ["yarn.lock", "yarn.lock"]
 RUN cat KTH_OS
 RUN cat KTH_NODEJS
 
-RUN apk --no-cache add --virtual native-deps \
+RUN apk update && \
+    apk upgrade && \
+    apk --no-cache add --virtual native-deps \
     g++ gcc libgcc libstdc++ linux-headers make python && \
     npm install --quiet node-gyp -g &&\
     npm install --quiet  && \
