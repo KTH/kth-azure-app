@@ -371,7 +371,7 @@ app.get("/kth-azure-app/501", function(req, res) {
 });
 
 app.get("/kth-azure-app/502", function(req, res) {
-  app.sendError(res, 502);
+  res.sendStatus(502);
 });
 
 app.get("/kth-azure-app/scale-test", function(req, res) {
