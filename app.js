@@ -131,7 +131,7 @@ app.get("/kth-azure-app/stress", function(req, res) {
 app.get("/kth-azure-app/_about", function(req, res) {
   res.set("Content-Type", "text/plain");
   const msg =
-    "Docker version: " +
+    "Docker version apa: " +
     about.dockerVersion +
     "\n" +
     "Docker name: " +
