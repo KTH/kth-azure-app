@@ -155,7 +155,7 @@ app.get("/kth-azure-app/_about", function(req, res) {
     "hostname: " +
     os.hostname() +
     "\n" +
-    "redis-host: " +
+    "Hej maria och Matte redis-host: " +
     redisClientConfig.host;
   res.status(200).send(msg);
 });
