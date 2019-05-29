@@ -375,6 +375,10 @@ app.get("/kth-azure-app/502", function(req, res) {
   res.status(502).end();
 });
 
+app.get("/kth-azure-app/hello-world", function(req, res) {
+  res.status(200).send("Hello World!");
+});
+
 app.get("/kth-azure-app/scale-test", function(req, res) {
   var client = redis.createClient(redisClientConfig);
 
