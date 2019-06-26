@@ -448,7 +448,7 @@ app.listen(3000, function() {
   ) {
     stressTest();
   }
-  console.log("NodeJS running on port 3000");
+  console.log("Node started");
 });
 
 // This will trigger a warning from https://github.com/auth0/repo-supervisor/ on CI.
