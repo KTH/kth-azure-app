@@ -9,7 +9,7 @@ var log = require("kth-node-log");
 var fs = require("fs");
 var tmp = require("tmp");
 const https = require("https");
-const started = Date.now();
+const started = new Date();
 
 let logConfiguration = {
   name: packageFile.name,
