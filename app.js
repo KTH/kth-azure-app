@@ -9,6 +9,7 @@ var log = require("kth-node-log");
 var fs = require("fs");
 var tmp = require("tmp");
 const https = require("https");
+const started = Date.now();
 
 let logConfiguration = {
   name: packageFile.name,
@@ -131,7 +132,7 @@ app.get("/kth-azure-app/stress", function(req, res) {
 app.get("/kth-azure-app/_about", function(req, res) {
   res.set("Content-Type", "text/plain");
   const msg =
-    "Docker version apa: " +
+    "Docker version: " +
     about.dockerVersion +
     "\n" +
     "Docker name: " +
@@ -156,7 +157,10 @@ app.get("/kth-azure-app/_about", function(req, res) {
     os.hostname() +
     "\n" +
     "redis-host: " +
-    redisClientConfig.host;
+    redisClientConfig.host +
+    "\n" +
+    "Instance started: " +
+    started;
   res.status(200).send(msg);
 });
 
