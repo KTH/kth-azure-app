@@ -18,6 +18,6 @@ RUN cat KTH_NODEJS
 RUN npm install
 
 ENV NODE_PATH /application
-EXPOSE 3200
+EXPOSE 3000
 
 CMD ["node", "app.js"]

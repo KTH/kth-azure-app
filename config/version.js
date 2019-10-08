@@ -4,10 +4,10 @@
  */
 
 module.exports = {
-  gitBranch: 'NOT SET BY JENKINS',
-  gitCommit: 'NOT SET BY JENKINS',
-  jenkinsBuild: 'NOT SET BY JENKINS',
-  jenkinsBuildDate: 'NOT SET BY JENKINS',
-  dockerName: 'NOT SET BY JENKINS',
-  dockerVersion: 'NOT SET BY JENKINSd'
-}
+  gitBranch: "NOT SET BY JENKINS",
+  gitCommit: "NOT SET BY JENKINS",
+  jenkinsBuild: "NOT SET BY JENKINS",
+  jenkinsBuildDate: "NOT SET BY JENKINS",
+  dockerName: "NOT SET BY JENKINS",
+  dockerVersion: "NOT SET BY JENKINS"
+};
