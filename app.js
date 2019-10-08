@@ -52,21 +52,21 @@ app.listen(app.getListenPort(), function() {
 /**
  * Index page.
  */
-app.get("/", function(request, response) {
+app.get("/kth-azure-app/", function(request, response) {
   httpResponse.ok(request, response, templates.index());
 });
 
 /**
  * About page. Versions and such.
  */
-app.get("/_about", function(request, response) {
+app.get("/kth-azure-app/_about", function(request, response) {
   httpResponse.ok(request, response, templates._about());
 });
 
 /**
  * Health check route.
  */
-app.get("/_monitor", function(request, response) {
+app.get("/kth-azure-app/_monitor", function(request, response) {
   httpResponse.ok(
     request,
     response,
@@ -78,14 +78,14 @@ app.get("/_monitor", function(request, response) {
 /**
  * Ignore favicons.
  */
-app.get("/favicon.ico", function(request, response) {
+app.get("/kth-azure-app/favicon.ico", function(request, response) {
   httpResponse.noContent(request, response);
 });
 
 /**
  * Crawler access definitions.
  */
-app.get("/robots.txt", function(request, response) {
+app.get("/kth-azure-app/robots.txt", function(request, response) {
   httpResponse.ok(
     request,
     response,
