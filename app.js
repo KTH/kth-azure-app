@@ -159,7 +159,7 @@ app.get("/kth-azure-app/_about", function(req, res) {
     "redis-host: " +
     redisClientConfig.host +
     "\n" +
-    "Instance started: " +
+    "Hej Markus! Instance started: " +
     started;
   res.status(200).send(msg);
 });
