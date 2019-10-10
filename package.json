@@ -19,8 +19,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "NODE_ENV=development node_modules/mocha/bin/mocha ./tests/unit-tests/test-*.js",
-    "integration-tests-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --abort-on-container-exit --always-recreate-deps",
-    "unit-tests-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --abort-on-container-exit --always-recreate-deps",
+    "test-integration-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --abort-on-container-exit --always-recreate-deps",
+    "test-unit-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --abort-on-container-exit --always-recreate-deps",
     "start-dev": "LOG_LEVEL=debug APPLICATIONS_API_KEY=AAA-BBB-CCC PORT=3000 LOG_LEVEL=debug nodemon app.js"
   },
   "engines": {
