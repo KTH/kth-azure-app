@@ -1,4 +1,4 @@
-const appI nsights = require("applicationinsights");
+const appInsights = require("applicationinsights");
 const express = require("express");
 const app = express();
 const templates = require("./modules/templates");
