@@ -31,7 +31,7 @@ app.initApplicationInsights = function() {
 };
 
 /**
- * Start server on port 80, or use port specifed in env PORT.
+ * Start server on port 3000, or use port specifed in env PORT.
  */
 app.getListenPort = function() {
   return process.env.PORT ? process.env.PORT : 3000;
