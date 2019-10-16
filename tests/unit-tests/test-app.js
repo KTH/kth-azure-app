@@ -27,7 +27,7 @@ describe("Template handling", function() {
 
   it("Path '/_monitor' should contain 'APPLICATION_STATUS: OK'.", function() {
     const result = templates._monitor();
-    expect(result).to.contain("APPLICATION_STATUS: ERROR_BUT_OK");
+    expect(result).to.contain("APPLICATION_STATUS: OK");
   });
 
   it("Path '/_monitor' should contain ENV_TEST value specified in env 'ENV_TEST' if set.", function() {

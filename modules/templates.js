@@ -196,7 +196,7 @@ let _robotstxt = function robotstxt() {
  * Monitor page
  */
 let _monitor = function _monitor() {
-  return `APPLICATION_STATUS: ERROR_BUT_OK\nENV_TEST: ${
+  return `APPLICATION_STATUS: OK\nENV_TEST: ${
     process.env.ENV_TEST
       ? process.env.ENV_TEST
       : "No env value for ENV_TEST is set."
