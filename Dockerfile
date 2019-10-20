@@ -1,4 +1,5 @@
-FROM kthse/kth-nodejs:10.14.0
+FROM kthse/kth-nodejs:8.11.0
+#FROM kthse/kth-nodejs:10.14.0
 
 COPY ["config", "config"]
 COPY ["modules", "modules"]
