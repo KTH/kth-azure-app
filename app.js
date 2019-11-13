@@ -57,6 +57,13 @@ app.get("/kth-azure-app/", function(request, response) {
 });
 
 /**
+ * 502 error page.
+ */
+app.get("/kth-azure-app/502", function(request, response) {
+  httpResponse.badGateway(request, response, templates.badGateway());
+});
+
+/**
  * About page. Versions and such.
  */
 app.get("/kth-azure-app/_about", function(request, response) {

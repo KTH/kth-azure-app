@@ -186,6 +186,22 @@ let index = function index() {
 };
 
 /**
+ * Index page.
+ */
+let badGateway = function badGateway() {
+  return `<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>502 - Bad Gateway</title>
+        </head>
+        <body>
+            <h1>502 Bad gateway</h2>
+        </body>
+    </html>
+    `;
+};
+
+/**
  * robots.txt
  */
 let _robotstxt = function robotstxt() {
@@ -227,6 +243,7 @@ let _about = function _about() {
 module.exports = {
   index: index,
   error404: error404,
+  badGateway: badGateway,
   _monitor: _monitor,
   _about: _about,
   robotstxt: _robotstxt

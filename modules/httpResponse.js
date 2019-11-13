@@ -12,7 +12,8 @@ const statusCodes = {
   OK: 200,
   NO_CONTENT: 204,
   NOT_FOUND: 404,
-  INTERNAL_SERVER_ERROR: 501
+  INTERNAL_SERVER_ERROR: 501,
+  BAD_GATEWAY: 502
 };
 
 /**
@@ -45,6 +46,7 @@ let _notFound = function notFound(
 let _noContent = function noContent(request, response) {
   _send(request, response, "", statusCodes.NO_CONTENT, contentTypes.PLAIN_TEXT);
 };
+
 /**
  * Send status internal server error with a body set to the content type.
  * Default content type is text/html.
@@ -62,6 +64,19 @@ let _internalServerError = function internalServerError(
     statusCodes.INTERNAL_SERVER_ERROR,
     contentType
   );
+};
+
+/**
+ * Send status bad gateway server error with a body set to the content type.
+ * Default content type is text/html.
+ */
+let _badGateway = function badGateway(
+  request,
+  response,
+  body,
+  contentType = contentTypes.HTML
+) {
+  _send(request, response, body, statusCodes.BAD_GATEWAY, contentType);
 };
 
 /**
@@ -115,6 +130,7 @@ module.exports = {
   notFound: _notFound,
   noContent: _noContent,
   internalServerError: _internalServerError,
+  badGateway: _badGateway,
   statusCodes: statusCodes,
   contentTypes: contentTypes
 };
