@@ -41,4 +41,9 @@ describe("Template handling", function() {
     const result = templates._monitor();
     expect(result).to.contain("No env value for ENV_TEST is set.");
   });
+
+  it("Path '/502' should contain '502 Bad Gateway'.", function() {
+    const result = templates.badGateway();
+    expect(result).to.contain("502 Bad Gateway");
+  });
 });

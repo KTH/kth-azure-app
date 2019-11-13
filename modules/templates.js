@@ -195,7 +195,7 @@ let badGateway = function badGateway() {
             <title>502 - Bad Gateway</title>
         </head>
         <body>
-            <h1>502 Bad gateway</h2>
+            <h1>502 Bad Gateway</h2>
         </body>
     </html>
     `;
