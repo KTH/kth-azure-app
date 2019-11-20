@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  web:
+    #image: kthregistryv2.sys.kth.se/kth-azure-app:2.7.89_31496ab
+    build: .
+    environment:
+      NON_SECRET_SETTING: "This only exists for this service and this cluster"
+      ENV_TEST: "En miljovariabel"
+
+    ports:
+      - 3000
+
+    labels:
+      - se.kth.slackChannels="#team-pipeline-build,#pipeline-logs"
+
+    depends_on:
+     - redis
+
+  redis:
+    image: redis:3.2.6-alpine
+

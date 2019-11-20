@@ -7,13 +7,14 @@ node_modules
 config.py
 
 docker-*.env
+*.env
+.env
+
 
 # Local docker-compose envs.
 .env
 
 # Pid-files created by manage.sh
 .PID*
-
-docker-compose.yml
 
 *.log
