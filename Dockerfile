@@ -8,7 +8,7 @@ COPY ["package.json", "package.json"]
 RUN cat KTH_OS
 RUN cat KTH_NODEJS
 
-RUN npm install --production --no-optional
+RUN npm install --production
 
 ENV NODE_PATH /application
 EXPOSE 3000
