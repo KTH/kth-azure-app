@@ -12,9 +12,9 @@
     "kth-node-log": "^3.0.2"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4",
+    "nodemon": "^2.0.2",
     "chai": "^4.2.0",
-    "mocha": "^6.2.2"
+    "mocha": "^7.0.1"
   },
   "scripts": {
     "start": "node app.js",
