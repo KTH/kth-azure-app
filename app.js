@@ -3,14 +3,14 @@ const express = require("express");
 const app = express();
 const templates = require("./modules/templates");
 const logger = require("./modules/logger");
-const httpResponse = require("./modules/httpResponse");
+const httpResponse = require("@kth/http-responses");
 const os = require("os");
 const packageFile = require("./package.json");
 
 /**
  * Init a Azure Application Insights if a key is passed as env APPINSIGHTS_INSTRUMENTATIONKEY
  */
-app.initApplicationInsights = function() {
+app.initApplicationInsights = function () {
   if (process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
     appInsights
       .setup()
@@ -33,14 +33,14 @@ app.initApplicationInsights = function() {
 /**
  * Start server on port 3000, or use port specifed in env PORT.
  */
-app.getListenPort = function() {
+app.getListenPort = function () {
   return process.env.PORT ? process.env.PORT : 3000;
 };
 
 /**
  * Start the server on configured port.
  */
-app.listen(app.getListenPort(), function() {
+app.listen(app.getListenPort(), function () {
   logger.log.info(
     `Started ${packageFile.name} on ${os.hostname()}:${app.getListenPort()}`
   );
@@ -52,32 +52,32 @@ app.listen(app.getListenPort(), function() {
 /**
  * Index page.
  */
-app.get("/kth-azure-app/", function(request, response) {
+app.get("/kth-azure-app/", function (request, response) {
   httpResponse.ok(request, response, templates.index());
 });
 
 /**
  * 502 error page.
  */
-app.get("/kth-azure-app/502", function(request, response) {
+app.get("/kth-azure-app/502", function (request, response) {
   httpResponse.badGateway(request, response, templates.badGateway());
 });
 
 /**
  * About page. Versions and such.
  */
-app.get("/kth-azure-app/_about", function(request, response) {
+app.get("/kth-azure-app/_about", function (request, response) {
   httpResponse.ok(request, response, templates._about());
 });
 
 /**
  * Health check route.
  */
-app.get("/kth-azure-app/_monitor", function(request, response) {
+app.get("/kth-azure-app/_monitor", async function (request, response) {
   httpResponse.ok(
     request,
     response,
-    templates._monitor(),
+    await templates._monitor(),
     httpResponse.contentTypes.PLAIN_TEXT
   );
 });
@@ -85,14 +85,14 @@ app.get("/kth-azure-app/_monitor", function(request, response) {
 /**
  * Ignore favicons.
  */
-app.get("/kth-azure-app/favicon.ico", function(request, response) {
+app.get("/kth-azure-app/favicon.ico", function (request, response) {
   httpResponse.noContent(request, response);
 });
 
 /**
  * Crawler access definitions.
  */
-app.get("/kth-azure-app/robots.txt", function(request, response) {
+app.get("/kth-azure-app/robots.txt", function (request, response) {
   httpResponse.ok(
     request,
     response,
@@ -104,7 +104,7 @@ app.get("/kth-azure-app/robots.txt", function(request, response) {
 /**
  * Default route, if no other route is matched (404 Not Found).
  */
-app.use(function(request, response) {
+app.use(function (request, response) {
   httpResponse.notFound(request, response, templates.error404());
 });
 

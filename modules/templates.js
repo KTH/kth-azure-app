@@ -3,7 +3,9 @@
 const os = require("os");
 const about = require("../config/version");
 const started = new Date();
-const { statusCodes } = require("./httpResponse");
+const api = require("./api");
+const logger = require("./logger");
+const { statusCodes } = require("@kth/http-responses");
 
 /**
  * If env APPINSIGHTS_INSTRUMENTATIONKEY is set, return ApplicationInsights script.
@@ -211,12 +213,19 @@ let _robotstxt = function robotstxt() {
 /**
  * Monitor page
  */
-let _monitor = function _monitor() {
-  return `APPLICATION_STATUS: OK\nENV_TEST: ${
+let _monitor = async function _monitor() {
+  const text = `APPLICATION_STATUS: OK
+
+  - ENV_TEST: ${
     process.env.ENV_TEST
       ? process.env.ENV_TEST
       : "No env value for ENV_TEST is set."
-  }`;
+  }
+  - API Call: ${await api.getStatus()} - Should return application name.
+  `;
+
+  logger.log.info(text);
+  return text;
 };
 
 /**
@@ -246,5 +255,5 @@ module.exports = {
   badGateway: badGateway,
   _monitor: _monitor,
   _about: _about,
-  robotstxt: _robotstxt
+  robotstxt: _robotstxt,
 };
