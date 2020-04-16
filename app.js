@@ -1,50 +1,27 @@
-const appInsights = require("applicationinsights");
+const defaultEnvs = require("./modules/defaultEnvs");
 const express = require("express");
 const app = express();
-const templates = require("./modules/templates");
+const about = require("./config/version");
+const monitor = require("./modules/monitor");
+const applicationInsights = require("./modules/applicationInsights");
 const logger = require("./modules/logger");
 const httpResponse = require("@kth/http-responses");
+const { templates } = require("@kth/basic-html-templates");
 const os = require("os");
 const packageFile = require("./package.json");
 
-/**
- * Init a Azure Application Insights if a key is passed as env APPINSIGHTS_INSTRUMENTATIONKEY
- */
-app.initApplicationInsights = function () {
-  if (process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
-    appInsights
-      .setup()
-      .setAutoDependencyCorrelation(true)
-      .setAutoCollectRequests(true)
-      .setAutoCollectPerformance(true)
-      .setAutoCollectExceptions(true)
-      .setAutoCollectDependencies(true)
-      .setAutoCollectConsole(true)
-      .setUseDiskRetryCaching(true)
-      .start();
-    logger.log.info(
-      `Using Application Ingsights: '${process.env.APPINSIGHTS_INSTRUMENTATIONKEY}'.`
-    );
-  } else {
-    logger.log.info(`Application Ingsights not used.`);
-  }
-};
-
-/**
- * Start server on port 3000, or use port specifed in env PORT.
- */
-app.getListenPort = function () {
-  return process.env.PORT ? process.env.PORT : 3000;
-};
+defaultEnvs.set(true);
 
 /**
  * Start the server on configured port.
  */
-app.listen(app.getListenPort(), function () {
+app.listen(process.env.PORT, function () {
   logger.log.info(
-    `Started ${packageFile.name} on ${os.hostname()}:${app.getListenPort()}`
+    `Started ${about.dockerName}:${about.dockerVersion} on ${os.hostname()}:${
+      process.env.PORT
+    }`
   );
-  app.initApplicationInsights();
+  applicationInsights.init();
 });
 
 /********************* routes **************************/
@@ -53,21 +30,25 @@ app.listen(app.getListenPort(), function () {
  * Index page.
  */
 app.get("/kth-azure-app/", function (request, response) {
-  httpResponse.ok(request, response, templates.index());
+  httpResponse.ok(
+    request,
+    response,
+    templates.index("Continuous Delivery Reference Application")
+  );
 });
 
 /**
  * 502 error page.
  */
 app.get("/kth-azure-app/502", function (request, response) {
-  httpResponse.badGateway(request, response, templates.badGateway());
+  httpResponse.badGateway(request, response);
 });
 
 /**
  * About page. Versions and such.
  */
 app.get("/kth-azure-app/_about", function (request, response) {
-  httpResponse.ok(request, response, templates._about());
+  httpResponse.ok(request, response, templates._about(about));
 });
 
 /**
@@ -77,7 +58,7 @@ app.get("/kth-azure-app/_monitor", async function (request, response) {
   httpResponse.ok(
     request,
     response,
-    await templates._monitor(),
+    templates._monitor((status = "OK"), (extras = await monitor.tests())),
     httpResponse.contentTypes.PLAIN_TEXT
   );
 });

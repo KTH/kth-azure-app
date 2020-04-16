@@ -18,9 +18,7 @@ const getStatus = async () => {
 };
 
 async function getJson() {
-  let response = await fetch(
-    `https://api.kth.se/api/pipeline/v1/active/kth-azure-app/ `
-  );
+  let response = await fetch(process.env.EXTERNAL_API_CALL);
   return await response.json();
 }
 
