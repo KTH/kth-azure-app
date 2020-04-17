@@ -1,14 +1,15 @@
-const defaultEnvs = require("./modules/defaultEnvs");
+const os = require("os");
 const express = require("express");
-const app = express();
-const about = require("./config/version");
-const monitor = require("./modules/monitor");
-const applicationInsights = require("./modules/applicationInsights");
-const logger = require("./modules/logger");
 const httpResponse = require("@kth/http-responses");
 const { templates } = require("@kth/basic-html-templates");
-const os = require("os");
-const packageFile = require("./package.json");
+const logger = require("./modules/logger");
+const about = require("./config/version");
+const defaultEnvs = require("./modules/defaultEnvs");
+const monitor = require("./modules/monitor");
+const applicationInsights = require("./modules/applicationInsights");
+
+const started = new Date();
+const app = express();
 
 defaultEnvs.set(true);
 
@@ -48,7 +49,7 @@ app.get("/kth-azure-app/502", function (request, response) {
  * About page. Versions and such.
  */
 app.get("/kth-azure-app/_about", function (request, response) {
-  httpResponse.ok(request, response, templates._about(about));
+  httpResponse.ok(request, response, templates._about(about, started));
 });
 
 /**
