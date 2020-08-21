@@ -37,6 +37,10 @@ jobs:
     path: s/self
 
   - bash: pip install pipenv
+  
+  - bash: echo $REGISTRY_PASSWORD
+    env: 
+      REGISTRY_PASSWORD: $(Secret.Registry.Password)
 
   - bash: pipenv install
     workingDirectory: $(EVOLENE_DIRECTORY)
