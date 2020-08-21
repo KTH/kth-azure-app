@@ -20,6 +20,7 @@ jobs:
     GIT_BRANCH: $(Build.SourceBranch)
     REGISTRY_HOST: 'kthregistryv2.sys.kth.se'
     REGISTRY_USER: 'jenkins'
+    REGISTRY_PASSWORD: $(Secret.Registry.Password)
     DEBUG: 1
   steps:
 
@@ -46,6 +47,3 @@ jobs:
 
   - bash: $(EVOLENE_DIRECTORY)/run.sh
     workingDirectory: $(WORKSPACE)
-    env:
-      REGISTRY_PASSWORD: $(Secret.Registry.Password)
-
