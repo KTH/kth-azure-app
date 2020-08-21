@@ -41,10 +41,7 @@ jobs:
   - bash: pipenv install
     workingDirectory: $(EVOLENE_DIRECTORY)
 
-  - bash: echo $REGISTRY_PASSWORD
+  - bash: $(EVOLENE_DIRECTORY)/run.sh
     workingDirectory: $(WORKSPACE)
     env: 
       REGISTRY_PASSWORD: $(Secret.Registry.Password)
-
-  - bash: $(EVOLENE_DIRECTORY)/run.sh
-    workingDirectory: $(WORKSPACE)
