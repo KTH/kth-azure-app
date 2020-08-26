@@ -14,7 +14,7 @@ async function tests() {
       ? process.env.ENV_TEST
       : "No env value for ENV_TEST is set."
   } - Should return the cluster name.
-  - API Call: ${await api.getStatus()} - Should return application name.
+  - API Call: ${await api.getStatus()} - Should always return this applications name.
   `;
 
   logger.log.info(text);
