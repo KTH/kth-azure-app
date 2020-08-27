@@ -8,8 +8,12 @@ const fetch = require("node-fetch");
  * that network.
  */
 const getStatus = async () => {
+  const timerLabel = `Request time to get external api ${process.env.EXTERNAL_API_CALL}`;
   try {
+    console.time(timerLabel);
     let json = await getJson();
+    console.timeEnd(timerLabel);
+
     return json.applicationName;
   } catch (error) {
     logger.log.error("Error to get data from public api.", error);
