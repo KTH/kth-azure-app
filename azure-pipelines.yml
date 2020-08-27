@@ -14,7 +14,7 @@ jobs:
   workspace:
     clean: outputs
   variables:
-    group: evolene-variable-group
+    - group: evolene-variable-group
   steps:
 
   - task: UsePythonVersion@0
@@ -33,7 +33,7 @@ jobs:
   - bash: pip install pipenv
 
   - bash: pipenv install
-    workingDirectory: $[variables.EVOLENE_DIRECTORY]
+    workingDirectory: $(EVOLENE_DIRECTORY)
 
   - bash: $(EVOLENE_DIRECTORY)/run.sh
     workingDirectory: $(WORKSPACE)
