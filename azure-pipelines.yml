@@ -1,3 +1,4 @@
+# --- START OF DON'T MODIFY ----
 name: $(Date:yyyyMMdd)$(Rev:.r)
 resources:
   repositories:
@@ -20,7 +21,6 @@ jobs:
     GIT_BRANCH: $(Build.SourceBranch)
     REGISTRY_HOST: 'kthregistryv2.sys.kth.se'
     REGISTRY_USER: 'jenkins'
-    DEBUG: 1
   steps:
 
   - task: UsePythonVersion@0
@@ -45,3 +45,11 @@ jobs:
     workingDirectory: $(WORKSPACE)
     env: 
       REGISTRY_PASSWORD: $(Secret.Registry.Password)
+
+# --- END OF DON'T MODIFY ----
+
+      # Evolene environment flags
+      SLACK_CHANNELS: "#team-pipeline-build"
+      # DEBUG: 1
+      # SKIP_DRY_RUN: 1
+      
