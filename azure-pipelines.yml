@@ -14,13 +14,7 @@ jobs:
   workspace:
     clean: outputs
   variables:
-    EVOLENE_DIRECTORY: $(Agent.BuildDirectory)/s/evolene
-    WORKSPACE: $(Agent.BuildDirectory)/s/self
-    BUILD_NUMBER: $(Build.BuildID)
-    GIT_COMMIT: $(Build.SourceVersion)
-    GIT_BRANCH: $(Build.SourceBranch)
-    REGISTRY_HOST: 'kthregistryv2.sys.kth.se'
-    REGISTRY_USER: 'jenkins'
+    group: evolene-variable-group
   steps:
 
   - task: UsePythonVersion@0
