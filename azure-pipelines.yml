@@ -33,7 +33,7 @@ jobs:
   - bash: pip install pipenv
 
   - bash: pipenv install
-    workingDirectory: $(EVOLENE_DIRECTORY)
+    workingDirectory: $[variables.EVOLENE_DIRECTORY]
 
   - bash: $(EVOLENE_DIRECTORY)/run.sh
     workingDirectory: $(WORKSPACE)
