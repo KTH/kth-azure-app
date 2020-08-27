@@ -1,3 +1,4 @@
+# --- START OF DON'T MODIFY ----
 name: $(Date:yyyyMMdd)$(Rev:.r)
 resources:
   repositories:
@@ -13,14 +14,7 @@ jobs:
   workspace:
     clean: outputs
   variables:
-    EVOLENE_DIRECTORY: $(Agent.BuildDirectory)/s/evolene
-    WORKSPACE: $(Agent.BuildDirectory)/s/self
-    BUILD_NUMBER: $(Build.BuildID)
-    GIT_COMMIT: $(Build.SourceVersion)
-    GIT_BRANCH: $(Build.SourceBranch)
-    REGISTRY_HOST: 'kthregistryv2.sys.kth.se'
-    REGISTRY_USER: 'jenkins'
-    DEBUG: 1
+    - group: evolene-variable-group
   steps:
 
   - task: UsePythonVersion@0
@@ -45,3 +39,11 @@ jobs:
     workingDirectory: $(WORKSPACE)
     env: 
       REGISTRY_PASSWORD: $(Secret.Registry.Password)
+
+# --- END OF DON'T MODIFY ----
+
+      # Evolene environment flags
+      SLACK_CHANNELS: "#team-pipeline-build"
+      # DEBUG: 1
+      # SKIP_DRY_RUN: 1
+      
