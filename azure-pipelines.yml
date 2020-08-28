@@ -1,6 +1,7 @@
 # --- START OF DON'T MODIFY ----
 name: $(Date:yyyyMMdd)$(Rev:.r)
 resources:
+  # Set up our repositories
   repositories:
     - repository: evolene
       type: github
@@ -14,27 +15,34 @@ jobs:
   workspace:
     clean: outputs
   variables:
+    # Import common variables
     - group: evolene-variable-group
   steps:
 
   - task: UsePythonVersion@0
     inputs:
+      # Set our python version
       versionSpec: '3.6'
       addToPath: true
       architecture: 'x64'
 
+  # Upgrade pip
   - bash: pip install --upgrade pip
 
+  # Checkout evolene and the current project
   - checkout: evolene
     path: s/evolene
   - checkout: self
     path: s/self
 
+  # Install pipenv
   - bash: pip install pipenv
 
+  # Install evolene dependencies
   - bash: pipenv install
     workingDirectory: $(EVOLENE_DIRECTORY)
 
+  # Run evolene (and build our project)
   - bash: $(EVOLENE_DIRECTORY)/run.sh
     workingDirectory: $(WORKSPACE)
     env: 
