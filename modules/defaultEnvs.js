@@ -9,6 +9,7 @@ const logger = require("./logger");
  *)
  */
 const DEFAULTS = {
+  APPLICATION_NAME: "Tamarack",
   LOG_LEVEL: "info",
   PORT: 3000,
   APPINSIGHTS_INSTRUMENTATIONKEY: "",
