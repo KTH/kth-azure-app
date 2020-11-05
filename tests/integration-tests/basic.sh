@@ -1,7 +1,7 @@
 #!/bin/bash
 
 info() { printf "\033[1;31m\n   %s\033[0;0m$@\n\n";  }
-error() { printf "\033[0;31m\n • $@\033[0;0m"; }
+error() { printf "\032[0;31m\n • $@\033[0;0m"; }
 passed() { printf "\033[0;32m • $@\033[0;0m\n"; }
 
 #
@@ -59,7 +59,7 @@ expectPathToContain "/_about" "Docker image" "About pages should contain Docker 
 expectPathToContain "/502" "502 Bad Gateway" "Return a 502 Bad Gateway for the cluster proxy to handle."
 expectPathToContain "/missing" "Page not found" "404:s should be handled."
 expectPathToContain "/favicon.ico" "" "Show nothing for favicon.ico"
-expectPathToContain "/robots.txt" "UseXXXXXXXr-agent: *" "Search bots should index nothing"
+expectPathToContain "/robots.txt" "User-agent: *" "Search bots should index nothing"
 expectPathToContain "/robots.txt" "Disallow: /" "Search bots should index nothing"
 
 # Result
