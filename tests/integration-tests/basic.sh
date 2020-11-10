@@ -59,7 +59,7 @@ expectPathToContain "/_about" "Docker image" "About pages should contain Docker 
 expectPathToContain "/502" "502 Bad Gateway" "Return a 502 Bad Gateway for the cluster proxy to handle."
 expectPathToContain "/missing" "Page not found" "404:s should be handled."
 expectPathToContain "/favicon.ico" "" "Show nothing for favicon.ico"
-expectPathToContain "/rob ots.txt" "User-agent: *" "Search bots should index nothing"
+expectPathToContain "/robots.txt" "User-agent: *" "Search bots should index nothing"
 expectPathToContain "/robots.txt" "Disallow: /" "Search bots should index nothing"
 
 # Result
