@@ -5,10 +5,10 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.30",
-    "@kth/http-responses": "^1.0.27",
+    "@kth/basic-html-templates": "^1.0.32",
+    "@kth/http-responses": "^1.0.29",
     "@kth/npm-template": "1.0.6",
-    "applicationinsights": "^1.8.7",
+    "applicationinsights": "^1.8.8",
     "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "nodemon": "^2.0.6",
     "chai": "^4.2.0",
-    "mocha": "^8.2.0"
+    "mocha": "^8.2.1"
   },
   "scripts": {
     "start": "node app.js",
@@ -28,7 +28,8 @@
     "test-integration": "URL_PREFIX=http://localhost:3000/kth-azure-app ENV_TEST=SECRET_VALUE_ON__MONITOR ./tests/integration-tests/basic.sh",
     "test-integration-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps",
     "test-unit-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --abort-on-container-exit --always-recreate-deps",
-    "clean": "rm -r ./node_modules && rm package-lock.json"
+    "clean": "rm -r ./node_modules && rm package-lock.json",
+    "package-update": "npm run clean & ncu -u && npm install && npm test"
   },
   "engines": {
     "node": "^10.14.0"
