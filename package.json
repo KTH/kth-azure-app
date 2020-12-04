@@ -19,7 +19,7 @@
   "devDependencies": {
     "nodemon": "^2.0.6",
     "chai": "^4.2.0",
-    "mocha": "^8.2.1"
+    "mocha": "^8.2.0"
   },
   "scripts": {
     "start": "node app.js",
