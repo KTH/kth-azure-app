@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@kth/basic-html-templates": "^1.0.32",
-    "@kth/http-responses": "^1.0.29",
+    "@kth/http-responses": "^1.0.31",
     "@kth/npm-template": "1.0.6",
     "applicationinsights": "^1.8.8",
     "axios": "^0.21.0",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "nodemon": "^2.0.6",
     "chai": "^4.2.0",
-    "mocha": "^8.2.0"
+    "mocha": "^8.2.1"
   },
   "scripts": {
     "start": "node app.js",
