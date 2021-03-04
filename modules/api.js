@@ -22,7 +22,11 @@ const getStatus = async () => {
 };
 
 async function getJson() {
-  let response = await fetch(process.env.EXTERNAL_API_CALL);
+  let response = await fetch(process.env.EXTERNAL_API_CALL, {
+    headers: {
+      api_key: process.env.FLOTTSBRO_API_KEY,
+    },
+  });
   return await response.json();
 }
 

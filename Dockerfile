@@ -1,15 +1,17 @@
 FROM kthse/kth-nodejs:14.0.0
 
+COPY ["package.json", "package.json"]
+
+RUN npm install --production && \
+    npm prune
+
 COPY ["config", "config"]
 COPY ["modules", "modules"]
 COPY ["app.js", "app.js"]
-COPY ["package.json", "package.json"]
 
 RUN cat KTH_OS
 RUN cat KTH_NODEJS
 
-RUN npm install --production && \
-    npm prune
 
 ENV NODE_PATH /application
 EXPOSE 3000
