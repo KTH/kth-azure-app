@@ -20,6 +20,7 @@ services:
       DB_URL: "https://example.com:1234"
       DB_USER: "admin"
       ENV_TEST: "SECRET_VALUE_ON__MONITOR."
+      FLOTTSBRO_API_KEY: ${FLOTTSBRO_API_KEY}
 
     ports:
       - 3000
