@@ -34,8 +34,7 @@ async function getJson() {
     result = await response.json();
   } catch (error) {
     logger.log.warn(
-      `Could not make an external call to the Flottsbro-api '${process.env.EXTERNAL_API_CALL}' with env FLOTTSBRO_API_KEY set as api_key.`,
-      error
+      `Could not make an external call to the Flottsbro-api '${process.env.EXTERNAL_API_CALL}' with env FLOTTSBRO_API_KEY set as api_key.`
     );
   }
   return result;
