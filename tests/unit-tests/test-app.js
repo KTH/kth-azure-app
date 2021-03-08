@@ -20,7 +20,7 @@ describe("Template handling", function () {
     process.env.EXTERNAL_API_CALL = defaultEnvs.DEFAULTS.EXTERNAL_API_CALL;
     const result = await monitor.tests();
     expect(result).to.contain("No env value for ENV_TEST is set");
-    expect(result).to.contain("API Call: kth-azure-app");
+    expect(result).to.contain("API Call: ERROR - Could not read api.kth.se");
     delete process.env.EXTERNAL_API_CALL;
   });
 });
