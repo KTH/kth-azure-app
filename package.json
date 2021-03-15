@@ -5,9 +5,9 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.39",
-    "@kth/http-responses": "^1.0.45",
-    "@kth/npm-template": "1.0.12",
+    "@kth/basic-html-templates": "^1.0.41",
+    "@kth/http-responses": "^1.0.47",
+    "@kth/npm-template": "1.0.14",
     "applicationinsights": "^1.8.10",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
@@ -17,8 +17,8 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "chai": "^4.3.3",
-    "mocha": "^8.3.1",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
     "nodemon": "^2.0.7"
   },
   "scripts": {
