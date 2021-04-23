@@ -46,4 +46,4 @@ jobs:
         working-directory: $GITHUB_WORKSPACE
         run: |
           cd $GITHUB_WORKSPACE
-          $GITHUB_WORKSPACE/evolene/run.sh
+          ./evolene/run.sh
