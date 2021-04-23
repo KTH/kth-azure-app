@@ -35,8 +35,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install Evolene dependencies
-        working-directory: $GITHUB_WORKSPACE/evolene
         run: |
+          cd $GITHUB_WORKSPACE/evolene
           python -m pip install --upgrade pip
           pip install pipenv
           pipenv install
@@ -44,4 +44,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build with Evolene
         working-directory: $GITHUB_WORKSPACE
-        run: $GITHUB_WORKSPACE/evolene/run.sh
+        run: |
+          cd $GITHUB_WORKSPACE
+          $GITHUB_WORKSPACE/evolene/run.sh
