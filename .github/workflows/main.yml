@@ -47,4 +47,3 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           ls -al
-          ./evolene/run.sh
