@@ -5,7 +5,7 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.41",
+    "@kth/basic-html-templates": "^1.0.43",
     "@kth/http-responses": "^1.0.47",
     "@kth/npm-template": "1.0.14",
     "applicationinsights": "^1.8.10",
