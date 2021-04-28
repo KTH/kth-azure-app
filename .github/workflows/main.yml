@@ -24,4 +24,17 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run Evolene docker
-        run: docker run -v $GITHUB_WORKSPACE:/src kthse/evolene:6.0.0
+        env: 
+          REGISTRY_HOST: ${{ secrets.EVOLENE_REGISTRY_HOST }}
+          REGISTRY_USER: ${{ secrets.EVOLENE_REGISTRY_USER }}
+          REGISTRY_PASSWORD: ${{ secrets.EVOLENE_REGISTRY_PASSWORD }}
+
+          AZURE_REGISTRY_HOST: ${{ secrets.EVOLENE_AZURE_REGISTRY_HOST }}
+          AZURE_REGISTRY_USER: ${{ secrets.EVOLENE_AZURE_REGISTRY_USER }}
+          AZURE_REGISTRY_PASSWORD: ${{ secrets.EVOLENE_AZURE_REGISTRY_PASSWORD }}
+
+          NPM_USER: ${{ secrets.EVOLENE_NPM_USER }}
+          NPM_PASSWORD: ${{ secrets.EVOLENE_NPM_PASSWORD }}
+          NPM_EMAIL: ${{ secrets.EVOLENE_NPM_EMAIL }}
+          
+        run: docker run -v $GITHUB_WORKSPACE:/src kthse/evolene:6.0.0  
