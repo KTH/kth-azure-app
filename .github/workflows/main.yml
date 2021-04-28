@@ -23,22 +23,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Run Evolene docker
-        env: 
-          GIT_COMMIT: ${{ github.sha }}
-          BUILD_NUMBER: $(date +%s) 
-          GIT_BRANCH: 'master'
-
-          REGISTRY_HOST: ${{ secrets.EVOLENE_REGISTRY_HOST }}
-          REGISTRY_USER: ${{ secrets.EVOLENE_REGISTRY_USER }}
-          REGISTRY_PASSWORD: ${{ secrets.EVOLENE_REGISTRY_PASSWORD }}
-
-          AZURE_REGISTRY_HOST: ${{ secrets.EVOLENE_AZURE_REGISTRY_HOST }}
-          AZURE_REGISTRY_USER: ${{ secrets.EVOLENE_AZURE_REGISTRY_USER }}
-          AZURE_REGISTRY_PASSWORD: ${{ secrets.EVOLENE_AZURE_REGISTRY_PASSWORD }}
-
-          NPM_USER: ${{ secrets.EVOLENE_NPM_USER }}
-          NPM_PASSWORD: ${{ secrets.EVOLENE_NPM_PASSWORD }}
-          NPM_EMAIL: ${{ secrets.EVOLENE_NPM_EMAIL }}
-          
-        run: docker run -v $GITHUB_WORKSPACE:/src kthse/evolene:6.0.0  
+      - name: Run Evolene docker         
+        run: GIT_COMMIT=${{ github.sha }} \
+          BUILD_NUMBER=$(date +%s) \
+          GIT_BRANCH='master' \
+          GITHUB_WORKSPACE=$GITHUB_WORKSPACE \
+          ${{ secrets.EVOLENE_RUN_COMMAND }}
