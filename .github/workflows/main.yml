@@ -24,4 +24,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run Evolene docker         
-        run: GIT_COMMIT=${{ github.sha }} BUILD_NUMBER=$(date +%s) GIT_BRANCH='master' GITHUB_WORKSPACE=$GITHUB_WORKSPACE ${{ secrets.EVOLENE_RUN_COMMAND }}
+        run: GIT_COMMIT=$GITHUB_SHA BUILD_NUMBER=$(date +%s) GIT_BRANCH='master' GITHUB_WORKSPACE=$GITHUB_WORKSPACE ${{ secrets.EVOLENE_RUN_COMMAND }}
