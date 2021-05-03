@@ -23,5 +23,5 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Run Evolene docker         
-        run: FLOTTSBRO_API_KEY="${{secrets.FLOTTSBRO_API_KEY}}" ${{ secrets.EVOLENE_RUN_COMMAND }}
+      - name: KTH - Build, Test and Push With Evolene         
+        run: ${{ secrets.EVOLENE_RUN_COMMAND }}
