@@ -24,4 +24,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run Evolene docker         
-        run: FLOTTSBRO_API_KEY=${{secrets.FLOTTSBRO_API_KEY}} ${{ secrets.EVOLENE_RUN_COMMAND }}
+        run: FLOTTSBRO_API_KEY="${{secrets.FLOTTSBRO_API_KEY}}" ${{ secrets.EVOLENE_RUN_COMMAND }}
