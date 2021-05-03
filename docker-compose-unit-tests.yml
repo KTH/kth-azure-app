@@ -22,7 +22,7 @@ services:
     # to /tests on the inside of the container.
     # The volume mount is done at startup.
     volumes:
-      - ./tests:/tests
+      - ./tests:${WORKSPACE}/tests
 
     tty: true
     
