@@ -27,7 +27,7 @@
     "test": "NODE_ENV=development node_modules/mocha/bin/mocha tests/unit-tests/test-*.js",
     "test-integration": "URL_PREFIX=http://localhost:3000/kth-azure-app ENV_TEST=SECRET_VALUE_ON__MONITOR ./tests/integration-tests/basic.sh",
     "test-integration-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps",
-    "test-unit-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --abort-on-container-exit --always-recreate-deps",
+    "test-unit-in-docker": "ID=$(docker build --quiet .) && LOCAL_IMAGE_ID=$ID docker-compose --file docker-compose-unit-tests.yml up --build --abort-on-container-exit --always-recreate-deps --force-recreate",
     "clean": "rm -r ./node_modules && rm -f package-lock.json",
     "package-update": "npm run clean & ncu -u && npm install && npm test"
   },
@@ -35,3 +35,4 @@
     "node": "^14.0.0"
   }
 }
+

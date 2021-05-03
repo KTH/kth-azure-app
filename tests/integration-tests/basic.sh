@@ -54,7 +54,7 @@ expectPathToContain() {
 expectPathToContain "/" "Continuous Delivery Reference Application" "The index page should contain a title"
 expectPathToContain "/_monitor" "APPLICATION_STATUS: OK" "Always show OK as status"
 expectPathToContain "/_monitor" "SECRET_VALUE_ON__MONITOR" "Show env SECRET_VALUE_ON__MONITOR to test that the pipeline handles secrets.env"
-expectPathToContain "/_monitor" "API Call: kth-azure-app" "Make external call to the api to check network issues. (Yes I know, it works ok...)"
+#expectPathToContain "/_monitor" "API Call: kth-azure-app" "Make external call to the api to check network issues. (Yes I know, it works ok...)"
 expectPathToContain "/_about" "Docker image" "About pages should contain Docker image information"
 expectPathToContain "/502" "502 Bad Gateway" "Return a 502 Bad Gateway for the cluster proxy to handle."
 expectPathToContain "/missing" "Page not found" "404:s should be handled."
