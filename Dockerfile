@@ -13,6 +13,7 @@ COPY ["app.js", "app.js"]
 RUN cat KTH_OS
 RUN cat KTH_NODEJS
 
+RUN ls -la ./tests/unit-tests
 
 ENV NODE_PATH /application
 EXPOSE 3000
