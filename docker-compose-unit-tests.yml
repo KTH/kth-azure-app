@@ -12,7 +12,8 @@ services:
   web:
     # if not --build and kth-azure-app already exists in
     # your local computers registry 'image' is used.
-    image: $LOCAL_IMAGE_ID
+    #image: $LOCAL_IMAGE_ID
+    build: .
 
     # LOCAL_IMAGE_ID, IMAGE_NAME and IMAGE_VERSION
 
@@ -21,8 +22,8 @@ services:
     # 'tests' on in the repo on your local machine
     # to /tests on the inside of the container.
     # The volume mount is done at startup.
-    volumes:
-      - ./tests:/tests
+    #volumes:
+    #  - ./tests:/tests
 
     tty: true
     
