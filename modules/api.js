@@ -25,6 +25,9 @@ const getStatus = async () => {
 
 async function getJson() {
   let result;
+  if (!process.env.FLOTTSBRO_API_KEY) {
+    logger.log.error("env FLOTTSBRO_API_KEY has no value.");
+  }
   try {
     let response = await fetch(process.env.EXTERNAL_API_CALL, {
       headers: {
