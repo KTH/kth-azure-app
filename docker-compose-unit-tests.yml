@@ -14,7 +14,6 @@ services:
     # your local computers registry 'image' is used.
     #image: $LOCAL_IMAGE_ID
     build: .
-
     # LOCAL_IMAGE_ID, IMAGE_NAME and IMAGE_VERSION
 
     # Since we do not want to add tests to our 
@@ -23,7 +22,7 @@ services:
     # to /tests on the inside of the container.
     # The volume mount is done at startup.
     volumes:
-      - /src/tests:/tests
+      - ./tests:/tests
 
     tty: true
     
@@ -31,5 +30,5 @@ services:
     # inside the container
     # This example runs test in package.json which is
     # part of the kth-azure-app image.
-    command: ["sh", "-c", "npm install --development && npm test"]
+    command: ["sh", "-c", "ls -la && pwd"]
 
