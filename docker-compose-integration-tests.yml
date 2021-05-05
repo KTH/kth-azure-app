@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 #
 # Run this integration test by running:
@@ -6,7 +6,6 @@ version: '3'
 #
 # docker images | grep kth-azure-app_app | awk '{ print $3 }' | xargs docker inspect | grep se.kth.imageVersion
 services:
-
   #############################################
   # Start http://web:3000/
   #############################################
@@ -14,19 +13,19 @@ services:
     # if not --build and kth-azure-app already exists in
     # your local computers registry 'image' is used.
     image: $LOCAL_IMAGE_ID
-    
+
     # Possible configuration for the app.
     environment:
-      DB_URL: "https://example.com:1234"
-      DB_USER: "admin"
-      ENV_TEST: "SECRET_VALUE_ON__MONITOR."
-      FLOTTSBRO_API_KEY: ${FLOTTSBRO_API_KEY}
+      - DB_URL="https://example.com:1234"
+      - DB_USER="admin"
+      - ENV_TEST="SECRET_VALUE_ON__MONITOR."
+      - FLOTTSBRO_API_KEY
 
     ports:
       - 3000
 
   #############################################
-  # Start the client running tests 
+  # Start the client running tests
   # agains http://web:3000/
   #############################################
   integration-tests:
