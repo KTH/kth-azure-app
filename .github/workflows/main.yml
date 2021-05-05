@@ -11,9 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: KTH - Build, Test and Push With Evolene         
-        run: ${{ secrets.EVOLENE_RUN_COMMAND }}
-  Envs:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Print Ubuntu environment variables         
-        run: set
+        run: |
+            SLACK_CHANNELS=#team-pipeline-build \
+            EVOLENE_TEST_SECRETS=${{secrets.EVOLENE_TEST_SECRETS}} \
+            ${{ secrets.EVOLENE_RUN_COMMAND }}
