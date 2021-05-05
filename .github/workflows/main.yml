@@ -25,4 +25,5 @@ jobs:
 
       # Build according to KTH standard C(/CD procedure.
       - name: KTH - Build, Test and Push With Evolene         
-        run: FLOTTSBRO_API_KEY="${{secrets.FLOTTSBRO_API_KEY}}" ${{ secrets.EVOLENE_RUN_COMMAND }}
+        run: set
+        #run: FLOTTSBRO_API_KEY="${{secrets.FLOTTSBRO_API_KEY}}" ${{ secrets.EVOLENE_RUN_COMMAND }}
