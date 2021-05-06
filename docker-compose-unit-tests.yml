@@ -4,8 +4,8 @@ services:
   unit_tests:
     image: $LOCAL_IMAGE_ID
 
-    volumes:
-      - ./tests:/tests
+    #volumes:
+      #- ./tests:/tests
     tty: true
     command: ["sh", "-c", "npm install --development && npm test"]
 
