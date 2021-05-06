@@ -2,9 +2,10 @@ version: '3'
 
 services:
   unit_tests:
-    build: .
+    image: $LOCAL_IMAGE_ID
+
     volumes:
-      - ${WORKSPACE}/tests:/tests
+      - ./tests:/tests
     tty: true
     command: ["sh", "-c", "npm install --development && npm test"]
 
