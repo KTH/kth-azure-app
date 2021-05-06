@@ -24,7 +24,7 @@
   "scripts": {
     "start": "node app.js",
     "start-dev": "LOG_LEVEL=debug APPLICATIONS_API_KEY=AAA-BBB-CCC PORT=3000 LOG_LEVEL=debug ENV_TEST=SECRET_VALUE_ON__MONITOR nodemon app.js",
-    "test": "dir=$(ls -la $PWD/tests/unit-tests) && echo 'Dir: $dir' && NODE_ENV=development NODE_PATH=$WORKSPACE node_modules/mocha/bin/mocha $PWD/tests/unit-tests/test-*.js",
+    "test": "dire=$(ls -la $PWD/tests/unit-tests) echo \"------------------\n\n$PWD/tests/unit-tests:\n\n$dire \n -------------------------\" && NODE_ENV=development NODE_PATH=$WORKSPACE node_modules/mocha/bin/mocha $PWD/tests/unit-tests/test-*.js",
     "test-integration": "URL_PREFIX=http://localhost:3000/kth-azure-app ENV_TEST=SECRET_VALUE_ON__MONITOR ./tests/integration-tests/basic.sh",
     "test-integration-in-docker": "ID=$(docker build -q .) && FLOTTSBRO_API_KEY=${FLOTTSBRO_API_KEY} LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps",
     "test-unit-in-docker": "ID=$(docker build --quiet .) LOCAL_IMAGE_ID=$ID WORKSPACE=$(pwd) docker-compose --file docker-compose-unit-tests.yml up --build --abort-on-container-exit --always-recreate-deps --force-recreate",
