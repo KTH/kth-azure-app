@@ -5,11 +5,9 @@ COPY ["package.json", "package.json"]
 RUN npm install --production && \
     npm prune
 
-RUN apk add tree
-
 COPY ["config", "config"]
 COPY ["modules", "modules"]
-COPY ["tests", "tests"]
+#COPY ["tests", "tests"]
 COPY ["app.js", "app.js"]
 
 RUN cat KTH_OS
