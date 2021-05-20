@@ -13,7 +13,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "kth-node-log": "^3.1.5",
+    "kth-node-log": "^3.1.6",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
