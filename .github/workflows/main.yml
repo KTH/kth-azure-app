@@ -24,7 +24,7 @@
 # ___________________________
 #
 #
-# If you mount tests into your Docker image at test runtitme, then the volume mapping
+# If you mount tests into your Docker image at test runtime, then the volume mapping
 # has to contain a env ${WORKSPACE} with the path to the test files like.
 #
 # ___________________________
