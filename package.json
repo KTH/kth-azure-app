@@ -7,7 +7,7 @@
   "dependencies": {
     "@kth/basic-html-templates": "^1.0.44",
     "@kth/http-responses": "^1.0.51",
-    "@kth/npm-template": "1.0.14",
+    "@kth/npm-template": "1.0.16",
     "applicationinsights": "^1.8.10",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "mocha": "^8.3.2",
+    "mocha": "^8.4.0",
     "nodemon": "^2.0.7"
   },
   "scripts": {
