@@ -23,6 +23,15 @@
 # DB_PWD=dont-tell-any-one
 # ___________________________
 #
+#
+# If you mount tests into your Docker image at test runtitme, then the volume mapping
+# has to contain a env ${WORKSPACE} with the path to the test files like.
+#
+# ___________________________
+# volumes:
+#      - ${WORKSPACE}/tests:/tests
+# ___________________________
+#
 # For more information see https://github.com/KTH/evolene/blob/master/README.md
 ####################################################################################################################################
 name: Evolene CI
