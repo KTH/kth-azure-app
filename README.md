@@ -1,4 +1,4 @@
-# KTH Azure App ![Continous Integration](https://github.com/KTH/kth-azure-app/actions/workflows/main.yml/badge.svg)
+# Continuous Delivery Reference Application ![Continous Integration](https://github.com/KTH/kth-azure-app/actions/workflows/main.yml/badge.svg)
 
 ## Reference and Monitoring Application for the Docker Swarm Cluster
 
