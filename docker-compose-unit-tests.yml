@@ -4,6 +4,9 @@ services:
   unit_tests:
     image: $LOCAL_IMAGE_ID
 
+    environment:
+      - FLOTTSBRO_API_KEY
+
     volumes:
       - ${WORKSPACE}/tests:/tests
       

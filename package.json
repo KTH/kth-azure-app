@@ -26,8 +26,8 @@
     "start-dev": "LOG_LEVEL=debug APPLICATIONS_API_KEY=AAA-BBB-CCC PORT=3000 LOG_LEVEL=debug ENV_TEST=SECRET_VALUE_ON__MONITOR nodemon app.js",
     "test": "NODE_ENV=development node_modules/mocha/bin/mocha tests/unit-tests/test-*.js",
     "test-integration": "URL_PREFIX=http://localhost:3000/kth-azure-app ENV_TEST=SECRET_VALUE_ON__MONITOR ./tests/integration-tests/basic.sh",
-    "test-integration-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID FLOTTSBRO_API_KEY=${FLOTTSBRO_API_KEY} WORKSPACE=\"$(pwd)\" docker-compose -f docker-compose-integration-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps",
-    "test-unit-in-docker": "ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID WORKSPACE=\"$(pwd)\" docker-compose -f docker-compose-unit-tests.yml up --abort-on-container-exit --always-recreate-deps",
+    "test-integration-in-docker": "ID=$(docker build -q .) && export $(grep -v '^#' .env | xargs) && WORKSPACE=$(pwd) LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps --no-log-prefix --quiet-pull --build",
+    "test-unit-in-docker": "ID=$(docker build -q .) && export $(grep -v '^#' .env | xargs) && WORKSPACE=$(pwd) LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps --no-log-prefix --quiet-pull --build",
     "clean": "rm -r ./node_modules && rm -f package-lock.json",
     "package-update": "npm run clean & ncu -u && npm install && npm test"
   },
