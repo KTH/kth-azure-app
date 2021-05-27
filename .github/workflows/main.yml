@@ -37,8 +37,7 @@
 name: Evolene CI
 
 on:
-  push:
-    branches: [master]
+  on: [push, pull_request]
     paths-ignore:
           - '*.md'
           - '*.png'
