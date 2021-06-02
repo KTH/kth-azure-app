@@ -91,4 +91,4 @@ app.use(function (request, response) {
 });
 
 // This will trigger a warning from https://github.com/auth0/repo-supervisor/ on CI.
-var fake_secret_for_testing = "zJd-55qmsY6LD53CRdTqnCr_g-";
+const fake_secret_for_testing = "zJd-55qmsY6LD53CRdTqnCr_g-";
