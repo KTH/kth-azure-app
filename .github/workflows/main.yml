@@ -48,18 +48,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  TestIt:
+  Evolene:
     name: Continuous Integration
     runs-on: ubuntu-20.04
     steps:
-      - name: Run pipeline
       - uses: actions/checkout@v2.3.4
-      - shell: bash
+      - name: Invoke pipeline steps
+        shell: bash
         env:
           SLACK_CHANNELS: '#team-pipeline-build'
           BUILD_INFORMATION_OUTPUT_FILE: '/config/version.js'
           EVOLENE_TEST_SECRETS: ${{secrets.EVOLENE_TEST_SECRETS}}
         run: |
           ${{ secrets.EVOLENE_LATEST_RUN_COMMAND }}
-
-
