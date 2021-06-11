@@ -32,5 +32,8 @@ services:
     # Build client image and run tests
     # from inside that.
     build: ./tests/integration-tests
+    environment:
+      - WEB
+
     depends_on:
       - web
