@@ -22,4 +22,9 @@ describe("Template handling", function () {
     expect(result).to.contain("No env value for ENV_TEST is set.");
     delete process.env.EXTERNAL_API_CALL;
   });
+
+  it("Path '/_monitor' should contain 'No env value for ENV_TEST is set.' when env 'ENV_TEST' is not set.", async function () {
+    defaultEnvs.set();
+    expect(process.env.APPLICATION_NAME).to.equal("Test name from env");
+  });
 });
