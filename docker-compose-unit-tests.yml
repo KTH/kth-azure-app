@@ -6,6 +6,7 @@ services:
 
     environment:
       - FLOTTSBRO_API_KEY
+      - APPLICATION_NAME
 
     volumes:
       - ${WORKSPACE}/tests:/tests
