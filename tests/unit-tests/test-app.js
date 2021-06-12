@@ -34,4 +34,7 @@ describe("Env handling", function () {
       "mongodb://example-com:aaaaaA%3D%3D@example.com:10255/docs?ssl=true"
     );
   });
+  it("Validate that = characters is Github Actions Bash schell.", async function () {
+    expect(process.env.A_KEY).to.equal("?name=key&apiKey=asdfasdf&scope=read");
+  });
 });

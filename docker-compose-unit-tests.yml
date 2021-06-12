@@ -8,6 +8,7 @@ services:
       - FLOTTSBRO_API_KEY
       - APPLICATION_NAME
       - MONGODB_CONNECTION_STRING
+      - A_KEY
 
     volumes:
       - ${WORKSPACE}/tests:/tests
