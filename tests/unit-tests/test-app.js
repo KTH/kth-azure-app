@@ -29,4 +29,9 @@ describe("Env handling", function () {
     defaultEnvs.set();
     expect(process.env.APPLICATION_NAME).to.equal("application-test-name");
   });
+  it("Validate that no character is escaped in Github Actions.", async function () {
+    expect(process.env.MONGODB_CONNECTION_STRING).to.equal(
+      "mongodb://example-com:aaaaaA%3D%3D@example.com:10255/docs?ssl=true"
+    );
+  });
 });
