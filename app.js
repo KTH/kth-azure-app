@@ -71,7 +71,7 @@ app.get("/kth-azure-app/_headers", async function (request, response) {
   httpResponse.ok(
     request,
     response,
-    JSON.stringify(req.headers),
+    JSON.stringify(request.headers),
     httpResponse.contentTypes.JSON
   );
 });
