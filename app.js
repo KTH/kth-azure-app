@@ -65,6 +65,18 @@ app.get("/kth-azure-app/_monitor", async function (request, response) {
 });
 
 /**
+ * Header ping route
+ */
+app.get("/kth-azure-app/_headers", async function (request, response) {
+  httpResponse.ok(
+    request,
+    response,
+    JSON.stringify(request.headers),
+    httpResponse.contentTypes.JSON
+  );
+});
+
+/**
  * Ignore favicons.
  */
 app.get("/kth-azure-app/favicon.ico", function (request, response) {
