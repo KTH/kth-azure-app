@@ -5,31 +5,31 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.49",
+    "@kth/basic-html-templates": "^1.0.50",
     "@kth/http-responses": "^1.0.53",
-    "@kth/npm-template": "1.0.39",
-    "applicationinsights": "^2.1.1",
+    "@kth/npm-template": "1.0.40",
+    "applicationinsights": "^2.1.2",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
-    "kth-node-log": "^3.1.6",
+    "kth-node-log": "^3.1.7",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "mocha": "^9.0.0",
+    "mocha": "^9.0.1",
     "nodemon": "^2.0.7"
   },
   "scripts": {
     "start": "node app.js",
     "start-dev": "LOG_LEVEL=debug APPLICATIONS_API_KEY=AAA-BBB-CCC PORT=3000 LOG_LEVEL=debug ENV_TEST=SECRET_VALUE_ON__MONITOR nodemon app.js",
-    "test": "NODE_ENV=development node_modules/mocha/bin/mocha tests/unit-tests/test-*.js",
+    "test": "export $(grep -v '^#' .env | xargs) && WORKSPACE=$(pwd) NODE_ENV=development node_modules/mocha/bin/mocha tests/unit-tests/test-*.js",
     "test-integration": "URL_PREFIX=http://localhost:3000/kth-azure-app ENV_TEST=SECRET_VALUE_ON__MONITOR ./tests/integration-tests/basic.sh",
     "test-integration-in-docker": "ID=$(docker build -q .) && export $(grep -v '^#' .env | xargs) && WORKSPACE=$(pwd) LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps --no-log-prefix --quiet-pull --build",
     "test-unit-in-docker": "ID=$(docker build -q .) && export $(grep -v '^#' .env | xargs) && WORKSPACE=$(pwd) LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps --no-log-prefix --quiet-pull --build",
     "clean": "rm -r ./node_modules && rm -f package-lock.json",
-    "package-update": "npm run clean & ncu -u && npm install && npm test"
+    "package-update": "npm run clean & ncu -u && npm run test-unit-in-docker && npm run test-integration-in-docker"
   },
   "engines": {
     "node": "^14.0.0"
