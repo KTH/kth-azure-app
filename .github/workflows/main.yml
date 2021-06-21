@@ -37,16 +37,7 @@
 name: Evolene CI
 
 on:  
-  schedule:
-    - cron: "0 0 * * *"
-
   push:
-    paths-ignore:
-          - '*.md'
-          - '*.png'
-  pull_request:
-    branches:
-      - master
     paths-ignore:
           - '*.md'
           - '*.png'
