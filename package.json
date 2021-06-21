@@ -7,7 +7,7 @@
   "dependencies": {
     "@kth/basic-html-templates": "^1.0.49",
     "@kth/http-responses": "^1.0.53",
-    "@kth/npm-template": "1.0.39",
+    "@kth/npm-template": "1.0.40",
     "applicationinsights": "^2.1.1",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
