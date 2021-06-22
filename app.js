@@ -102,5 +102,6 @@ app.use(function (request, response) {
   httpResponse.notFound(request, response, templates.error404());
 });
 
-// This will trigger a warning from https://github.com/auth0/repo-supervisor/ on CI.
+// This will trigger a warning from https://github.com/KTH/repo-supervisor on CI.
+
 const fake_secret_for_testing = "zJd-55qmsY6LD53CRdTqnCr_g-";
