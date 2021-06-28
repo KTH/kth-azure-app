@@ -49,7 +49,7 @@ app.get("/kth-azure-app/502", function (request, response) {
  * 403 forbidden page.
  */
 app.get("/kth-azure-app/403", function (request, response) {
-  response.status(403).send('Forbidden');
+  httpResponse.forbidden(request, response);
 });
 
 /**
