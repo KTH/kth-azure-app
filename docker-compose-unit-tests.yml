@@ -11,7 +11,7 @@ services:
       - A_KEY
 
     volumes:
-      - ./tests:/tests
+      - ${WORKSPACE}/tests:/tests
       
     tty: true
     command: ["sh", "-c", "npm install --development && npm test"]
