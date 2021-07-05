@@ -1,4 +1,7 @@
-FROM kthse/kth-nodejs:14.0.0
+FROM kthse/kth-nodejs:16.0.0
+
+RUN cat KTH_OS
+RUN cat KTH_NODEJS
 
 COPY ["package.json", "package.json"]
 
@@ -9,10 +12,9 @@ COPY ["config", "config"]
 COPY ["modules", "modules"]
 COPY ["app.js", "app.js"]
 
-RUN cat KTH_OS
-RUN cat KTH_NODEJS
-
 ENV NODE_PATH /application
 EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:3000/profile/username/publications/_about || exit 1
 
 CMD ["node", "app.js"]

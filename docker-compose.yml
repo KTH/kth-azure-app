@@ -15,9 +15,3 @@ services:
     labels:
       - se.kth.slackChannels="#team-pipeline-build,#pipeline-logs"
 
-    depends_on:
-     - redis
-
-  redis:
-    image: redis:3.2.6-alpine
-
