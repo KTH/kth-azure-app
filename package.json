@@ -32,8 +32,7 @@
     "test-unit-in-docker-env": "export $(grep -v '^#' .env | xargs) && npm run test-unit-in-docker",
     "test-unit-in-docker": "ID=$(docker build -q .) && WORKSPACE=$(pwd) LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps --no-log-prefix --quiet-pull --build",
     "clean": "rm -r ./node_modules && rm -f package-lock.json",
-    "package-update": "npm run clean & ncu -u && npm run test-unit-in-docker && npm run test-integration-in-docker",
-    "package-update-with-env": "npm run clean & ncu -u && npm run test-unit-in-docker-env && npm run test-integration-in-docker-env"
+    "package-update": "npm run clean & ncu -u && npm run test-unit-in-docker-env && npm run test-integration-in-docker-env"
 
   },
   "engines": {
