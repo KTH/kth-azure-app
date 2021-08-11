@@ -7,8 +7,8 @@
   "dependencies": {
     "@kth/basic-html-templates": "^1.0.52",
     "@kth/http-responses": "^1.0.58",
-    "@kth/npm-template": "1.0.40",
-    "applicationinsights": "^2.1.4",
+    "@kth/npm-template": "1.0.42",
+    "applicationinsights": "^2.1.5",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
@@ -32,8 +32,8 @@
     "test-unit-in-docker-env": "export $(grep -v '^#' .env | xargs) && npm run test-unit-in-docker",
     "test-unit-in-docker": "ID=$(docker build -q .) && WORKSPACE=$(pwd) LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps --no-log-prefix --quiet-pull --build",
     "clean": "rm -r ./node_modules && rm -f package-lock.json",
-    "package-update": "npm run clean & ncu -u && npm run test-unit-in-docker-env && npm run test-integration-in-docker-env"
-
+    "package-update": "git pull && npm run clean & ncu -u && npm run test-unit-in-docker-env && npm run test-integration-in-docker-env",
+    "package-update-and-push": "npm run package-update && npm install && git add package.json package-lock.json && git commit -m 'package update' && git push"
   },
   "engines": {
     "node": "^16.0.0"
