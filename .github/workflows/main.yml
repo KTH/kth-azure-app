@@ -52,8 +52,9 @@ jobs:
       - name: Run Evolene CI pipeline steps
         shell: bash
         env:
-          SLACK_CHANNELS: "#team-pipeline-build"
+          SLACK_CHANNELS: "#team-pipeline-build,#pipeline-logs"
           BUILD_INFORMATION_OUTPUT_FILE: "/config/version.js"
+          NPM_UPDATES_AVAILABLE: True
           EVOLENE_TEST_SECRETS: "${{secrets.EVOLENE_TEST_SECRETS}}"
         run: |
-          ${{ secrets.EVOLENE_LATEST_RUN_COMMAND }}
+          ${{ secrets.EVOLENE_RUN_COMMAND }}
