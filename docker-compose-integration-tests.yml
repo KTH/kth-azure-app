@@ -1,10 +1,19 @@
 version: "3"
 
 #
-# Run this integration test by running:
-# ID=$(docker build -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-integration-tests.yml up --abort-on-container-exit --always-recreate-deps
+# echo "Running unit tests inside 🐳 Docker Compose"
 #
-# docker images | grep kth-azure-app_app | awk '{ print $3 }' | xargs docker inspect | grep se.kth.imageVersion
+# ID=$(docker build -q .) && \
+#     WORKSPACE=$(pwd) \LOCAL_IMAGE_ID=$ID \
+#     docker-compose \
+#         --file docker-compose-unit-tests-new.yml up \
+#         --force-recreate \
+#         --abort-on-container-exit \
+#         --always-recreate-deps \
+#         --no-log-prefix \
+#         --quiet-pull \
+#         --build
+    
 services:
   #############################################
   # Start http://web:3000/
