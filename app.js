@@ -104,7 +104,6 @@ app.get("/kth-azure-app/robots.txt", function (request, response) {
 
 /**
  * Default route, if no other route is matched (404 Not Found).
- 
  */
 app.use(function (request, response) {
   httpResponse.notFound(request, response, templates.error404());
