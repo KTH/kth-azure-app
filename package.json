@@ -5,9 +5,9 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.52",
-    "@kth/http-responses": "^1.0.61",
-    "@kth/npm-template": "1.0.42",
+    "@kth/basic-html-templates": "^1.0.53",
+    "@kth/http-responses": "^1.0.62",
+    "@kth/npm-template": "1.0.43",
     "applicationinsights": "^2.1.5",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
