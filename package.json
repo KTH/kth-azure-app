@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@kth/basic-html-templates": "^1.0.53",
-    "@kth/http-responses": "^1.0.62",
+    "@kth/http-responses": "^1.0.63",
     "@kth/npm-template": "1.0.43",
     "applicationinsights": "^2.1.5",
     "axios": "^0.21.1",
