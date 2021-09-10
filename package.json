@@ -32,7 +32,8 @@
     "test-unit-in-docker": "ID=$(docker build -q .) && WORKSPACE=$(pwd) LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-unit-tests.yml up --force-recreate --abort-on-container-exit --always-recreate-deps --no-log-prefix --quiet-pull --build",
     "clean": "rm -r ./node_modules && rm -f package-lock.json",
     "package-update": "git pull && npm run clean & ncu -u && npm install",
-    "package-update-and-push": "npm run package-update && npm run test-unit-in-docker-env && npm run test-integration-in-docker-env && git add package.json package-lock.json && git commit -m 'package update' && git push"
+    "package-update-and-test": "npm run package-update && npm run test-unit-in-docker-env && npm run test-integration-in-docker-env",
+    "package-update-and-push": "npm run package-update-and-test && git add package.json package-lock.json && git commit -m 'package update' && git push"
   },
   "engines": {
     "node": "^16.0.0"
