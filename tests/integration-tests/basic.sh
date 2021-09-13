@@ -9,8 +9,9 @@ passed() { printf "\033[0;32m • $@\033[0;0m\n"; }
 #
 if [ -z "$URL_PREFIX" ]; then
     URL_PREFIX="http://web:3000/kth-azure-app"
-    sleep 5s
 fi
+
+sleep 10s
 
 FAILED=""
 
@@ -18,9 +19,9 @@ FAILED=""
 # Curls a url and tests if the response contains a string.
 # If it fails sets FAILED to true.
 #
-# Usage: expectPathToContain "/_monitor" "active"
+# Usage: expectResponseToContain "/_monitor" "active"
 #
-expectPathToContain() {
+expectResponseToContain() {
     
     ENDPOINT="$1"
     PATTERN="$2"
@@ -51,16 +52,16 @@ expectPathToContain() {
 
 # ---------------- Tests ----------------
 
-expectPathToContain "/" "Continuous Delivery Reference Application" "The index page should contain a title"
-expectPathToContain "/_monitor" "APPLICATION_STATUS: OK" "Always show OK as status"
-expectPathToContain "/_monitor" "SECRET_VALUE_ON__MONITOR" "Show env SECRET_VALUE_ON__MONITOR to test that the pipeline handles secrets.env"
-expectPathToContain "/_monitor" "API Call: kth-azure-app" "Make external call to the api to check network issues. (Yes I know, it works ok...)"
-expectPathToContain "/_about" "Docker image" "About pages should contain Docker image information"
-expectPathToContain "/502" "502 Bad Gateway" "Return a 502 Bad Gateway for the cluster proxy to handle."
-expectPathToContain "/missing" "Page not found" "404:s should be handled."
-expectPathToContain "/favicon.ico" "" "Show nothing for favicon.ico"
-expectPathToContain "/robots.txt" "User-agent: *" "Search bots should index nothing"
-expectPathToContain "/robots.txt" "Disallow: /" "Search bots should index nothing"
+expectResponseToContain "/" "Continuous Delivery Reference Application" "The index page should contain a title"
+expectResponseToContain "/_monitor" "APPLICATION_STATUS: OK" "Always show OK as status"
+expectResponseToContain "/_monitor" "SECRET_VALUE_ON__MONITOR" "Show env SECRET_VALUE_ON__MONITOR to test that the pipeline handles secrets.env"
+expectResponseToContain "/_monitor" "API Call: kth-azure-app" "Make external call to the api to check network issues. (Yes I know, it works ok...)"
+expectResponseToContain "/_about" "Docker image" "About pages should contain Docker image information"
+expectResponseToContain "/502" "502 Bad Gateway" "Return a 502 Bad Gateway for the cluster proxy to handle."
+expectResponseToContain "/missing" "Page not found" "404:s should be handled."
+expectResponseToContain "/favicon.ico" "" "Show nothing for favicon.ico"
+expectResponseToContain "/robots.txt" "User-agent: *" "Search bots should index nothing"
+expectResponseToContain "/robots.txt" "Disallow: /" "Search bots should index nothing"
 
 # Result
 if [[ "$FAILED" != *"true"* ]]; then
