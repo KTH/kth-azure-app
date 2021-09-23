@@ -11,7 +11,7 @@ const applicationInsights = require("./modules/applicationInsights");
 const started = new Date();
 const app = express();
 
-// Set default envs for those not specified on startup.
+// Set default environment variables for those not specified on startup.
 defaultEnvs.set(true);
 
 /**
