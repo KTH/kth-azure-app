@@ -23,7 +23,9 @@ app.listen(process.env.PORT, function () {
       process.env.PORT
     }`
   );
+  
   applicationInsights.init();
+  
 });
 
 /********************* routes **************************/
