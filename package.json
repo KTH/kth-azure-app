@@ -8,7 +8,7 @@
     "@kth/basic-html-templates": "^1.0.56",
     "@kth/http-responses": "^1.0.64",
     "@kth/npm-template": "1.0.44",
-    "applicationinsights": "^2.1.7",
+    "applicationinsights": "^2.1.8",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
