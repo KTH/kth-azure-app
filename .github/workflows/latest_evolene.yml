@@ -34,7 +34,7 @@
 #
 # For more information see https://github.com/KTH/evolene/blob/master/README.md
 ####################################################################################################################################
-name: Latest Evolene CI (testing only)
+name: Evolene CI - Latest
 
 on:  
   push:
