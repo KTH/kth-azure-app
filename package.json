@@ -5,10 +5,10 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.56",
-    "@kth/http-responses": "^1.0.64",
-    "@kth/npm-template": "1.0.44",
-    "applicationinsights": "^2.1.7",
+    "@kth/basic-html-templates": "^1.0.57",
+    "@kth/http-responses": "^1.0.65",
+    "@kth/npm-template": "1.0.51",
+    "applicationinsights": "^2.1.8",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "mocha": "^9.1.1",
+    "mocha": "^9.1.2",
     "nodemon": "^2.0.13"
   },
   "scripts": {
