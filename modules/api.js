@@ -9,8 +9,7 @@ const fetch = require("node-fetch");
  */
 const getStatus = async () => {
   let result = "ERROR - Could not read api.kth.se";
-  const timerLabel = `Request time to get external api ${process.env.EXTERNAL_API_CALL}`;
-  console.time(timerLabel);
+  const startTime = Date.now();
   try {
     let json = await getJson();
     if (json) {
@@ -19,7 +18,10 @@ const getStatus = async () => {
   } catch (error) {
     logger.log.error("Error to get data from public api.", error);
   }
-  console.timeEnd(timerLabel);
+  const durationMs = Date.now() - startTime;
+  logger.log.info(
+    `Round trip time for ${process.env.EXTERNAL_API_CALL} took ${durationMs}ms.`
+  );
   return result;
 };
 
