@@ -13,7 +13,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "kth-node-log": "^3.1.10",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^3.1.0"
   },
   "devDependencies": {
     "chai": "^4.3.4",
