@@ -5,10 +5,10 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.58",
+    "@kth/basic-html-templates": "^1.0.59",
     "@kth/http-responses": "^1.0.67",
-    "@kth/npm-template": "1.0.54",
-    "applicationinsights": "^2.1.8",
+    "@kth/npm-template": "1.0.70",
+    "applicationinsights": "^2.1.9",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
