@@ -11,7 +11,7 @@ describe("Template handling", function () {
     process.env.ENV_TEST = "a value";
     process.env.EXTERNAL_API_CALL = defaultEnvs.DEFAULTS.EXTERNAL_API_CALL;
     const result = await monitor.tests();
-    expect(result).to.contain("a value");
+    expect(result).to.contain("fail a value");
     delete process.env.ENV_TEST;
     delete process.env.EXTERNAL_API_CALL;
   });
