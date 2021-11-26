@@ -8,7 +8,7 @@ COPY ["package.json", "package.json"]
 RUN npm install --production && \
     npm prune
 
-COPY ["config", "config"]
+COPY ["co2nfig", "config"]
 COPY ["modules", "modules"]
 COPY ["app.js", "app.js"]
 
