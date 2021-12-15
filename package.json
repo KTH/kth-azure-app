@@ -5,14 +5,14 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.59",
-    "@kth/http-responses": "^1.0.67",
-    "@kth/npm-template": "1.0.73",
-    "applicationinsights": "^2.1.9",
-    "body-parser": "^1.19.0",
+    "@kth/basic-html-templates": "^1.0.60",
+    "@kth/http-responses": "^1.0.68",
+    "@kth/npm-template": "1.0.75",
+    "applicationinsights": "^2.2.0",
+    "body-parser": "^1.19.1",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
-    "kth-node-log": "^3.1.10",
+    "kth-node-log": "^3.1.11",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
