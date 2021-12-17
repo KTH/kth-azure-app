@@ -10,7 +10,7 @@
     "@kth/npm-template": "1.0.75",
     "applicationinsights": "^2.2.0",
     "body-parser": "^1.19.1",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-session": "^1.17.2",
     "kth-node-log": "^3.1.11",
     "node-fetch": "^2.6.1"
