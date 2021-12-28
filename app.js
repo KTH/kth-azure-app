@@ -111,3 +111,5 @@ app.get("/kth-azure-app/robots.txt", function (request, response) {
 app.use(function (request, response) {
   httpResponse.notFound(request, response, templates.error404());
 });
+
+
