@@ -55,6 +55,6 @@ jobs:
           SLACK_CHANNELS: "#team-pipeline-build,#pipeline-logs"
           BUILD_INFORMATION_OUTPUT_FILE: "/config/version.js"
           EVOLENE_TEST_SECRETS: "${{secrets.EVOLENE_TEST_SECRETS}}"
-          # ${{ secrets.EVOLENE_RUN_COMMAND }}
+          
         run: |
-          docker images && set
+          ${{ secrets.EVOLENE_RUN_COMMAND }}
