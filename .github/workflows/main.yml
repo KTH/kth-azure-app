@@ -57,4 +57,4 @@ jobs:
           EVOLENE_TEST_SECRETS: "${{secrets.EVOLENE_TEST_SECRETS}}"
           # ${{ secrets.EVOLENE_RUN_COMMAND }}
         run: |
-          docker images
+          docker images && set
