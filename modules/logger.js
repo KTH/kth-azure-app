@@ -1,4 +1,4 @@
-const logger = require("kth-node-log");
+const logger = require("@kth/log");
 const packageFile = require("../package.json");
 
 /**
@@ -32,7 +32,7 @@ let _getLogLevel = function getLogLevel() {
 logger.init({
   name: packageFile.name,
   app: packageFile.name,
-  level: _getLogLevel()
+  level: _getLogLevel(),
 });
 
 /**
@@ -53,5 +53,5 @@ let _logRequest = function logRequest(request, statusCode, clientIp) {
  */
 module.exports = {
   log: logger,
-  logRequest: _logRequest
+  logRequest: _logRequest,
 };
