@@ -4,15 +4,15 @@ const httpResponse = require("@kth/http-responses");
 const { templates } = require("@kth/basic-html-templates");
 const logger = require("./modules/logger");
 const about = require("./config/version");
-const defaultEnvs = require("./modules/defaultEnvs");
 const monitor = require("./modules/monitor");
 const applicationInsights = require("./modules/applicationInsights");
+const defaultEnvs = require("@kth/default-envs");
 
 const started = new Date();
 const app = express();
 
 // Set default environment variables for those not specified on startup.
-defaultEnvs.set(true);
+defaultEnvs.set(require("./config/defaults"), logger.log);
 
 /**
  * Start the server on configured port.
@@ -23,9 +23,8 @@ app.listen(process.env.PORT, function () {
       process.env.PORT
     }`
   );
-  
+
   applicationInsights.init();
-  
 });
 
 /********************* routes **************************/
@@ -111,4 +110,3 @@ app.get("/kth-azure-app/robots.txt", function (request, response) {
 app.use(function (request, response) {
   httpResponse.notFound(request, response, templates.error404());
 });
-

@@ -60,7 +60,7 @@ expectResponseToContain "/_about" "Docker image" "About pages should contain Doc
 expectResponseToContain "/502" "502 Bad Gateway" "Return a 502 Bad Gateway for the cluster proxy to handle."
 expectResponseToContain "/missing" "Page not found" "404:s should be handled."
 expectResponseToContain "/favicon.ico" "" "Show nothing for favicon.ico"
-expectResponseToContain "/robots.txt" "User-agent: *" "Search bots should index nothing"
+expectResponseToContain "/robots.txt" "User-agent: *" "Rules apply to all search bots "
 expectResponseToContain "/robots.txt" "Disallow: /" "Search bots should index nothing"
 
 # Result
