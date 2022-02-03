@@ -12,8 +12,19 @@ const started = new Date();
 const app = express();
 
 // Set default environment variables for those not specified on startup.
-defaultEnvs.set(require("./config/defaults"), logger.log);
+defaultEnvs.set(
+  {
+    APPLICATION_NAME: "KTH Azure App",
+    LOG_LEVEL: "info",
+    PORT: 3000,
+    APPINSIGHTS_INSTRUMENTATIONKEY: "",
+    EXTERNAL_API_CALL:
+      "https://api.kth.se/api/pipeline/v1/active/kth-azure-app/",
+  },
+  logger.log
+);
 
+defaultEnvs.required(["FLOTTSBRO_API_KEY"], logger.log);
 /**
  * Start the server on configured port.
  */
