@@ -5,8 +5,8 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.66",
-    "@kth/default-envs": "^0.0.45",
+    "@kth/basic-html-templates": "^1.0.67",
+    "@kth/default-envs": "^0.0.48",
     "@kth/http-responses": "^1.0.75",
     "@kth/log": "^4.0.0",
     "@kth/npm-template": "1.0.99",
