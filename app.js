@@ -11,6 +11,8 @@ const defaultEnvs = require("@kth/default-envs");
 const started = new Date();
 const app = express();
 
+// Bump to build
+
 // Set default environment variables for those not specified on startup.
 defaultEnvs.set(
   {
