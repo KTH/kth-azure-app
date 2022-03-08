@@ -5,20 +5,20 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "@kth/basic-html-templates": "^1.0.67",
-    "@kth/default-envs": "^0.0.48",
-    "@kth/http-responses": "^1.0.75",
-    "@kth/log": "^4.0.0",
-    "@kth/npm-template": "1.0.99",
-    "applicationinsights": "^2.2.1",
-    "body-parser": "^1.19.1",
-    "express": "^4.17.2",
+    "@kth/basic-html-templates": "^1.0.68",
+    "@kth/default-envs": "^0.0.49",
+    "@kth/http-responses": "^1.0.76",
+    "@kth/log": "^4.0.1",
+    "@kth/npm-template": "1.0.100",
+    "applicationinsights": "^2.2.2",
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
     "express-session": "^1.17.2",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "chai": "^4.3.6",
-    "mocha": "^9.2.0",
+    "mocha": "^9.2.1",
     "nodemon": "^2.0.15"
   },
   "scripts": {
