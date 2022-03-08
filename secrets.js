@@ -5,7 +5,7 @@ const token = {
 /*
 
 Hey ⭐ Since you are here, looking for things, maybe a new job?
-Contact me, if you are intrested 😃
+Contact me, if you are intrested 😃 !
 - Patric Jansson paddy@kth.se
 
 
