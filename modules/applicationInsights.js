@@ -2,10 +2,10 @@ const appInsights = require("applicationinsights");
 const logger = require("./logger");
 
 /**
- * Use app insights if env APPINSIGHTS_INSTRUMENTATIONKEY is set
+ * app insights env specified by Azure is APPINSIGHTS_INSTRUMENTATIONKEY
  */
 
-const use = () => {
+const useApplicationInsight = () => {
   return process.env.APPINSIGHTS_INSTRUMENTATIONKEY ? true : false;
 };
 
@@ -14,17 +14,8 @@ const use = () => {
  */
 
 const init = () => {
-  if (use()) {
-    appInsights
-      .setup()
-      .setAutoDependencyCorrelation(true)
-      .setAutoCollectRequests(true)
-      .setAutoCollectPerformance(true)
-      .setAutoCollectExceptions(true)
-      .setAutoCollectDependencies(true)
-      .setAutoCollectConsole(true)
-      .setUseDiskRetryCaching(true)
-      .start();
+  if (useApplicationInsight()) {
+    startAppInsights();
     logger.log.info(
       `Using Application Ingsights: '${process.env.APPINSIGHTS_INSTRUMENTATIONKEY}'.`
     );
@@ -34,9 +25,26 @@ const init = () => {
 };
 
 /**
+ * Start and configure app insights specified in env APPINSIGHTS_INSTRUMENTATIONKEY.
+ */
+
+const startAppInsights = () => {
+  appInsights
+    .setup()
+    .setAutoDependencyCorrelation(true)
+    .setAutoCollectRequests(true)
+    .setAutoCollectPerformance(true)
+    .setAutoCollectExceptions(true)
+    .setAutoCollectDependencies(true)
+    .setAutoCollectConsole(true)
+    .setUseDiskRetryCaching(true)
+    .start();
+};
+
+/**
  * Module exports
  */
 module.exports = {
-  use: use,
+  useApplicationInsight: useApplicationInsight,
   init: init,
 };
