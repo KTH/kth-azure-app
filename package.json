@@ -10,7 +10,7 @@
     "@kth/http-responses": "^1.0.77",
     "@kth/log": "^4.0.4",
     "@kth/npm-template": "1.0.101",
-    "applicationinsights": "^2.3.1",
+    "applicationinsights": "^2.3.4",
     "body-parser": "^1.20.0",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
