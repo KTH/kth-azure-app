@@ -8,7 +8,6 @@ COPY ["package.json", "package.json"]
 RUN npm install --production && \
     npm prune
 
-COPY ["filsomintefinns", "filsomintefinns"]
 COPY ["config", "config"]
 COPY ["modules", "modules"]
 COPY ["app.js", "app.js"]
